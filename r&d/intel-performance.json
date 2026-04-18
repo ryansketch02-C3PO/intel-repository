@@ -1,0 +1,98 @@
+{
+  "weekly_reports": [
+    {
+      "run_id": "weekly-2026-03-25-01",
+      "triggered_by": "cron",
+      "cron_job_id": "1c2b079a-1378-4beb-aef4-28208d6865bb",
+      "label": "C3PO Lab — First Weekly Team Reports",
+      "timestamp_utc": "2026-03-25T14:36:00Z",
+      "week_covered": "2026-03-17 to 2026-03-24",
+      "reports": [
+        {
+          "team": "Enterprise Vulnerability Management (EVM)",
+          "channel_id": "1486206796627443732",
+          "channel_name": "evm-weekly",
+          "report_file": "~/c3po-lab/reports/2026-03-24/evm-weekly.md",
+          "status": "DRAFT_COMPLETE",
+          "posted_to_discord": false,
+          "post_error": "Missing Access — bot lacks permission to send in #evm-weekly",
+          "sections_populated": [
+            "Critical / Actively Exploited",
+            "High Priority",
+            "Watch List",
+            "Aerospace/Defense Vendor Bulletins",
+            "Vuln Trend This Week"
+          ],
+          "top_items": [
+            "CVE-2026-20131 Cisco FMC CVSS 10.0 (Interlock ransomware zero-day)",
+            "CVE-2026-4681 PTC Windchill RCE (aerospace PLM — no patch yet)",
+            "CVE-2026-33017 Langflow AI (exploited within 20hr of disclosure)",
+            "Apple DarkSword chain CVEs (CISA KEV March 20)"
+          ]
+        },
+        {
+          "team": "Insider Threat Program",
+          "channel_id": "1486206796627447838",
+          "channel_name": "insider-threat-weekly",
+          "report_file": "~/c3po-lab/reports/2026-03-24/insider-threat-weekly.md",
+          "status": "DRAFT_COMPLETE",
+          "posted_to_discord": false,
+          "post_error": "Missing Access — bot lacks permission to send in #insider-threat-weekly",
+          "sections_populated": [
+            "Data Exfiltration Incidents",
+            "Credential Theft & Account Abuse",
+            "Dark Web Exposure",
+            "Insider TTP Spotlight",
+            "Sector Watch — Aerospace/Defense",
+            "Other Noteworthy"
+          ],
+          "top_items": [
+            "CrowdStrike insider fired for sharing screenshots with Scattered Lapsus$ Hunters",
+            "APT28 SquirrelMail credential harvesting kit (2,870 emails, 244 creds, 143 Sieve forwarding rules)",
+            "TeamPCP CI/CD credential harvest (SSH keys, cloud creds, K8s secrets)",
+            "FAUX#ELEVATE fake resume campaign targeting HR teams"
+          ]
+        },
+        {
+          "team": "Threat Detection Engineering",
+          "channel_id": "1486206796816318474",
+          "channel_name": "threat-detection-weekly",
+          "report_file": "~/c3po-lab/reports/2026-03-24/threat-detection-weekly.md",
+          "status": "DRAFT_COMPLETE",
+          "posted_to_discord": false,
+          "post_error": "Missing Access — bot lacks permission to send in #threat-detection-weekly",
+          "sections_populated": [
+            "New Malware & Tools",
+            "TTP Spotlight (MITRE ATT&CK)",
+            "IOCs This Week",
+            "Supply Chain & CI/CD",
+            "Aerospace/Defense Detections",
+            "Detection Engineering Resources"
+          ],
+          "top_items": [
+            "CanisterWorm (TeamPCP supply chain worm — Trivy→KICS→LiteLLM cascade)",
+            "DarkSword iOS exploit kit (6-exploit full chain, UNC6353/Russia)",
+            "Perseus Android banking trojan",
+            "Beast RaaS server toolkit analysis",
+            "Interlock ransomware IOC set + Cisco FMC attack chain"
+          ]
+        }
+      ],
+      "research_sources_used": [
+        "thehackernews.com",
+        "bleepingcomputer.com",
+        "crowdstrike.com (March 2026 Patch Tuesday)",
+        "cyberwarrior76.substack.com",
+        "ptc.com (advisory center)",
+        "cisa.gov (KEV catalog)",
+        "cyberscotland.com",
+        "acumencyber.com",
+        "threatfox.abuse.ch",
+        "securonix.com",
+        "bleepingcomputer.com (supply chain tag)"
+      ],
+      "action_required": "Bot needs Send Message + View Channel permissions in the C3PO Lab channel category. All three report files are complete and ready to post once permissions are granted.",
+      "notes": "Reports discovered already written on 2026-03-24 in ~/c3po-lab/reports/2026-03-24/ — full research complete. This run confirmed quality and attempted posting. Discord permission issue is the only blocker."
+    }
+  ]
+}
