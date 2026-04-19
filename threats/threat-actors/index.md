@@ -27,6 +27,8 @@
 | 020 | BlackCat / ALPHV (Noberus) | Cybercriminal (RaaS) | Unknown (Russian-speaking; DarkSide/REvil lineage) | ❌ Disrupted (shutdown Mar 2024; affiliates migrated) | 🔴 HIGH | Healthcare, Finance, Critical Infrastructure, Manufacturing, Technology |
 | 021 | Payouts King (PayoutsKing) | Cybercriminal (Independent; no RaaS) | Unknown (former Black Basta / Conti affiliates) | 🔴 ACTIVE | 🔴 HIGH | Business Services, Healthcare, Manufacturing, Technology, Finance |
 | 022 | MuddyWater (Mango Sandstorm) | Nation-State APT | Iran (MOIS) | 🔴 ACTIVE | 🔴 HIGH | Government, Telecom, Defense, Aviation, Finance, Energy, Healthcare |
+| 023 | Kimsuky (APT43) | State-Sponsored | North Korea (RGB) | 🔴 ACTIVE | 🔴 HIGH | Government, Defense, Think Tanks, Nuclear Research |
+| 024 | APT33 (Peach Sandstorm / Elfin) | State-Sponsored | Iran (IRGC) | 🔴 ACTIVE | 🔴 HIGH | Aerospace, Aviation, Satellite, Defense, Energy, Petrochemical |
 
 ---
 
@@ -38,4 +40,4 @@
 
 ---
 
-*Last updated: 2026-04-17 | Entry count: 21 threat actors + 1 vulnerability*
+*Last updated: 2026-04-19 | Entry count: 24 threat actors + 1 vulnerability*
