@@ -23,7 +23,7 @@
 - 📰 Other Noteworthy
 
 ### Delivery
-- **Channel:** Discord — Intel Channel (ID: 1483619397435265096)
+- **Channel:** Discord — Intel Channel (ID: [GUILD_ID])
 - **Format:** Smart Brevity — lead with most important, explain why it matters, scannable
 - **Source links:** Hyperlinked in every item title — MANDATORY
 - **Grading:** Admiralty Scale (see `INTEL_GRADING.md`)
@@ -58,7 +58,7 @@
 ### Threat Actor & CVE Alerts
 - **Schedule:** Every 6 hours (midnight, 6am, noon, 6pm EDT)
 - **Added:** 2026-04-16
-- **Delivery:** Discord #alerts channel (ID: 1494307301643911240)
+- **Delivery:** Discord #alerts channel (ID: [ALERTS_CHANNEL_ID])
 - **Triggers:**
   - Any activity from all 20 tracked Scoundrels
   - Any of the 15 A&D vendor watchlist companies breached/attacked
@@ -104,8 +104,8 @@
 
 ## Scoundrels of the Galaxy
 
-- **Channel:** Discord ID 1488665479189893202
-- **Most Wanted Board:** Message ID 1488666637094883369
+- **Channel:** Discord ID [SCOUNDRELS_CHANNEL_ID]
+- **Most Wanted Board:** Message ID [MOST_WANTED_MSG_ID]
 - **Current count:** #020 (Kimsuky — added 2026-04-16)
 - **Format:** Who they are | Who they target | How they operate | Why dangerous | How to stop them
 - **Threat level reactions:** 🔴 High | 🟡 Medium | 🟢 Low
@@ -139,14 +139,14 @@
 
 ## Infrastructure
 
-### lobsterpi
+### [HOSTNAME]
 - **Hardware:** Raspberry Pi 5, 8GB RAM, 235GB SD
 - **OS:** Debian Bookworm, ARM64
 - **Role:** Primary agent host, OSINT stack, DefenseClaw
 
 ### DefenseClaw → Splunk
-- **DefenseClaw:** `/home/lobsterclaw/.defenseclaw/`
-- **Splunk:** Running on PC at `192.168.1.66:8088`
+- **DefenseClaw:** `/home/[USERNAME]/.defenseclaw/`
+- **Splunk:** Running on PC at `[HOME_PC_IP]:8088`
 - **HEC token:** `~/.defenseclaw/.env`
 - **Index:** `defenseclaw_local`
 
@@ -164,8 +164,8 @@
 | AI model | Anthropic Claude Sonnet 4.6 | API pay-per-token |
 | Messaging | Discord | Primary delivery channel |
 | Code/profiles | GitHub | Private repo |
-| OSINT stack | Self-hosted (lobsterpi) | See osint-stack.md |
-| SIEM | Splunk (PC, 192.168.1.66) | DefenseClaw bridge |
+| OSINT stack | Self-hosted ([HOSTNAME]) | See osint-stack.md |
+| SIEM | Splunk (PC, [HOME_PC_IP]) | DefenseClaw bridge |
 
 ### Claude Max OAuth — Status
 Anthropic terminated OAuth access for third-party tools (including OpenClaw) effective **April 4, 2026**. Claude Max subscription does **not** cover OpenClaw API usage. OpenClaw runs on the Anthropic API (pay-per-token) only. See [Anthropic policy](https://www.anthropic.com/legal/aup) for details.
