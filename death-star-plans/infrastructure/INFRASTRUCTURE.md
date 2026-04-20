@@ -8,7 +8,7 @@
 | Component | Details |
 |---|---|
 | **Device** | Raspberry Pi 5 Model B Rev 1.0 |
-| **Hostname** | lobsterpi |
+| **Hostname** | [HOSTNAME] |
 | **CPU** | BCM2712 (aarch64 / ARM64) |
 | **RAM** | 7.9GB |
 | **Storage** | 235GB (SD/NVMe) — 213GB free |
@@ -63,9 +63,9 @@
 ### Discord
 | Setting | Value |
 |---|---|
-| **Guild ID** | 1483619397435265096 |
-| **Intel Channel** | 1483619397435265096 |
-| **Scoundrels Channel** | 1488665479189893202 |
+| **Guild ID** | [GUILD_ID] |
+| **Intel Channel** | [GUILD_ID] |
+| **Scoundrels Channel** | [SCOUNDRELS_CHANNEL_ID] |
 | **Bot account** | c3po#1418 |
 
 ### GitHub
@@ -81,8 +81,8 @@
 | Setting | Value |
 |---|---|
 | **Outbound** | msmtp + Gmail App Password |
-| **Sending account** | ryansketch02@gmail.com |
-| **Ryan's inbox** | ryansketch01@gmail.com |
+| **Sending account** | [OPERATOR_EMAIL] |
+| **Ryan's inbox** | [RYANS_PERSONAL_EMAIL] |
 
 ---
 
