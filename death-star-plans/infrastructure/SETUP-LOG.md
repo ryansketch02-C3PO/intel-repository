@@ -1,13 +1,13 @@
 # 🔧 Setup Log — DefenseClaw Installation
 **Date:** 2026-04-06  
 **Operator:** Ryan  
-**System:** Raspberry Pi 5 (lobsterpi) — Debian 12 Bookworm, aarch64
+**System:** Raspberry Pi 5 ([HOSTNAME]) — Debian 12 Bookworm, aarch64
 
 ---
 
 ## Overview
 
-This document records the full installation process for Docker, NVIDIA OpenShell, and Cisco DefenseClaw on lobsterpi. Includes issues encountered and resolutions.
+This document records the full installation process for Docker, NVIDIA OpenShell, and Cisco DefenseClaw on [HOSTNAME]. Includes issues encountered and resolutions.
 
 ---
 
@@ -32,14 +32,14 @@ echo "deb [arch=arm64 signed-by=/etc/apt/keyrings/docker.asc] https://download.d
   | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
 sudo apt-get update && \
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
-sudo usermod -aG docker lobsterclaw && \
+sudo usermod -aG docker [USERNAME] && \
 sudo systemctl enable --now docker
 ```
 
 ### Result
 ✅ **Docker version 29.3.1** installed successfully  
 ✅ Docker service enabled and running  
-✅ `lobsterclaw` added to docker group
+✅ `[USERNAME]` added to docker group
 
 ---
 
@@ -58,7 +58,7 @@ curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh \
 ```
 
 ### Result
-✅ **OpenShell v0.0.11** installed to `/home/lobsterclaw/.local/bin/openshell`  
+✅ **OpenShell v0.0.11** installed to `/home/[USERNAME]/.local/bin/openshell`  
 ✅ arm64 (aarch64) binary — fully compatible with Raspberry Pi 5
 
 ---
@@ -88,8 +88,8 @@ echo "n" | defenseclaw init
 **Root cause:** Scanner binaries installed into virtualenv at `~/.defenseclaw/.venv/bin/` but not symlinked to PATH  
 **Resolution:**
 ```bash
-ln -sf /home/lobsterclaw/.defenseclaw/.venv/bin/skill-scanner /home/lobsterclaw/.local/bin/skill-scanner
-ln -sf /home/lobsterclaw/.defenseclaw/.venv/bin/mcp-scanner /home/lobsterclaw/.local/bin/mcp-scanner
+ln -sf /home/[USERNAME]/.defenseclaw/.venv/bin/skill-scanner /home/[USERNAME]/.local/bin/skill-scanner
+ln -sf /home/[USERNAME]/.defenseclaw/.venv/bin/mcp-scanner /home/[USERNAME]/.local/bin/mcp-scanner
 ```
 
 #### Issue 2: Sidecar not running after init
@@ -112,8 +112,8 @@ ln -sf /home/lobsterclaw/.defenseclaw/.venv/bin/mcp-scanner /home/lobsterclaw/.l
 defenseclaw doctor — 8 passed, 0 failed, 6 skipped
 
 Sandbox:       available
-skill-scanner: installed  (/home/lobsterclaw/.local/bin/skill-scanner)
-mcp-scanner:   installed  (/home/lobsterclaw/.local/bin/mcp-scanner)
+skill-scanner: installed  (/home/[USERNAME]/.local/bin/skill-scanner)
+mcp-scanner:   installed  (/home/[USERNAME]/.local/bin/mcp-scanner)
 codeguard:     built-in
 Sidecar:       running (PID active, gateway + watcher)
 OpenClaw:      127.0.0.1:18789
@@ -123,9 +123,9 @@ Splunk:        not configured
 ```
 
 **Version:** DefenseClaw 0.2.0  
-**Install path:** `/home/lobsterclaw/.local/bin/defenseclaw`  
-**Config:** `/home/lobsterclaw/.defenseclaw/config.yaml`  
-**Audit DB:** `/home/lobsterclaw/.defenseclaw/audit.db`
+**Install path:** `/home/[USERNAME]/.local/bin/defenseclaw`  
+**Config:** `/home/[USERNAME]/.defenseclaw/config.yaml`  
+**Audit DB:** `/home/[USERNAME]/.defenseclaw/audit.db`
 
 ---
 
