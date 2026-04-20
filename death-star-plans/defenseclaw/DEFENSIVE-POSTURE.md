@@ -1,5 +1,5 @@
 # 🛡️ Defensive Posture — C3PO Intel Agent
-**Last Updated:** 2026-04-06  
+**Last Updated:** 2026-04-20  
 **System:** [HOSTNAME] (Raspberry Pi 5)  
 **Operator:** Ryan
 
@@ -19,8 +19,10 @@ Cisco DefenseClaw is the primary security governance layer for C3PO. It runs as 
 | **Sidecar Watcher** | ✅ Running | Real-time monitoring of skill directories and plugin installations for unauthorized changes. |
 | **OpenShell Sandbox** | ✅ Available | NVIDIA OpenShell provides a sandboxed execution environment. When a skill is blocked, permissions are revoked and files quarantined within 2 seconds. |
 
-**Current mode:** `observe` — all findings are logged, nothing is blocked yet  
-**Enforcement mode:** Available but not yet activated (switch with `defenseclaw setup guardrail --mode action`)
+**Current mode:** `action` — active enforcement enabled as of 2026-04-20  
+**Enforcement mode:** ✅ Active — skill/MCP/plugin blocking enabled, watcher enforcement on
+
+**Watcher enforcement:** ✅ Active — unauthorized skill/plugin additions trigger immediate action
 
 **Audit trail:** All scan results, block decisions, tool calls, and alerts stream to:  
 `/home/[USERNAME]/.defenseclaw/audit.db`
@@ -96,8 +98,8 @@ Sensitive commands require explicit human approval before execution:
 
 | Control | Description | When |
 |---|---|---|
-| **LLM Guardrail Proxy** | Routes all LLM prompts/responses through local inspection proxy. Catches prompt injection, PII leakage, data exfiltration patterns in real-time. | Next maintenance window |
-| **DefenseClaw Action Mode** | Upgrade from observe → action to actively block detected threats | After 2 weeks of observe data reviewed |
+| **LLM Guardrail Proxy** | Evaluated and intentionally disabled — OpenClaw native isolation + approval model covers the risk. Would ~2x API costs. Revisit if threat profile changes. | Deferred indefinitely |
+| **DefenseClaw Action Mode** | ✅ Enabled 2026-04-20 — audit reviewed (0 false positives), enforcement active | ✅ Complete |
 | **Splunk Integration** | ✅ Active — DefenseClaw audit events forwarding to Splunk at [HOME_PC_IP]:8088 via HEC, index: defenseclaw_local | Completed |
 | **VirusTotal API** | Enable MCP scanner enrichment for IOC checking | Optional / future |
 
@@ -138,8 +140,8 @@ defenseclaw setup guardrail --mode action --non-interactive
 | CodeGuard | A1 | Active, tested, built-in |
 | Prompt injection defense | A2 | OpenClaw native; effective against most vectors |
 | Execution approval model | A1 | Human-in-loop for all elevated commands |
-| Skill/MCP scanning | B2 | Active but no real-world findings yet to validate |
-| LLM Guardrail | N/A | Not yet active |
+| Skill/MCP scanning | A2 | Active enforcement — blocking on critical/high/medium findings |
+| LLM Guardrail | N/A | Intentionally disabled — cost/risk tradeoff decision 2026-04-20 |
 | Network isolation | B3 | Docker/OpenShell available but not all workloads containerized |
 
 ---
