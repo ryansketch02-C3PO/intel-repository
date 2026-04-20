@@ -13,7 +13,7 @@ Skill Scanner:     active — policy=permissive, lenient=True
 MCP Scanner:       active — analyzers=yara
 CodeGuard:         built-in, always active
 Guardrail proxy:   disabled
-Splunk:            not configured
+Splunk:            enabled — HEC → [HOME_PC_IP]:8088, index=defenseclaw_local
 VirusTotal:        not configured
 Cisco AI Defense:  not configured (local scanning only)
 ```
