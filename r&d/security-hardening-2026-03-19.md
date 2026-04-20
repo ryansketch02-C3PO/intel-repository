@@ -1,6 +1,6 @@
 # Security Hardening Log
 **Date:** 2026-03-19  
-**Host:** lobsterpi (Raspberry Pi, Debian GNU/Linux 12 Bookworm, arm64)
+**Host:** [HOSTNAME] (Raspberry Pi, Debian GNU/Linux 12 Bookworm, arm64)
 
 ---
 
