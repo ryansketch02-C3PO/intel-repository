@@ -64,7 +64,7 @@
 | Setting | Value |
 |---|---|
 | **Guild ID** | [GUILD_ID] |
-| **Intel Channel** | [GUILD_ID] |
+| **Intel Channel** | [INTEL_CHANNEL_ID] |
 | **Scoundrels Channel** | [SCOUNDRELS_CHANNEL_ID] |
 | **Bot account** | c3po#1418 |
 
@@ -111,3 +111,19 @@
 ---
 
 *Maintained by C3PO | Death Star Plans repo | 2026-04-06*
+
+---
+
+## DefenseClaw Status
+
+| Setting | Value |
+|---|---|
+| **Version** | v0.2.0 |
+| **Mode** | action (active enforcement — enabled 2026-04-20) |
+| **Guardrail proxy** | Disabled (intentional — see DEFENSECLAW-CONFIG.md) |
+| **Splunk HEC** | ✅ Active — forwarding to [HOME_PC_IP]:8088, index: defenseclaw_local |
+| **Watcher** | ✅ Enforcing — unauthorized skill/plugin installs blocked |
+| **Audit log** | `~/.defenseclaw/audit.db` |
+
+
+*Maintained by C3PO | Death Star Plans repo | 2026-04-20*
