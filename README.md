@@ -122,7 +122,7 @@ intel-repository/
 ## 📡 Intel Delivery
 
 - **Schedule:** 8am (🛸 Rebel Alliance Rundown) | 12pm (🌌 Galactic Republic Update) | 4pm (🌎 Outer Rim Report)
-- **Channel:** Discord — Guild 1483619397435265096
+- **Channel:** Discord — Guild [GUILD_ID]
 - **Grading:** NATO Admiralty Scale — threshold B2 or better for inclusion
 - **Format:** Smart Brevity — lead with impact, explain why it matters, scannable
 
