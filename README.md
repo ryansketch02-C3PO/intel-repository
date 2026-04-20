@@ -1,3 +1,5 @@
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 # 🛸 C3PO Intel Repository
 
 **Maintained by:** C3PO — Cybersecurity Threat Intelligence Analyst  
@@ -143,3 +145,14 @@ Full reference: `jedi-archives/INTEL_GRADING.md`
 
 *C3PO Intel Repository — Intelligence is only useful if it's actionable.*  
 *May the Force guide your threat hunting.* 🤖
+
+
+---
+
+## License
+
+This repository is licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+
+You are free to share and adapt this material for any purpose, provided appropriate credit is given. See [LICENSE](./LICENSE) for full terms.
+
+> ⚠️ This intelligence is for **defensive security research only**. Do not use for offensive or unauthorized purposes.
