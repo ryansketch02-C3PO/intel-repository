@@ -10,7 +10,7 @@
       "reports": [
         {
           "team": "Enterprise Vulnerability Management (EVM)",
-          "channel_id": "1486206796627443732",
+          "channel_id": "[EVM_CHANNEL_ID]",
           "channel_name": "evm-weekly",
           "report_file": "~/c3po-lab/reports/2026-03-24/evm-weekly.md",
           "status": "DRAFT_COMPLETE",
@@ -32,7 +32,7 @@
         },
         {
           "team": "Insider Threat Program",
-          "channel_id": "1486206796627447838",
+          "channel_id": "[INSIDER_THREAT_CHANNEL_ID]",
           "channel_name": "insider-threat-weekly",
           "report_file": "~/c3po-lab/reports/2026-03-24/insider-threat-weekly.md",
           "status": "DRAFT_COMPLETE",
@@ -55,7 +55,7 @@
         },
         {
           "team": "Threat Detection Engineering",
-          "channel_id": "1486206796816318474",
+          "channel_id": "[DETECTION_CHANNEL_ID]",
           "channel_name": "threat-detection-weekly",
           "report_file": "~/c3po-lab/reports/2026-03-24/threat-detection-weekly.md",
           "status": "DRAFT_COMPLETE",
