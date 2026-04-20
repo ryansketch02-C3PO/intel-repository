@@ -40,7 +40,7 @@ The "Lazarus Group" label is best understood as an **umbrella** for multiple coo
 
 | Sub-Group | Focus | See Also |
 |---|---|---|
-| **Stardust Chollima** (BlueNoroff, APT38) | Financial crime — crypto, banks, SWIFT | [#002 Scoundrels Profile](https://discord.com/channels/1483619395375992844/1488665479189893202) |
+| **Stardust Chollima** (BlueNoroff, APT38) | Financial crime — crypto, banks, SWIFT | [#002 Scoundrels Profile](https://discord.com/channels/[GUILD_ID]/[SCOUNDRELS_CHANNEL_ID]) |
 | **Andariel** | South Korean critical infra, supply chain | — |
 | **BeagleBoyz** | SWIFT/ATM attacks in developing nations | — |
 
@@ -183,7 +183,7 @@ The group reportedly has 6,000+ personnel in the broader DPRK cyber apparatus, w
 
 ## Connection Web
 
-- ⛓️ **[#002 Stardust Chollima](https://discord.com/channels/1483619395375992844/1488665479189893202)** — Lazarus financial sub-unit; APT38/BlueNoroff; responsible for the Bangladesh Bank heist and ongoing crypto theft
+- ⛓️ **[#002 Stardust Chollima](https://discord.com/channels/[GUILD_ID]/[SCOUNDRELS_CHANNEL_ID])** — Lazarus financial sub-unit; APT38/BlueNoroff; responsible for the Bangladesh Bank heist and ongoing crypto theft
 - ⛓️ **Andariel** — South Korea-focused sub-unit; targets critical infrastructure and defense supply chain
 - ⛓️ **BeagleBoyz** — SWIFT/ATM theft in developing nation banks
 
