@@ -66,7 +66,7 @@ Edit `~/.openclaw/config.json` (or use `openclaw config edit`). Key fields to se
         "enabled": true,
         "config": {
           "token": "<DISCORD_BOT_TOKEN>",
-          "guildId": "1483619397435265096"
+          "guildId": "[GUILD_ID]"
         }
       }
     }
@@ -131,8 +131,8 @@ These files are **not** in the GitHub repo (they're private config). Create them
 
 ## Discord
 - Server: My Server
-- Guild ID: 1483619397435265096
-- Intel Channel ID: 1483216745442574569
+- Guild ID: [GUILD_ID]
+- Intel Channel ID: [INTEL_CHANNEL_ID]
 
 ## Intel Preferences
 - **Industry focus:** Aerospace and adjacent companies (suppliers, contractors, etc.)
@@ -145,7 +145,7 @@ These files are **not** in the GitHub repo (they're private config). Create them
 ### `~/.openclaw/workspace/SOUL.md`
 
 Copy from the intel-repository or from the existing machine at:
-`/home/lobsterclaw/.openclaw/workspace/SOUL.md`
+`/home/[USERNAME]/.openclaw/workspace/SOUL.md`
 
 ### `~/.openclaw/workspace/AGENTS.md`
 
@@ -157,7 +157,7 @@ Copy the current `MEMORY.md` from the existing machine — this is C3PO's long-t
 
 ```bash
 # On the OLD machine — export it:
-scp /home/lobsterclaw/.openclaw/workspace/MEMORY.md <new-machine>:~/.openclaw/workspace/
+scp /home/[USERNAME]/.openclaw/workspace/MEMORY.md <new-machine>:~/.openclaw/workspace/
 
 # Or copy the contents manually
 ```
@@ -185,7 +185,7 @@ touch ~/.openclaw/workspace/HEARTBEAT.md
 
 ```bash
 cd ~/.openclaw/workspace
-git config user.email "ryansketch02@gmail.com"
+git config user.email "[OPERATOR_EMAIL]"
 git config user.name "C3PO"
 ```
 
@@ -210,8 +210,8 @@ logfile        ~/.msmtp.log
 account        gmail
 host           smtp.gmail.com
 port           587
-from           ryansketch02@gmail.com
-user           ryansketch02@gmail.com
+from           [OPERATOR_EMAIL]
+user           [OPERATOR_EMAIL]
 password       <GMAIL_APP_PASSWORD>
 
 account default : gmail
@@ -235,12 +235,12 @@ cd ~/.defenseclaw
 Create `.env`:
 ```
 DEFENSECLAW_SPLUNK_HEC_TOKEN=<HEC_TOKEN_FROM_RYAN>
-DEFENSECLAW_HEC_URL=http://192.168.1.66:8088
+DEFENSECLAW_HEC_URL=http://[HOME_PC_IP]:8088
 ```
 
-Create `config.yaml` — copy from existing machine at `/home/lobsterclaw/.defenseclaw/config.yaml`.
+Create `config.yaml` — copy from existing machine at `/home/[USERNAME]/.defenseclaw/config.yaml`.
 
-> Note: Splunk runs on Ryan's PC at `192.168.1.66:8088`. Do NOT run Splunk locally on the Pi — too resource heavy.
+> Note: Splunk runs on Ryan's PC at `[HOME_PC_IP]:8088`. Do NOT run Splunk locally on the Pi — too resource heavy.
 
 ---
 
@@ -250,15 +250,15 @@ C3PO delivers three intel briefs daily. Set these up via OpenClaw's cron system:
 
 ```bash
 openclaw cron add --schedule "0 8 * * *" --timezone "America/New_York" \
-  --payload "Time to deliver the 8am Rebel Alliance Rundown intel brief to Discord channel 1483216745442574569. Search for the latest cybersecurity threat intel, zero-days, aerospace/defense threats, threat actor activity, and Iranian conflict updates from the last 8 hours. Format per INTEL-BRIEF-STANDARDS.md." \
+  --payload "Time to deliver the 8am Rebel Alliance Rundown intel brief to Discord channel [INTEL_CHANNEL_ID]. Search for the latest cybersecurity threat intel, zero-days, aerospace/defense threats, threat actor activity, and Iranian conflict updates from the last 8 hours. Format per INTEL-BRIEF-STANDARDS.md." \
   --session isolated
 
 openclaw cron add --schedule "0 12 * * *" --timezone "America/New_York" \
-  --payload "Time to deliver the 12pm Galactic Republic Update intel brief to Discord channel 1483216745442574569. Search for the latest cybersecurity threat intel, zero-days, aerospace/defense threats, threat actor activity, and Iranian conflict updates since the morning brief. Format per INTEL-BRIEF-STANDARDS.md." \
+  --payload "Time to deliver the 12pm Galactic Republic Update intel brief to Discord channel [INTEL_CHANNEL_ID]. Search for the latest cybersecurity threat intel, zero-days, aerospace/defense threats, threat actor activity, and Iranian conflict updates since the morning brief. Format per INTEL-BRIEF-STANDARDS.md." \
   --session isolated
 
 openclaw cron add --schedule "0 16 * * *" --timezone "America/New_York" \
-  --payload "Time to deliver the 4pm Outer Rim Report intel brief to Discord channel 1483216745442574569. Search for the latest cybersecurity threat intel, zero-days, aerospace/defense threats, threat actor activity, and Iranian conflict updates since the noon brief. Format per INTEL-BRIEF-STANDARDS.md." \
+  --payload "Time to deliver the 4pm Outer Rim Report intel brief to Discord channel [INTEL_CHANNEL_ID]. Search for the latest cybersecurity threat intel, zero-days, aerospace/defense threats, threat actor activity, and Iranian conflict updates since the noon brief. Format per INTEL-BRIEF-STANDARDS.md." \
   --session isolated
 ```
 
@@ -273,7 +273,7 @@ openclaw cron list
 
 ```bash
 openclaw cron add --schedule "0 9 * * *" --timezone "America/New_York" \
-  --payload "Daily Reminder: Time to build out the Threat Actor Repository! Pick a new threat actor with Ryan — historic or active — research it via OSINT, then: (1) Build profile.md + iocs.md and push to GitHub intel-repository under threats/threat-actors/, (2) Update threats/threat-actors/index.md, (3) Post a fun write-up to Discord #scoundrels-of-the-galaxy (channel 1488665479189893202) with the next sequential Scoundrel # and seed it with the appropriate threat-level reaction, (4) Update the Most Wanted Board (message 1488666637094883369), (5) If the new actor connects to an existing profile, post a connection web follow-up." \
+  --payload "Daily Reminder: Time to build out the Threat Actor Repository! Pick a new threat actor with Ryan — historic or active — research it via OSINT, then: (1) Build profile.md + iocs.md and push to GitHub intel-repository under threats/threat-actors/, (2) Update threats/threat-actors/index.md, (3) Post a fun write-up to Discord #scoundrels-of-the-galaxy (channel [SCOUNDRELS_CHANNEL_ID]) with the next sequential Scoundrel # and seed it with the appropriate threat-level reaction, (4) Update the Most Wanted Board (message [MOST_WANTED_MSG_ID]), (5) If the new actor connects to an existing profile, post a connection web follow-up." \
   --session main
 ```
 
@@ -281,12 +281,12 @@ openclaw cron add --schedule "0 9 * * *" --timezone "America/New_York" \
 
 ## Step 11 — Verify Discord Bot is in the Right Server
 
-The Discord bot needs to be in Ryan's server (Guild ID: `1483619397435265096`). Key channels:
+The Discord bot needs to be in Ryan's server (Guild ID: `[GUILD_ID]`). Key channels:
 
 | Channel | ID | Purpose |
 |---|---|---|
-| Intel Channel | `1483216745442574569` | Daily intel briefs |
-| Scoundrels of the Galaxy | `1488665479189893202` | Threat actor write-ups |
+| Intel Channel | `[INTEL_CHANNEL_ID]` | Daily intel briefs |
+| Scoundrels of the Galaxy | `[SCOUNDRELS_CHANNEL_ID]` | Threat actor write-ups |
 
 If the bot isn't in the server, Ryan needs to authorize it via the Discord Developer Portal invite link.
 
@@ -323,8 +323,8 @@ If migrating from an existing C3PO instance, copy these files to preserve contin
 
 ```bash
 # From old machine to new:
-scp -r /home/lobsterclaw/.openclaw/workspace/memory/ <new-machine>:~/.openclaw/workspace/
-scp /home/lobsterclaw/.openclaw/workspace/MEMORY.md <new-machine>:~/.openclaw/workspace/
+scp -r /home/[USERNAME]/.openclaw/workspace/memory/ <new-machine>:~/.openclaw/workspace/
+scp /home/[USERNAME]/.openclaw/workspace/MEMORY.md <new-machine>:~/.openclaw/workspace/
 ```
 
 This gives the new instance full operational context and history.
@@ -346,21 +346,21 @@ On the new machine, update `TOOLS.md` with any environment-specific notes:
 |---|---|
 | GitHub Account | ryansketch02-C3PO |
 | Intel Repo | https://github.com/ryansketch02-C3PO/intel-repository |
-| Discord Guild | 1483619397435265096 |
-| Intel Channel | 1483216745442574569 |
-| Scoundrels Channel | 1488665479189893202 |
-| Most Wanted Board Message | 1488666637094883369 |
+| Discord Guild | [GUILD_ID] |
+| Intel Channel | [INTEL_CHANNEL_ID] |
+| Scoundrels Channel | [SCOUNDRELS_CHANNEL_ID] |
+| Most Wanted Board Message | [MOST_WANTED_MSG_ID] |
 | Timezone | America/New_York |
 | Model | anthropic/claude-sonnet-4-6 |
-| Operator Email | ryansketch02@gmail.com |
-| Ryan's Personal Email | ryansketch01@gmail.com |
+| Operator Email | [OPERATOR_EMAIL] |
+| Ryan's Personal Email | [RYANS_PERSONAL_EMAIL] |
 
 ---
 
 ## What NOT to Do
 
 - ❌ Do not push MEMORY.md, TOOLS.md, SOUL.md, USER.md, or IDENTITY.md to any public repo — these contain private context
-- ❌ Do not run Splunk locally on a Raspberry Pi — route to Ryan's PC at 192.168.1.66
+- ❌ Do not run Splunk locally on a Raspberry Pi — route to Ryan's PC at [HOME_PC_IP]
 - ❌ Do not send emails, tweets, or public posts without Ryan's explicit approval
 - ❌ Do not exfiltrate private data
 - ❌ Do not run `rm` on anything you're unsure about — use `trash` instead
