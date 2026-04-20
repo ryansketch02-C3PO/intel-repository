@@ -24,13 +24,13 @@ Cisco AI Defense:  not configured (local scanning only)
 
 | Path | Description |
 |---|---|
-| `/home/lobsterclaw/.defenseclaw/config.yaml` | Main config file |
-| `/home/lobsterclaw/.defenseclaw/audit.db` | SQLite audit database |
-| `/home/lobsterclaw/.defenseclaw/policies/rego/` | OPA Rego policy files |
-| `/home/lobsterclaw/.defenseclaw/splunk-bridge/` | Splunk connector (seeded, not active) |
-| `/home/lobsterclaw/.defenseclaw/.venv/bin/skill-scanner` | Skill scanner binary |
-| `/home/lobsterclaw/.defenseclaw/.venv/bin/mcp-scanner` | MCP scanner binary |
-| `/home/lobsterclaw/.defenseclaw/device.key` | DefenseClaw device key |
+| `/home/[USERNAME]/.defenseclaw/config.yaml` | Main config file |
+| `/home/[USERNAME]/.defenseclaw/audit.db` | SQLite audit database |
+| `/home/[USERNAME]/.defenseclaw/policies/rego/` | OPA Rego policy files |
+| `/home/[USERNAME]/.defenseclaw/splunk-bridge/` | Splunk connector (seeded, not active) |
+| `/home/[USERNAME]/.defenseclaw/.venv/bin/skill-scanner` | Skill scanner binary |
+| `/home/[USERNAME]/.defenseclaw/.venv/bin/mcp-scanner` | MCP scanner binary |
+| `/home/[USERNAME]/.defenseclaw/device.key` | DefenseClaw device key |
 
 ---
 
