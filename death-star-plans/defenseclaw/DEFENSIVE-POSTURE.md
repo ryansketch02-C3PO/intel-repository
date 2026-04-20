@@ -98,7 +98,7 @@ Sensitive commands require explicit human approval before execution:
 |---|---|---|
 | **LLM Guardrail Proxy** | Routes all LLM prompts/responses through local inspection proxy. Catches prompt injection, PII leakage, data exfiltration patterns in real-time. | Next maintenance window |
 | **DefenseClaw Action Mode** | Upgrade from observe → action to actively block detected threats | After 2 weeks of observe data reviewed |
-| **Splunk Integration** | Stream DefenseClaw audit events to local Splunk for dashboards and alerting | Optional / future |
+| **Splunk Integration** | ✅ Active — DefenseClaw audit events forwarding to Splunk at [HOME_PC_IP]:8088 via HEC, index: defenseclaw_local | Completed |
 | **VirusTotal API** | Enable MCP scanner enrichment for IOC checking | Optional / future |
 
 ---
