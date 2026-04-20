@@ -27,7 +27,7 @@
          │
          ▼
    ┌──────────────────────────────┐
-   │     OSINT Stack (lobsterpi) │
+   │     OSINT Stack ([HOSTNAME]) │
    │  SpiderFoot · Tor · Shodan  │
    │  theHarvester · recon-ng    │
    └──────────────────────────────┘
@@ -53,7 +53,7 @@
 | What | Details |
 |------|---------|
 | **Software** | OpenClaw — AI agent framework |
-| **Running on** | Raspberry Pi 5 (lobsterpi), always-on |
+| **Running on** | Raspberry Pi 5 ([HOSTNAME]), always-on |
 | **What it does** | Connects the AI to Discord, GitHub, the shell, schedules jobs |
 | **Key feature** | Cron scheduler — runs tasks automatically on a timer |
 
@@ -122,8 +122,8 @@ Intelligence X · VirusTotal · ThreatFox · MalwareBazaar · DeHashed · Shodan
 | What | Details |
 |------|---------|
 | **Software** | Splunk Enterprise |
-| **Running on** | Home PC at `192.168.1.66` |
-| **Bridge** | DefenseClaw (installed on lobsterpi) forwards events via HEC |
+| **Running on** | Home PC at `[HOME_PC_IP]` |
+| **Bridge** | DefenseClaw (installed on [HOSTNAME]) forwards events via HEC |
 | **Index** | `defenseclaw_local` |
 
 **Plain English:** Splunk is the security dashboard. Intel events and IOCs flow from the Pi into Splunk where you can query, visualize, and correlate them. The Pi collects and forwards — the PC does the heavy SIEM work.
@@ -134,7 +134,7 @@ Intelligence X · VirusTotal · ThreatFox · MalwareBazaar · DeHashed · Shodan
 
 | Device | Role |
 |--------|------|
-| **Raspberry Pi 5 (8GB)** — *lobsterpi* | Always-on agent host, OSINT stack, DefenseClaw bridge |
+| **Raspberry Pi 5 (8GB)** — *[HOSTNAME]* | Always-on agent host, OSINT stack, DefenseClaw bridge |
 | **Home PC** | Splunk Enterprise SIEM, Maltego CE (GUI tools) |
 
 ---
