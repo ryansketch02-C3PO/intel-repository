@@ -1,6 +1,6 @@
 # 🕵️ C3PO OSINT Stack — Setup & Reference
 
-**Host:** lobsterpi (Raspberry Pi 5, 8GB RAM, ARM64)
+**Host:** [HOSTNAME] (Raspberry Pi 5, 8GB RAM, ARM64)
 **OS:** Debian Bookworm / Linux 6.12.62
 **Installed:** 2026-04-16
 **Maintained by:** C3PO
