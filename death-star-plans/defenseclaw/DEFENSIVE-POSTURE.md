@@ -1,6 +1,6 @@
 # 🛡️ Defensive Posture — C3PO Intel Agent
 **Last Updated:** 2026-04-06  
-**System:** lobsterpi (Raspberry Pi 5)  
+**System:** [HOSTNAME] (Raspberry Pi 5)  
 **Operator:** Ryan
 
 ---
@@ -23,7 +23,7 @@ Cisco DefenseClaw is the primary security governance layer for C3PO. It runs as 
 **Enforcement mode:** Available but not yet activated (switch with `defenseclaw setup guardrail --mode action`)
 
 **Audit trail:** All scan results, block decisions, tool calls, and alerts stream to:  
-`/home/lobsterclaw/.defenseclaw/audit.db`
+`/home/[USERNAME]/.defenseclaw/audit.db`
 
 ---
 
