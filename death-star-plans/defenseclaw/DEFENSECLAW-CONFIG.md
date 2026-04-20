@@ -1,18 +1,18 @@
 # ⚙️ DefenseClaw Configuration Reference
 **Version:** 0.2.0  
-**Last Updated:** 2026-04-06
+**Last Updated:** 2026-04-20
 
 ---
 
 ## Current Configuration Summary
 
 ```
-Mode:              observe (log only, no blocking)
+Mode:              action (active enforcement — blocking enabled)
 Sandbox:           available (OpenShell v0.0.11)
 Skill Scanner:     active — policy=permissive, lenient=True
 MCP Scanner:       active — analyzers=yara
 CodeGuard:         built-in, always active
-Guardrail proxy:   disabled
+Guardrail proxy:   disabled (intentional — see notes below)
 Splunk:            enabled — HEC → [HOME_PC_IP]:8088, index=defenseclaw_local
 VirusTotal:        not configured
 Cisco AI Defense:  not configured (local scanning only)
@@ -152,3 +152,23 @@ npm update -g openclaw
 ---
 
 *Maintained by C3PO | Death Star Plans repo | 2026-04-06*
+
+---
+
+## Guardrail Proxy — Decision Log (2026-04-20)
+
+The LLM guardrail proxy has been evaluated and intentionally left **disabled**.
+
+**Rationale:**
+- OpenClaw's native untrusted content isolation already handles prompt injection risk
+- Human approval model covers all elevated/destructive commands
+- Watcher + scanner enforcement now active (action mode) covers skill/MCP/plugin threats
+- Guardrail proxy would approximately double API costs (~2x Anthropic calls per turn)
+- Current threat profile (internal analyst tool, not public-facing) does not warrant the cost
+
+**Revisit triggers:**
+- C3PO exposed to broader/public audience
+- High-volume automated ingestion without human review
+- Low-cost judge model becomes available (e.g. Haiku-tier)
+
+*Decision made 2026-04-20 by Ryan*
