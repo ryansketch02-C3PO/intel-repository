@@ -1,214 +1,200 @@
-# RedSun — Windows Defender Zero-Day LPE
+# RedSun — Windows Defender Zero-Day Local Privilege Escalation
 
 ## Identity
 
 | Field | Details |
 |---|---|
 | **Vulnerability Name** | RedSun |
-| **CVE** | None assigned — **UNPATCHED as of 2026-04-18** |
+| **CVE** | None assigned — **UNPATCHED as of 2026-04-21** |
 | **Type** | Local Privilege Escalation (LPE) |
-| **Class** | Cloud Files API Abuse + NTFS Junction Redirect + TOCTOU Race Condition |
-| **Affected Platforms** | Windows 10, Windows 11, Windows Server 2019 and later (fully patched, April 2026) |
+| **Class** | Defender Cloud-File Remediation Path Abuse — Standard User Privilege |
+| **Affected Platforms** | Windows 10, Windows 11, Windows Server 2019 and later |
 | **Patch Status** | 🔴 **UNPATCHED** — No official patch, no CVE, no Microsoft timeline |
-| **PoC Status** | 🔴 **PUBLIC** — Full source code on GitHub (Nightmare-Eclipse/RedSun) |
-| **Discovered By** | Chaotic Eclipse / Nightmare Eclipse (pseudonymous researcher) |
-| **Public Disclosure** | April 16, 2026 (uncoordinated — released in protest of MSRC handling) |
-| **Confirmed Working** | Will Dormann (Tharros) — confirmed 100% reliable SYSTEM-level access |
-| **Exploited in Wild** | ✅ YES — Huntress observed active exploitation April 16, 2026 |
+| **PoC Status** | 🔴 **PUBLIC** — Full C++ source on GitHub (Nightmare-Eclipse/RedSun) |
+| **Discovered By** | Chaotic Eclipse / Nightmare-Eclipse (pseudonymous researcher) |
+| **Public Disclosure** | April 16, 2026 (released simultaneously with UnDefend) |
+| **Confirmed Working** | Will Dormann (independent validation); Huntress (in-the-wild exploitation) |
+| **Exploited in Wild** | ✅ YES — confirmed April 16, 2026 alongside BlueHammer and UnDefend |
+| **Reliability** | ~100% on fully patched Windows 10/11 and Server 2019+ |
 | **Threat Level** | 🔴 HIGH |
-| **Admiralty Grade** | A1 — confirmed working by independent credible researcher; active exploitation verified by Huntress |
+| **Admiralty Grade** | A1 |
 
 ---
 
 ## Overview
 
-RedSun is the second zero-day in a trio dropped by "Chaotic Eclipse" in April 2026, released on April 16 — the same day as UnDefend — two days after Microsoft patched BlueHammer as CVE-2026-33825. The timing was pointed: proof that patching one vulnerability doesn't close the systemic architectural problems in Defender's privileged file operation workflows.
+RedSun is the second local privilege escalation zero-day in Chaotic Eclipse's April 2026 trio, dropped alongside UnDefend on April 16 — five days after Microsoft patched the first exploit (BlueHammer, CVE-2026-33825). It achieves the same outcome as BlueHammer — a standard user account reaches SYSTEM — but via an entirely different attack path, making it effective even on systems where BlueHammer was patched.
 
-What makes RedSun particularly dangerous is that it works on **fully patched Windows systems with April 2026 updates applied**. Patching BlueHammer did nothing to stop RedSun. It targets a completely different, adjacent flaw in Defender's cloud file rollback mechanism — specifically, what happens when Defender identifies a file that has a cloud tag and attempts to restore it to its original location.
+**BlueHammer** abused Defender's *signature update path* to perform a privileged **file read** — dumping the SAM hive, extracting NTLM hashes, then using pass-the-hash to escalate.
 
-The answer to what happens: Defender rewrites the file without validating where that file's original location actually points. That trust, combined with the Windows Cloud Files API, an oplock, a VSS shadow copy race, and an NTFS junction redirect, produces a clean, reliable path to SYSTEM.
+**RedSun** abuses Defender's *cloud-tagged file remediation path* to perform a privileged **file write** — dropping an attacker-controlled binary directly into `C:\Windows\System32`, then triggering a built-in Windows COM service to execute it as SYSTEM. No credentials are accessed or stolen. The escalation is a straight line: file write, COM activation, SYSTEM shell.
 
-Will Dormann confirmed to BleepingComputer: *"This works 100% reliably to go from unprivileged user to SYSTEM against Windows 11 and Windows Server with April 2026 updates, as well as Windows 10, as long as you have Windows Defender enabled."*
-
-The same day it was released, Huntress observed real-world exploitation of RedSun alongside BlueHammer and UnDefend in a confirmed hands-on-keyboard intrusion via a compromised SSLVPN account.
+The exploit requires no kernel bugs, no memory corruption, no admin rights, no internet connection, and no user interaction. It works on every supported Windows version with Defender real-time protection enabled — which is essentially every Windows machine.
 
 ---
 
 ## Technical Analysis
 
-### The Kill Chain
+### Four Windows Features, One Vulnerability
 
-RedSun chains three mechanisms to force Defender to overwrite an arbitrary privileged system binary with attacker-controlled content, then trigger its execution as SYSTEM:
+RedSun chains four legitimate, individually benign Windows components together. The vulnerability emerges from their interaction, not from any single flaw:
 
-```
-1. BAIT: Drop EICAR test string to a Cloud Files API-registered file
-         (Defender sees it as malicious and begins remediation)
-        ↓
-2. TAG: File carries a cloud tag — Defender's rollback logic activates,
-        attempting to "restore" the file to its original location
-        ↓
-3. RACE: Oplock + VSS shadow copy race is used to pause Defender
-         mid-operation while the attack repositions
-        ↓
-4. REDIRECT: NTFS junction / directory reparse point swaps the
-             target path → C:\Windows\System32\TieringEngineService.exe
-        ↓
-5. OVERWRITE: Defender follows the redirect and rewrites
-              TieringEngineService.exe with attacker payload (RedSun.exe itself)
-              under its own SYSTEM-level privileges
-        ↓
-6. EXECUTE: Windows Cloud Files Infrastructure invokes the newly
-            planted TieringEngineService.exe — as SYSTEM
-        ↓
-7. SHELL: Attacker has SYSTEM. Game over.
-```
+**1. Batch Opportunistic Locks (OPLOCKs)**
+An oplock lets a process pause another process's file access at a precise moment. RedSun uses a batch oplock as a timing instrument — it freezes Defender mid-operation at a deterministic, reproducible point, creating a controlled race window rather than a timing-dependent one.
 
-### Step-by-Step Breakdown
+**2. Cloud Files API (CfApi.dll)**
+The Cloud Files API provides the infrastructure for sync providers like OneDrive. RedSun uses it to create a placeholder file — a lightweight stub that keeps a filename valid even after the original file is deleted. This holds the target path open through the directory swap.
 
-**Step 1 — Craft and place the bait file**
-RedSun registers a directory as a **Cloud Files sync root** using `CfRegisterSyncRoot`. It places a file containing an embedded EICAR test string within the sync root and tags it with a cloud placeholder attribute via the Cloud Files API. To Defender, this looks like a malicious file that originated from a cloud-sync location.
+**3. Volume Shadow Copy Service (VSS)**
+When Defender detects a cloud-tagged malicious file, it creates a VSS snapshot as part of its remediation workflow. RedSun monitors the NT object directory for a new `HarddiskVolumeShadowCopy*` device appearing — confirming Defender has entered the remediation stage — before proceeding.
 
-**Step 2 — Trigger Defender's cloud file rollback**
-Defender's real-time protection detects the EICAR content. Upon recognizing that the file carries a cloud tag, Defender's remediation logic invokes its **cloud file rollback path** — a code branch designed to restore cloud-tagged files to their original sync location without re-scanning the destination. Critically, it does not validate whether the stated "original location" is a system-privileged directory.
+**4. NTFS Junction Points (Mount Point Reparse)**
+NTFS junctions redirect filesystem operations from one directory to another. Critically, standard users can create them without elevated privileges. RedSun replaces its working directory with a junction pointing to `C:\Windows\System32`. Any write through the original path is silently redirected into System32 by the kernel — Defender has no awareness of the redirection.
 
-**Step 3 — Win the race (oplock + VSS)**
-Before Defender can complete the rollback write, RedSun deploys an opportunistic lock (oplock) on a file Defender must traverse and races to create a Volume Shadow Copy snapshot. This pauses Defender mid-operation — identical timing mechanism to BlueHammer — giving the exploit a controlled window to manipulate the filesystem.
+### Exploit Walkthrough
 
-**Step 4 — Redirect via NTFS junction**
-With Defender frozen waiting on the oplock release, RedSun creates an **NTFS directory junction** (reparse point) that redirects Defender's target write path from the attacker-controlled sync directory to:
-```
-C:\Windows\System32\TieringEngineService.exe
-```
-`TieringEngineService.exe` is a legitimate Windows Storage Tier service binary. It is chosen specifically because it runs under SYSTEM context and the Cloud Files Infrastructure will invoke it after the operation completes.
+**Phase 1 — Getting the File Write**
 
-**Step 5 — Overwrite with attacker payload**
-RedSun releases the oplock. Defender resumes, follows the junction, and overwrites `TieringEngineService.exe` with the contents of the malicious file — which is, in the released PoC, the `RedSun.exe` binary itself. Defender performs this write using its own SYSTEM-level privileges.
+1. Create a temp working directory under `%TEMP%`; drop a file named `TieringEngineService.exe` containing an EICAR test string (stored reversed at compile time, flipped at runtime to avoid static detection)
+2. Open the file with `FILE_EXECUTE` access — sufficient to trigger Defender's real-time scanner
+3. Acquire a batch oplock on the file. When Defender's remediation workflow accesses the file, the oplock breaks — pausing Defender at that precise moment
+4. Within that window: delete the original file (POSIX semantics via `FileDispositionInformationEx`), register the directory as a Cloud Files sync root, create a placeholder file with the same name to keep the path valid
+5. Rename the working directory away; create a new directory with the same name; convert it to an NTFS junction pointing to `\\??\C:\Windows\System32`
+6. Loop `NtCreateFile` calls with `GENERIC_WRITE / FILE_SUPERSEDE` against `TieringEngineService.exe` until the race is won. On success, copy the exploit's own binary to `C:\Windows\System32\TieringEngineService.exe`
 
-**Step 6 — SYSTEM execution**
-The Windows Cloud Files Infrastructure, as part of its own post-operation processing, invokes `TieringEngineService.exe`. It now executes the attacker's binary as **NT AUTHORITY\SYSTEM**.
+Defender resumes its write operation, follows the junction, and writes the attacker-controlled binary into System32 under SYSTEM privileges. **No reparse point validation exists in `MpSvc.dll`'s write-back path.** A single call to `DeviceIoControl(FSCTL_GET_REPARSE_POINT)` or `GetFinalPathNameByHandle` before the write would have prevented this.
 
-**Step 7 — Cleanup (VirusTotal evasion note)**
-The original PoC embeds EICAR as a plaintext string, which causes AV detection. Dormann noted that encrypting the EICAR string within the binary substantially reduces detections — making the PoC easily weaponizable with minimal modification.
+**Phase 2 — Executing as SYSTEM**
 
-### Relationship to BlueHammer
+1. Activate CLSID `{50d185b9-fff3-4656-92c7-e4018da4361d}` via DCOM — the Storage Tiers Management Engine COM server
+2. This COM object's normal behavior is to launch `TieringEngineService.exe` from System32 as SYSTEM
+3. Since the binary has been replaced, Windows launches the attacker's payload instead
+4. On second execution, the payload confirms `LOCAL_SYSTEM` context, connects to named pipe `\\.\pipe\REDSUN` created during Phase 1, duplicates the SYSTEM token into the user's session, and spawns `conhost.exe` on the user's desktop — an interactive SYSTEM shell
 
-Both BlueHammer and RedSun exploit the same **fundamental design flaw** in Defender: it performs privileged file write operations without validating the target path at the time of the write. The difference is the trigger:
-- **BlueHammer**: Abuses Defender's *malware remediation* path (file delete/overwrite during cleanup)
-- **RedSun**: Abuses Defender's *cloud file rollback* path (file restoration for cloud-tagged content)
+No credentials stolen. No memory corruption. No kernel exploit. Standard Windows API calls throughout.
 
-Patching BlueHammer did not fix RedSun because they are separate code paths within the same architectural pattern.
+### Root Cause
+
+The vulnerability lives in `MpSvc.dll` — the Malware Protection Engine binary that `MsMpEng.exe` loads for all scan, detection, and remediation logic. When Defender detects a cloud-tagged malicious file, it restores the file to its original detection path without verifying whether that path has been replaced with a reparse point. The write-back chain performs no junction/reparse validation at any stage.
 
 ---
 
 ## Affected Systems
 
-| Platform | Exploitation Result | Notes |
-|---|---|---|
-| Windows 10 (all builds) | NT AUTHORITY\SYSTEM | Confirmed — including with April 2026 patches |
-| Windows 11 (all builds) | NT AUTHORITY\SYSTEM | Confirmed — 100% reliable per Dormann |
-| Windows Server 2019+ | NT AUTHORITY\SYSTEM | Confirmed |
+| Platform | Status |
+|---|---|
+| Windows 10 (all supported builds) | ✅ Vulnerable |
+| Windows 11 (all supported builds, incl. 25H2) | ✅ Vulnerable |
+| Windows Server 2019 | ✅ Vulnerable |
+| Windows Server 2022 | ✅ Vulnerable |
+| Windows Server 2025 | ✅ Vulnerable |
 
-**Requires:** Local access + Windows Defender enabled (Cloud-Delivered Protection may or may not be required — not fully characterized)
+**Requirements:** Microsoft Defender real-time protection enabled + `cldapi.dll` present (standard on all supported Windows versions). Local user account only — no elevation needed.
 
-**Does NOT work against:** Systems with Windows Defender fully disabled or replaced by a third-party AV that does not use Defender's cloud file rollback logic
+**Does NOT require:** Internet connection, admin rights, kernel exploit, memory corruption, user interaction.
 
 ---
 
-## Observed Attack Chain (Wild — April 16, 2026)
+## Relationship to BlueHammer and UnDefend
 
-Huntress documented the following attack pattern in a confirmed intrusion:
+| Tool | Attack Path | Primitive | Patch Status |
+|---|---|---|---|
+| BlueHammer | Defender signature update path | Privileged file **read** → SAM dump → NTLM hash → SYSTEM | ✅ Patched (CVE-2026-33825, April 14) |
+| RedSun | Defender cloud-file remediation path | Privileged file **write** → System32 binary → COM execution → SYSTEM | ❌ **Unpatched** |
+| UnDefend | Defender update mechanism | Blocks signature updates; Defender runs blind | ❌ **Unpatched** |
 
+**Chained kill chain (observed April 16):**
 ```
-Initial Access: Compromised SSLVPN credentials
-        ↓
-Enumeration: whoami /priv | cmdkey /list | net group | AD structure mapping
-        ↓
-UnDefend: Deployed to block Defender definition updates (blind the AV)
-        ↓
-RedSun: Escalate to SYSTEM
-        ↓
-Post-exploitation: Credential access, lateral movement (ongoing — Huntress isolated org)
+Initial access (stolen VPN credential)
+  → Reconnaissance: whoami /priv, cmdkey /list, net group, AD mapping
+  → UnDefend: freeze Defender signatures → AV blind to exploit binaries
+  → RedSun: LPE → SYSTEM
+  → Post-exploitation: credential harvesting, lateral movement prep
+  → Containment: Huntress isolated affected org
 ```
 
-Attackers renamed the exploit files to blend into Pictures and Downloads folders before execution. The hands-on-keyboard activity and SSLVPN initial access vector are consistent with ransomware affiliate TTPs.
-
 ---
 
-## Public PoC Status
+## IOCs and Detection
 
-| Repository | Status | Notes |
+### File / Process Indicators
+
+| Indicator | Description | Confidence |
 |---|---|---|
-| Nightmare-Eclipse/RedSun (GitHub) | 🔴 Public — functional | GitHub issued a warning but repo remains accessible |
-| VirusTotal detection rate | Low — reduced further by EICAR encryption | Easy to evade with minimal modification |
+| `TieringEngineService.exe` replaced in `C:\Windows\System32` | Core payload delivery artifact | 🔴 HIGH |
+| `RedSun.exe` or renamed variants in `%USERPROFILE%\Pictures\` or `Downloads\` | Staging location observed in wild | 🔴 HIGH |
+| EICAR string (or obfuscated reverse) in binaries dropped to user directories | Exploit trigger mechanism | 🟡 MEDIUM |
+| Named pipe `\\.\pipe\REDSUN` created | Phase 2 communication channel | 🔴 HIGH |
+| New `HarddiskVolumeShadowCopy*` device from user-space process | VSS monitoring step of exploit | 🔴 HIGH |
+| `CfRegisterSyncRoot` called by non-OneDrive/non-sync process | Cloud Files API abuse | 🔴 HIGH |
+| NTFS junction created in `%TEMP%` pointing to `System32` | Directory swap step | 🔴 HIGH |
+| `MsMpEng.exe` writing to `System32` paths | Defender performing redirected write | 🔴 HIGH |
+| COM activation of CLSID `{50d185b9-fff3-4656-92c7-e4018da4361d}` from non-admin session | Phase 2 execution trigger | 🔴 HIGH |
 
----
+### MITRE ATT&CK Mapping
 
-## IOCs & Detection
-
-### Behavioral Indicators (High Confidence)
-
-| Behavior | Event / Signal | Confidence |
+| Technique | ID | Description |
 |---|---|---|
-| Cloud Files sync root registration by untrusted process | `CfRegisterSyncRoot` from non-OneDrive/Dropbox/Box process | 🔴 HIGH |
-| `TieringEngineService.exe` written or modified by `MsMpEng.exe` (Defender) | File write event from Defender process to storage service binary | 🔴 HIGH |
-| NTFS junction creation in temp/user directories | Reparse point creation in non-standard locations | 🔴 HIGH |
-| `TieringEngineService.exe` spawning a shell or unexpected child process | Process creation from storage service binary | 🔴 HIGH |
-| Low-privileged process receiving SYSTEM token via Cloud Files Infrastructure | Token integrity change event | 🔴 HIGH |
-| VSS enumeration from user-space (same as BlueHammer) | `NtQueryDirectoryObject` → `HarddiskVolumeShadowCopy*` | 🟡 MEDIUM |
-| EICAR-containing binary in user directories (Pictures, Downloads) | AV/EDR detection of EICAR + anomalous filename | 🟡 MEDIUM |
+| Exploitation for Privilege Escalation | T1068 | LPE from standard user to SYSTEM |
+| Abuse Elevation Control Mechanism | T1548 | Redirecting SYSTEM-privileged Defender write |
+| Hijack Execution Flow: Services File Permissions Weakness | T1574.010 | Replacing TieringEngineService.exe |
+| Hide Artifacts: NTFS File Attributes | T1564.004 | Junction/reparse point manipulation |
+| Masquerading | T1036 | Exploit binaries renamed to avoid suspicion |
 
-### Sigma-Style Hunt Queries
+### Detection Rules (Behavioral)
 
 ```yaml
-# Hunt: Cloud Files sync root registered by non-standard process
-Process: CfRegisterSyncRoot
-CallerProcess: NOT ["OneDrive.exe", "Dropbox.exe", "Box.exe", "iCloudDrive.exe"]
-UserIntegrity: Medium OR Low
+# Alert: TieringEngineService.exe written to by MsMpEng
+EventType: FileWrite
+TargetPath: "C:\\Windows\\System32\\TieringEngineService.exe"
+WritingProcess: MsMpEng.exe
+Severity: CRITICAL
 
-# Hunt: Defender writing to system32 service binary
-SourceProcess: MsMpEng.exe
-TargetFile: "C:\\Windows\\System32\\TieringEngineService.exe"
-EventType: FileModified OR FileCreated
+# Alert: VSS Shadow Copy enumeration from user-space
+EventType: ProcessAccess
+TargetObject|contains: "HarddiskVolumeShadowCopy"
+CallerIntegrity: Medium OR Low
+ExcludeProcess: vssadmin.exe, wbadmin.exe, svchost.exe
+Severity: HIGH
 
-# Hunt: TieringEngineService.exe spawning unexpected children
-ParentProcess: TieringEngineService.exe
-ChildProcess: ANY [cmd.exe, powershell.exe, net.exe, whoami.exe]
+# Alert: Cloud Files sync root registered by untrusted process
+Function: CfRegisterSyncRoot
+CallerPath|not contains: OneDrive, Dropbox, Box, iCloudDrive
+Severity: HIGH
 
-# Hunt: NTFS junction in user profile directories
-EventType: ReparsePointCreated
-Directory: "%USERPROFILE%\\*"
-CallerIntegrity: Low OR Medium
+# Alert: NTFS junction in %TEMP% pointing to System32
+EventType: JunctionCreated
+SourcePath|contains: "%TEMP%"
+TargetPath|contains: "System32"
+Severity: CRITICAL
+
+# Alert: Storage Tiers COM object activated by non-admin
+CLSID: 50d185b9-fff3-4656-92c7-e4018da4361d
+CallerIntegrity: Medium OR Low
+Severity: HIGH
+
+# Alert: Unsigned executable dropped to Pictures or Downloads
+Directory: "%USERPROFILE%\\Pictures\\" OR "%USERPROFILE%\\Downloads\\"
+FileExtension: .exe
+Signed: false
+Severity: MEDIUM (escalate if correlated with above)
 ```
 
 ---
 
 ## Mitigations
 
-> ⚠️ **No official patch available.** RedSun remains unpatched as of 2026-04-18. All controls below are compensating measures only.
+> ⚠️ **No patch available.** All controls below are compensating measures until Microsoft releases a fix.
 
-| Control | Priority | Impact |
+| Control | Priority | Notes |
 |---|---|---|
-| **Disable Cloud-Delivered Protection / Automatic Sample Submission in Defender** | 🔴 IMMEDIATE | Disrupts Defender's cloud file rollback path — the core trigger for RedSun. Trade-off: reduces Defender's cloud intelligence. Evaluate based on environment. |
-| **Enable Credential Guard** | 🔴 IMMEDIATE | Blocks downstream abuse of the SYSTEM token for credential extraction from SAM/LSASS. |
-| **Deploy Microsoft LAPS** | 🔴 IMMEDIATE | Limits lateral movement even if SYSTEM is achieved on one node. |
-| **Behavioral EDR rules (TieringEngineService.exe, CfRegisterSyncRoot)** | 🔴 HIGH | Block or alert on reparse point creation in user dirs + non-standard Cloud Files API usage. |
-| **Application Allow-listing (WDAC/AppLocker)** | 🟡 HIGH | Prevents the overwritten TieringEngineService.exe from executing attacker payload. |
-| **Monitor SSLVPN / remote access for compromised credentials** | 🟡 HIGH | Initial access in observed attacks was via compromised VPN credentials — tighten MFA enforcement. |
-| **Restrict local interactive logon rights** | 🟡 HIGH | RedSun requires local access. Limit who can log in interactively to sensitive systems. |
-| **Patch immediately when Microsoft releases a fix** | ⏳ PENDING | Monitor Microsoft Security Update Guide and Zero Day Initiative continuously. Out-of-band patch expected before next Patch Tuesday. |
-
----
-
-## Threat Context
-
-RedSun, when paired with UnDefend, forms a **two-stage endpoint bypass**: UnDefend blinds Defender's detection capability (blocking signature updates), then RedSun escalates to SYSTEM. This combination was confirmed in the wild on April 16 against an organization breached via SSLVPN.
-
-The attack pattern is consistent with ransomware affiliate pre-encryption reconnaissance:
-- Credential enumeration (`whoami /priv`, `cmdkey /list`)
-- Active Directory mapping (`net group`)
-- LPE to SYSTEM for domain credential access
-
-This is the **BlueHammer kill chain's successor** — operators who integrated BlueHammer in early April likely transitioned to RedSun after BlueHammer's patch without missing a beat. Expect weaponized variants in commodity crimeware within days given the PoC's confirmed reliability.
+| **Deploy behavioral detection rules above** | 🔴 IMMEDIATE | VSS enumeration + junction creation + MsMpEng write = high-confidence chain |
+| **Monitor File Integrity on System32** | 🔴 IMMEDIATE | Alert on unexpected changes to `TieringEngineService.exe` specifically |
+| **Enforce phishing-resistant MFA on VPN/remote access** | 🔴 HIGH | Observed attack entered via stolen VPN credential — this is the first gate |
+| **Restrict execution from user-writable directories** | 🔴 HIGH | AppLocker / WDAC policy blocking .exe from Downloads, Pictures, Temp |
+| **Supplement Defender with secondary EDR** | 🔴 HIGH | RedSun + UnDefend specifically target Defender; second layer maintains coverage |
+| **Least-privilege enforcement** | 🟡 HIGH | Reduces post-exploitation blast radius; RedSun starts from standard user context |
+| **Apply patch immediately when released** | ⏳ WATCH | Out-of-band Microsoft patch expected; monitor MSRC for emergency advisory |
 
 ---
 
@@ -216,22 +202,23 @@ This is the **BlueHammer kill chain's successor** — operators who integrated B
 
 | Date | Event |
 |---|---|
-| April 3, 2026 | Chaotic Eclipse drops BlueHammer PoC publicly after MSRC dispute |
-| April 10, 2026 | BlueHammer active exploitation first observed (Huntress) |
-| April 14, 2026 | Microsoft patches BlueHammer as CVE-2026-33825 in April Patch Tuesday |
-| April 16, 2026 | Chaotic Eclipse drops RedSun and UnDefend PoCs simultaneously to GitHub |
-| April 16, 2026 | Huntress observes active RedSun + UnDefend exploitation in live intrusion |
-| April 17, 2026 | Will Dormann confirms 100% reliable SYSTEM access — all platforms |
-| April 18, 2026 | **Still unpatched. No CVE. No Microsoft timeline.** |
+| April 3, 2026 | Chaotic Eclipse releases BlueHammer — protest against MSRC |
+| April 10, 2026 | BlueHammer exploitation observed in the wild (Huntress) |
+| April 14, 2026 | Microsoft patches BlueHammer (CVE-2026-33825, April Patch Tuesday) |
+| April 16, 2026 | Chaotic Eclipse releases RedSun + UnDefend to GitHub |
+| April 16, 2026 | Will Dormann independently confirms RedSun PoC effectiveness |
+| April 16, 2026 | Huntress observes live chained exploitation (UnDefend → RedSun) |
+| April 17, 2026 | CloudSEK, Cyderes, Help Net Security, The Hacker News publish detailed analyses |
+| April 21, 2026 | **Still unpatched. No CVE. No Microsoft timeline. Active exploitation ongoing.** |
 
 ---
 
 ## References
 
-- [BleepingComputer — New Microsoft Defender "RedSun" Zero-Day PoC Grants SYSTEM Privileges](https://www.bleepingcomputer.com/news/microsoft/new-microsoft-defender-redsun-zero-day-poc-grants-system-privileges/)
-- [Picus Security — BlueHammer & RedSun: Windows Defender CVE-2026-33825 Zero-Day Explained](https://www.picussecurity.com/resource/blog/bluehammer-redsun-windows-defender-cve-2026-33825-zero-day-vulnerability-explained)
-- [Help Net Security — Researcher drops two more Microsoft Defender zero-days, all three now exploited](https://www.helpnetsecurity.com/2026/04/17/microsoft-defender-zero-days-exploited/)
-- [The Hacker News — Three Microsoft Defender Zero-Days Actively Exploited; Two Still Unpatched](https://thehackernews.com/2026/04/three-microsoft-defender-zero-days.html)
-- [BleepingComputer — Recently Leaked Windows Zero-Days Now Exploited in Attacks](https://www.bleepingcomputer.com/news/security/recently-leaked-windows-zero-days-now-exploited-in-attacks/)
-- [Field Effect — Three Microsoft Defender Zero-Days Reported Exploited](https://fieldeffect.com/blog/three-microsoft-defender-zero-days-reported-exploited)
-- [Security Affairs — Microsoft Defender Under Attack as Three Zero-Days Enable Elevated Access](https://securityaffairs.com/190961/hacking/microsoft-defender-under-attack-as-three-zero-days-two-of-them-still-unpatched-enable-elevated-access.html)
+- [Cyderes — RedSun Zero-Day: When Defender Becomes the Delivery Mechanism](https://www.cyderes.com/howler-cell/redsun-zero-day)
+- [CloudSEK — RedSun: Windows 0day when Defender becomes the attacker](https://www.cloudsek.com/blog/redsun-windows-0day-when-defender-becomes-the-attacker)
+- [The Hacker News — Three Microsoft Defender Zero-Days Actively Exploited](https://thehackernews.com/2026/04/three-microsoft-defender-zero-days.html)
+- [Help Net Security — Researcher drops two more Microsoft Defender zero-days](https://www.helpnetsecurity.com/2026/04/17/microsoft-defender-zero-days-exploited/)
+- [Black Swan Cybersecurity — Threat Advisory: RedSun Zero-Day](https://blackswan-cybersecurity.com/threat-advisory-redsun-zero-day-windows-defender-april-17-2026/)
+- [Picus Security — BlueHammer & RedSun: Windows Defender CVE-2026-33825 Explained](https://www.picussecurity.com/resource/blog/bluehammer-redsun-windows-defender-cve-2026-33825-zero-day-vulnerability-explained)
+- [ProArch — Microsoft Defender Zero-Day Vulnerabilities (BlueHammer, RedSun & UnDefend)](https://www.proarch.com/blog/threats-vulnerabilities/microsoft-defender-zero-days-bluehammer-redsun-undefend)

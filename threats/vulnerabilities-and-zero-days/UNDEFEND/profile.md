@@ -5,7 +5,7 @@
 | Field | Details |
 |---|---|
 | **Vulnerability Name** | UnDefend |
-| **CVE** | None assigned — **UNPATCHED as of 2026-04-18** |
+| **CVE** | None assigned — **UNPATCHED as of 2026-04-21** |
 | **Type** | Denial-of-Service (DoS) / Security Tool Degradation |
 | **Class** | Defender Update Mechanism Abuse — Standard User Privilege |
 | **Affected Platforms** | Windows 10, Windows 11, Windows Server 2019 and later |
@@ -200,7 +200,8 @@ The April 2026 trio — BlueHammer → patched; RedSun + UnDefend → unpatched 
 | April 16, 2026 | Chaotic Eclipse drops RedSun and UnDefend simultaneously to GitHub |
 | April 16, 2026 | Huntress observes live UnDefend + RedSun exploitation — hands-on-keyboard, SSLVPN entry |
 | April 17, 2026 | Multiple security vendors confirm active exploitation of all three |
-| April 18, 2026 | **Still unpatched. No CVE assigned. No Microsoft timeline published.** |
+| April 18, 2026 | Multiple security advisories published across industry |
+| April 21, 2026 | **Still unpatched. No CVE assigned. No Microsoft timeline published.** |
 
 ---
 
