@@ -29,6 +29,7 @@
 | 022 | MuddyWater (Mango Sandstorm) | Nation-State APT | Iran (MOIS) | 🔴 ACTIVE | 🔴 HIGH | Government, Telecom, Defense, Aviation, Finance, Energy, Healthcare |
 | 023 | Kimsuky (APT43) | State-Sponsored | North Korea (RGB) | 🔴 ACTIVE | 🔴 HIGH | Government, Defense, Think Tanks, Nuclear Research |
 | 024 | APT33 (Peach Sandstorm / Elfin) | State-Sponsored | Iran (IRGC) | 🔴 ACTIVE | 🔴 HIGH | Aerospace, Aviation, Satellite, Defense, Energy, Petrochemical |
+| 025 | Akira (Storm-1567 / Howling Scorpius) | Cybercriminal (RaaS) | Unknown (Conti lineage; Russian-speaking suspected) | 🔴 ACTIVE | 🔴 HIGH | Manufacturing, Education, IT/MSPs, Healthcare, Financial Services, Food & Agriculture |
 
 ---
 
@@ -40,4 +41,4 @@
 
 ---
 
-*Last updated: 2026-04-19 | Entry count: 24 threat actors + 1 vulnerability*
+*Last updated: 2026-04-21 | Entry count: 25 threat actors + 1 vulnerability*
