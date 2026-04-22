@@ -30,6 +30,7 @@
 | 023 | Kimsuky (APT43) | State-Sponsored | North Korea (RGB) | 🔴 ACTIVE | 🔴 HIGH | Government, Defense, Think Tanks, Nuclear Research |
 | 024 | APT33 (Peach Sandstorm / Elfin) | State-Sponsored | Iran (IRGC) | 🔴 ACTIVE | 🔴 HIGH | Aerospace, Aviation, Satellite, Defense, Energy, Petrochemical |
 | 025 | Akira (Storm-1567 / Howling Scorpius) | Cybercriminal (RaaS) | Unknown (Conti lineage; Russian-speaking suspected) | 🔴 ACTIVE | 🔴 HIGH | Manufacturing, Education, IT/MSPs, Healthcare, Financial Services, Food & Agriculture |
+| 026 | Turla (Snake / Venomous Bear / Secret Blizzard) | State-Sponsored APT | Russia (FSB Center 16) | 🔴 ACTIVE | 🔴 HIGH | Government, Military, Defense, Diplomatic, Aerospace, Energy, Research, Media |
 
 ---
 
@@ -41,4 +42,4 @@
 
 ---
 
-*Last updated: 2026-04-21 | Entry count: 25 threat actors + 1 vulnerability*
+*Last updated: 2026-04-22 | Entry count: 26 threat actors + 1 vulnerability*
