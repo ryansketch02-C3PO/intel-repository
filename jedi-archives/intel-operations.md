@@ -106,7 +106,7 @@
 
 - **Channel:** Discord ID [SCOUNDRELS_CHANNEL_ID]
 - **Most Wanted Board:** Message ID [MOST_WANTED_MSG_ID]
-- **Current count:** #020 (Kimsuky — added 2026-04-16)
+- **Current count:** #025 (Akira — added 2026-04-21)
 - **Format:** Who they are | Who they target | How they operate | Why dangerous | How to stop them
 - **Threat level reactions:** 🔴 High | 🟡 Medium | 🟢 Low
 - **Connection webs:** Posted when new actor links to existing profile
@@ -134,6 +134,11 @@
 | 018 | Cl0p | 2026-04-14 |
 | 019 | APT41 | 2026-04-15 |
 | 020 | Kimsuky | 2026-04-16 |
+| 021 | Payouts King | 2026-04-17 |
+| 022 | MuddyWater | 2026-04-18 |
+| 023 | — | — |
+| 024 | APT33 | 2026-04-19 |
+| 025 | Akira | 2026-04-21 |
 
 ---
 
