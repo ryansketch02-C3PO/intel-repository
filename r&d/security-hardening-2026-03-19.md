@@ -204,7 +204,7 @@ PasswordAuthentication no
 sudo systemctl restart ssh
 ```
 Key type: ed25519, generated on Pi, copied to client via scp.
-Fingerprint: `SHA256:K1hq+Ov4qixRlqFhej06u2fBmo/oocB3YUvCeXTYb+A`
+Fingerprint: `[FINGERPRINT-REDACTED]`
 
 ### 7. Automatic Security Updates
 Installed and enabled unattended-upgrades:
