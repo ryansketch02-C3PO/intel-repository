@@ -96,7 +96,7 @@ To          Action      From
 These were identified but not yet actioned:
 
 1. **SSH hardening** — disable password auth, key-only login, consider changing default port
-2. **Discord user allowlist** — add Ryan's Discord user ID so slash commands work
+2. **Discord user allowlist** — add owner's Discord user ID so slash commands work
 3. **Automatic security updates** — enable unattended-upgrades for OS patches
 4. **Disk encryption** — status unknown; recommended if Pi is physically accessible
 
