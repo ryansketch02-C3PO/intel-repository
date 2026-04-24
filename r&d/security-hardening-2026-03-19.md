@@ -110,7 +110,7 @@ These were identified but not yet actioned:
 
 # Follow-Up Hardening Session
 **Date:** 2026-04-24
-**Host:** lobsterpi (Raspberry Pi, Debian GNU/Linux 12 Bookworm, arm64)
+**Host:** [HOSTNAME] (Raspberry Pi, Debian GNU/Linux 12 Bookworm, arm64)
 
 ---
 
@@ -184,10 +184,10 @@ To             Action      From
 ```
 
 ## Services Confirmed Unaffected
-- ✅ OpenClaw / Discord bot (c3po) — online
+- ✅ OpenClaw / Discord bot ([BOT-NAME]) — online
 - ✅ OpenClaw webchat — HTTP 200, loopback
 - ✅ Pi Connect — outbound relay, unaffected
-- ✅ c3po-tts-speaker.service — unaffected
+- ✅ [TTS-SERVICE] — unaffected
 
 ---
 
@@ -195,7 +195,7 @@ To             Action      From
 1. **SSH hardening** — key-only auth, disable password login
 2. **Automatic security updates** — enable unattended-upgrades
 3. **Disk encryption** — status still unknown
-4. **Discord channel permissions** — two channel IDs the bot can't access (1483216745442574569, 1483619395375992844)
+4. **Discord channel permissions** — two channel IDs the bot can't access ([DISCORD-ID-REDACTED], [DISCORD-ID-REDACTED])
 5. **Memory search** — no embedding provider configured (semantic recall disabled)
 ### 6. SSH Hardening
 Disabled password authentication — key-only login enforced:
