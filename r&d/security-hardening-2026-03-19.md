@@ -197,3 +197,28 @@ To             Action      From
 3. **Disk encryption** — status still unknown
 4. **Discord channel permissions** — two channel IDs the bot can't access (1483216745442574569, 1483619395375992844)
 5. **Memory search** — no embedding provider configured (semantic recall disabled)
+### 6. SSH Hardening
+Disabled password authentication — key-only login enforced:
+```bash
+PasswordAuthentication no
+sudo systemctl restart ssh
+```
+Key type: ed25519, generated on Pi, copied to client via scp.
+Fingerprint: `SHA256:K1hq+Ov4qixRlqFhej06u2fBmo/oocB3YUvCeXTYb+A`
+
+### 7. Automatic Security Updates
+Installed and enabled unattended-upgrades:
+```bash
+sudo apt install -y unattended-upgrades
+sudo dpkg-reconfigure -f noninteractive unattended-upgrades
+```
+Config: `APT::Periodic::Update-Package-Lists "1"; APT::Periodic::Unattended-Upgrade "1";`
+
+---
+
+## ✅ All Recommended Items Resolved (2026-04-24)
+- Firewall (ufw): active, default deny
+- Elevated exec wildcard: removed
+- OpenClaw: updated to 2026.4.22
+- SSH: key-only auth enforced
+- Automatic security updates: enabled
