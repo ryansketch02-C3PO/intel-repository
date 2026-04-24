@@ -106,3 +106,94 @@ These were identified but not yet actioned:
 - Pi Connect remote access confirmed working after firewall (uses outbound relay)
 - RDP port 3389 was open but it's unclear if it was actively used; now blocked
 - OpenClaw gateway was already secure (loopback-only bind) before this hardening pass
+---
+
+# Follow-Up Hardening Session
+**Date:** 2026-04-24
+**Host:** lobsterpi (Raspberry Pi, Debian GNU/Linux 12 Bookworm, arm64)
+
+---
+
+## Pre-Session Assessment
+
+### Audit Results (openclaw security audit --deep)
+- 🔴 2 critical issues
+- ⚠️ 4 warnings
+- ℹ️ 1 info
+
+### Open Ports
+| Port | Service | Exposure |
+|------|---------|----------|
+| 631 | CUPS (printing) | Loopback only ✅ |
+| 18789/tcp | OpenClaw Gateway | Loopback only ✅ |
+| 22/tcp | SSH | All interfaces ⚠️ |
+| 3350 | Cendio Thinlinc | Loopback only ✅ |
+
+### Key Findings
+- **No firewall active** — ufw installed but inactive, nft/firewalld not present
+- **Elevated exec wildcard** — `*` set for both webchat and Discord channels (critical)
+- **OpenClaw out of date** — running 2026.3.13, latest 2026.4.22
+
+---
+
+## Changes Made
+
+### 1. Enabled ufw Firewall
+ufw was already installed. Activated with:
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22/tcp
+sudo ufw --force enable
+```
+
+### 2. Locked Elevated Exec Allowlist
+Removed `*` wildcard from Discord elevated exec allowlist.
+Locked to owner Discord user ID only via `config.patch`.
+Webchat left as `*` (loopback-only bind — local access only, low risk).
+
+### 3. Updated OpenClaw
+```
+Before: 2026.3.13
+After:  2026.4.22
+```
+Gateway came back up cleanly. Webchat confirmed unaffected (HTTP 200).
+
+### 4. Pi Performance Optimisations
+Added to systemd service unit (`openclaw-gateway.service`):
+```
+Environment=NODE_COMPILE_CACHE=/var/tmp/openclaw-compile-cache
+Environment=OPENCLAW_NO_RESPAWN=1
+```
+
+### 5. Maintenance
+- Archived 28 orphan transcript files (soft-deleted with timestamps)
+
+---
+
+## Post-Session Firewall Status
+```
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+
+To             Action      From
+--             ------      ----
+22/tcp         ALLOW IN    Anywhere
+22/tcp (v6)    ALLOW IN    Anywhere (v6)
+```
+
+## Services Confirmed Unaffected
+- ✅ OpenClaw / Discord bot (c3po) — online
+- ✅ OpenClaw webchat — HTTP 200, loopback
+- ✅ Pi Connect — outbound relay, unaffected
+- ✅ c3po-tts-speaker.service — unaffected
+
+---
+
+## Remaining Recommendations
+1. **SSH hardening** — key-only auth, disable password login
+2. **Automatic security updates** — enable unattended-upgrades
+3. **Disk encryption** — status still unknown
+4. **Discord channel permissions** — two channel IDs the bot can't access (1483216745442574569, 1483619395375992844)
+5. **Memory search** — no embedding provider configured (semantic recall disabled)
