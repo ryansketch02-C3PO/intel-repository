@@ -5,7 +5,7 @@
 | Field | Details |
 |---|---|
 | **Vulnerability Name** | UnDefend |
-| **CVE** | None assigned — **UNPATCHED as of 2026-04-21** |
+| **CVE** | None assigned — **UNPATCHED as of 2026-04-27** |
 | **Type** | Denial-of-Service (DoS) / Security Tool Degradation |
 | **Class** | Defender Update Mechanism Abuse — Standard User Privilege |
 | **Affected Platforms** | Windows 10, Windows 11, Windows Server 2019 and later |
@@ -166,7 +166,7 @@ TimeWindow: 30 minutes before any Defender update failure event
 
 ## Mitigations
 
-> ⚠️ **No official patch available.** UnDefend remains unpatched as of 2026-04-18. All controls below are compensating measures.
+> ⚠️ **No official patch available.** UnDefend remains unpatched as of 2026-04-27. No CVE assigned, no Microsoft timeline published. All controls below are compensating measures.
 
 | Control | Priority | Impact |
 |---|---|---|
@@ -201,7 +201,8 @@ The April 2026 trio — BlueHammer → patched; RedSun + UnDefend → unpatched 
 | April 16, 2026 | Huntress observes live UnDefend + RedSun exploitation — hands-on-keyboard, SSLVPN entry |
 | April 17, 2026 | Multiple security vendors confirm active exploitation of all three |
 | April 18, 2026 | Multiple security advisories published across industry |
-| April 21, 2026 | **Still unpatched. No CVE assigned. No Microsoft timeline published.** |
+| April 21, 2026 | Vectra AI publishes in-the-wild behavioral analysis — confirms hands-on-keyboard intrusion pattern; UnDefend deployed as child of cmd.exe under Explorer with `-agressive` flag |
+| April 27, 2026 | **Still unpatched. No CVE assigned. No Microsoft timeline published.** Active exploitation ongoing alongside RedSun. |
 
 ---
 
