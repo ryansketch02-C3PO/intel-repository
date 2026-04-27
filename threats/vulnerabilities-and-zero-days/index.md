@@ -19,6 +19,7 @@
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
 | ZD-001 | BlueHammer | LPE / Race Condition | Windows 10/11/Server | CVE-2026-33825 | ✅ PATCHED — April 2026 Patch Tuesday | 🔴 HIGH | 2026-04-14 |
+| ZD-004 | MCPwn | Auth Bypass / Management Plane Takeover | Nginx UI (nginx-ui) | CVE-2026-33032 + CVE-2026-27944 | ✅ PATCHED — v2.3.6 | 🔴 HIGH | 2026-04-27 |
 
 ---
 
@@ -28,4 +29,4 @@
 
 ---
 
-*Last updated: 2026-04-18 | Entry count: 3*
+*Last updated: 2026-04-27 | Entry count: 4*
