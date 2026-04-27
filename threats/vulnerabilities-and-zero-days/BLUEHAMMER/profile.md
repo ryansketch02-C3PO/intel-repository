@@ -5,17 +5,17 @@
 | Field | Details |
 |---|---|
 | **Vulnerability Name** | BlueHammer |
-| **CVE** | None officially assigned (CVE-2026-21513 referenced in some sources — unconfirmed by MITRE/NVD) |
+| **CVE** | **CVE-2026-33825** (confirmed — CVSS 7.8 High) |
 | **Type** | Local Privilege Escalation (LPE) |
 | **Class** | TOCTOU Race Condition + Path Confusion + Legitimate API Abuse |
 | **Affected Platforms** | Windows 10, Windows 11, Windows Server (all builds as of April 2026) |
-| **Patch Status** | ⚠️ **UNPATCHED** — No official patch as of 2026-04-14 |
+| **Patch Status** | ✅ **PATCHED** — CVE-2026-33825, April 14, 2026 (Defender platform update 4.18.26050.3011) |
 | **PoC Status** | 🔴 **PUBLIC** — Full source code + precompiled binary on GitHub |
 | **Discovered By** | Chaotic Eclipse / Nightmare Eclipse / deadeclipse666 (pseudonymous researcher) |
 | **Public Disclosure** | April 3, 2026 (uncoordinated — dumped on GitHub after MSRC dispute) |
 | **Confirmed Working** | Will Dormann (Tharros) | Cyderes Howler Cell | Multiple independent researchers |
 | **Threat Level** | 🔴 HIGH |
-| **Admiralty Grade** | A2 — confirmed by multiple independent credible researchers |
+| **Admiralty Grade** | A1 — confirmed by multiple independent credible researchers + Microsoft patch |
 
 ---
 
@@ -165,7 +165,7 @@ Followed by: EventID: 4723 on same account
 
 ## Mitigations
 
-> ⚠️ **No official patch available.** All the below are compensating controls only.
+> ✅ **PATCHED — CVE-2026-33825, April 14, 2026.** Apply April 2026 Windows updates immediately. Compensating controls below remain valuable as defence-in-depth.
 
 | Control | Priority | Impact |
 |---|---|---|
@@ -177,7 +177,7 @@ Followed by: EventID: 4723 on same account
 | **Monitor Event IDs 4723/4724** | 🟡 HIGH | Alert on rapid local admin password change + immediate revert. Unusual pattern with no legitimate baseline. |
 | **JIT Privilege Access (Entra ID PIM)** | 🟡 MEDIUM | Reduce standing admin accounts; time-limit privilege elevation. |
 | **Privileged Access Workstations (PAWs)** | 🟡 MEDIUM | Limits what a compromised standard user account can interact with. |
-| **Patch immediately when available** | ⏳ PENDING | Watch Microsoft Security Update Guide and Zero Day Initiative. Patch within hours of release. |
+| **Apply April 2026 Windows updates** | ✅ DONE | CVE-2026-33825 patched April 14. Defender platform update 4.18.26050.3011. Deploy immediately if not already applied. |
 
 ---
 
@@ -202,7 +202,9 @@ This is particularly relevant given the current threat landscape (April 2026):
 | April 8, 2026 | Help Net Security, RH-ISAC, multiple outlets publish coverage; Will Dormann confirms exploit |
 | ~April 8, 2026 | SNEK_BlueWarHammer fork published with precompiled binary and full build docs |
 | April 8–9, 2026 | Microsoft Defender signature update released: `Exploit:Win32/DfndrPEBluHmr.BB` (catches original only) |
-| April 14, 2026 | **Still unpatched.** No CVE assigned. No Microsoft patch timeline published. |
+| April 14, 2026 | **Microsoft patches BlueHammer — CVE-2026-33825 (April Patch Tuesday).** Defender platform update 4.18.26050.3011. |
+| April 16, 2026 | Chaotic Eclipse drops RedSun + UnDefend — two further unpatched Defender zero-days. BlueHammer patch does NOT cover them. |
+| April 27, 2026 | RedSun and UnDefend remain unpatched. BlueHammer fully remediated on patched systems. |
 
 ---
 
