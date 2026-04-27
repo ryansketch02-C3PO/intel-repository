@@ -222,3 +222,46 @@ Severity: MEDIUM (escalate if correlated with above)
 - [Black Swan Cybersecurity — Threat Advisory: RedSun Zero-Day](https://blackswan-cybersecurity.com/threat-advisory-redsun-zero-day-windows-defender-april-17-2026/)
 - [Picus Security — BlueHammer & RedSun: Windows Defender CVE-2026-33825 Explained](https://www.picussecurity.com/resource/blog/bluehammer-redsun-windows-defender-cve-2026-33825-zero-day-vulnerability-explained)
 - [ProArch — Microsoft Defender Zero-Day Vulnerabilities (BlueHammer, RedSun & UnDefend)](https://www.proarch.com/blog/threats-vulnerabilities/microsoft-defender-zero-days-bluehammer-redsun-undefend)
+---
+
+## Intelligence Update — 2026-04-27
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of April 27, 2026.
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| April 22, 2026 | Qualys publishes VMDR detection (QID 92382); TruRisk Eliminate mitigation available |
+| April 22, 2026 | Vectra AI publishes in-the-wild behavioral analysis — hands-on-keyboard intrusion pattern confirmed |
+| April 27, 2026 | **Still unpatched.** RedSun works on fully patched April 2026 Windows systems |
+
+### New Mitigation Option (Qualys — April 22)
+
+Qualys TruRisk Eliminate has added a targeted compensating control: **disable the Cloud Files Mini Filter service**. This prevents the Windows Cloud Files platform from loading and blocks cloud file placeholder/on-demand hydration functionality — directly cutting off RedSun's exploitation path.
+
+**Trade-off:** Disabling this service breaks OneDrive Files On-Demand and other OS-level cloud file system integrations.
+
+Detection via Qualys VMDR QQL query:
+```
+vulnerabilities.vulnerability.qid:92382
+```
+
+### In-the-Wild Behavioral Pattern (Vectra AI — April 21)
+
+Huntress and Vectra AI analysis confirms RedSun exploitation is **not automated spray** — this is targeted, hands-on-keyboard intrusion:
+
+- Manual enumeration commands executed before exploitation (`whoami /priv` observed consistently)
+- Exploit binaries staged deliberately in **low-noise user directories** (Pictures, Downloads)
+- Child processes spawned under `Explorer.exe` to blend with normal user activity
+- Pattern: **deliberate, targeted intrusion — not commodity malware**
+
+**Observable anomalies at the network layer** (detectable even when endpoint EDR is compromised):
+- SYSTEM-level process execution following Defender remediation activity in user directories
+- Unusual outbound connections initiated from newly elevated SYSTEM session
+- Anomalous privilege elevation correlated with process-level EDR signals
+- Defender signature update suppression (UnDefend) preceding RedSun deployment
+
+### Analyst Note
+
+Two of the three Defender exploits (RedSun + UnDefend) remain unpatched with no vendor timeline. The combination creates a durable offensive window: escalate to SYSTEM via RedSun, blind Defender via UnDefend. Organizations relying solely on Defender for endpoint detection have a genuine gap — independent network-layer visibility is the primary compensating control until patches arrive.
