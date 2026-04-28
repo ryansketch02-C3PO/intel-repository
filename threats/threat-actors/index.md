@@ -32,6 +32,7 @@
 | 025 | Akira (Storm-1567 / Howling Scorpius) | Cybercriminal (RaaS) | Unknown (Conti lineage; Russian-speaking suspected) | 🔴 ACTIVE | 🔴 HIGH | Manufacturing, Education, IT/MSPs, Healthcare, Financial Services, Food & Agriculture |
 | 026 | Turla (Snake / Venomous Bear / Secret Blizzard) | State-Sponsored APT | Russia (FSB Center 16) | 🔴 ACTIVE | 🔴 HIGH | Government, Military, Defense, Diplomatic, Aerospace, Energy, Research, Media |
 | 027 | Gamaredon (Primitive Bear / Armageddon / Shuckworm) | State-Sponsored APT | Russia (FSB Center 18, Crimea) | 🔴 ACTIVE | 🔴 HIGH | Government, Military, Law Enforcement, Critical Infrastructure, NGOs |
+| 028 | APT73 / Bashe | Cybercriminal (RaaS) | Unknown (Czech Republic assessed) | 🔴 ACTIVE — spike Apr 2026 | 🔴 HIGH | Business Services, Technology, Financial, Healthcare, Government |
 
 ---
 
@@ -43,4 +44,4 @@
 
 ---
 
-*Last updated: 2026-04-23 | Entry count: 27 threat actors + 1 vulnerability*
+*Last updated: 2026-04-28 | Entry count: 28 threat actors + 1 vulnerability*
