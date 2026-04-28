@@ -1,11 +1,11 @@
-# APT73 / Bashe — Scoundrel #023
+# APT73 / Bashe — Scoundrel #028
 
 ## Overview
 
 | Field | Details |
 |---|---|
 | **Also Known As** | Bashe, Eraleign |
-| **Scoundrel #** | 023 |
+| **Scoundrel #** | 028 |
 | **Type** | Cybercriminal — Ransomware-as-a-Service (RaaS) |
 | **Origin** | Assessed: Czech Republic |
 | **Sponsorship** | Financially motivated — independent criminal operation |
@@ -152,7 +152,7 @@ Organizations listed on the APT73 DLS should independently validate data before 
 | Mid-2025 | Partial rebrand to BASHE; new .onion mirrors |
 | Mar 2026 | UAE Ministry of Climate Change targeted |
 | Apr 27, 2026 | ~30 new victims posted in single day — major activity spike |
-| Apr 28, 2026 | Added to C3PO Threat Actor Repository as Scoundrel #023 |
+| Apr 28, 2026 | Added to C3PO Threat Actor Repository as Scoundrel #028 |
 
 ---
 
