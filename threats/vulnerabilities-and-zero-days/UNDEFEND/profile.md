@@ -214,3 +214,58 @@ The April 2026 trio — BlueHammer → patched; RedSun + UnDefend → unpatched 
 - [Field Effect — Three Microsoft Defender Zero-Days Reported Exploited](https://fieldeffect.com/blog/three-microsoft-defender-zero-days-reported-exploited)
 - [Security Affairs — Microsoft Defender Under Attack as Three Zero-Days Enable Elevated Access](https://securityaffairs.com/190961/hacking/microsoft-defender-under-attack-as-three-zero-days-two-of-them-still-unpatched-enable-elevated-access.html)
 - [Picus Security — BlueHammer & RedSun: Windows Defender CVE-2026-33825 Zero-Day Explained](https://www.picussecurity.com/resource/blog/bluehammer-redsun-windows-defender-cve-2026-33825-zero-day-vulnerability-explained)
+---
+
+## Intelligence Update — 2026-04-28
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of April 28, 2026.
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| April 23, 2026 | SecurityWeek publishes more specific technical breakdown of UnDefend file-locking mechanism |
+| April 23, 2026 | CISA adds CVE-2026-33825 (BlueHammer) to KEV; confirms UnDefend/RedSun remain unpatched |
+| April 25, 2026 | Startup Defense analysis confirms UnDefend still unpatched; identifies Russia-geolocated source IPs in Huntress exploitation data |
+| April 28, 2026 | **Still unpatched.** No CVE. No Microsoft patch timeline. |
+
+### Technical Mechanism — Clarified (SecurityWeek, April 23)
+
+Previous understanding characterised UnDefend as "blocking Defender's signature update mechanism." The SecurityWeek analysis provides more precise detail on the file-locking approach:
+
+> *"UnDefend kills Defender by locking definition files. It monitors for changes to the definition updates and Microsoft's Malicious Software Removal Tool (MRT) folders to lock new files before Defender can use them, and locks backup definition files immediately after Defender's startup."*
+
+**Mechanism breakdown:**
+1. UnDefend monitors the Defender definition update directory and MRT folder for new file writes
+2. When a new definition file appears, UnDefend acquires a lock on it before Defender can consume it
+3. Defender's update process fails silently — no service stop, no hard error, no obvious alert
+4. Backup definition files are locked immediately on Defender startup — preventing fallback recovery
+5. Over time, Defender's detection coverage degrades as definitions stagnate
+
+This is a more targeted approach than a generic service disruption — it surgically intercepts the update pipeline at the file I/O level, making it harder to detect than a traditional DoS.
+
+### Attribution Signal (Huntress, April 23)
+
+Huntress reported that source IPs observed in the confirmed hands-on-keyboard exploitation chain (UnDefend → RedSun) **geolocated to Russia**. This is not formal attribution — IP geolocation is trivially spoofed — but it is consistent with the pre-existing assessment that the activity pattern reflects skilled, targeted intrusion rather than commodity malware spray.
+
+### Updated Detection Guidance
+
+**Highest-fidelity UnDefend detection currently available:**
+
+```powershell
+# Check Defender signature currency — frozen timestamp = potential UnDefend
+Get-MpComputerStatus | Select-Object AntivirusSignatureLastUpdated, AntivirusSignatureVersion
+
+# Alert threshold: signature older than 72 hours on an online system
+# Legitimate update failures (network timeout) look identical — correlate with network connectivity
+```
+
+**File lock monitoring (behavioral):**
+```yaml
+# Hunt: Unexpected file handle acquisition on Defender definition directories
+Directory: C:\ProgramData\Microsoft\Windows Defender\Definition Updates\*
+Directory: C:\Windows\System32\MRT\*
+LockerProcess: NOT ["MsMpEng.exe", "WdFilter.sys", "svchost.exe (Defender service)"]
+FileOperation: OpenFileExclusive
+Severity: HIGH
+```
