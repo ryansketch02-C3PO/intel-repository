@@ -33,6 +33,7 @@
 | 026 | Turla (Snake / Venomous Bear / Secret Blizzard) | State-Sponsored APT | Russia (FSB Center 16) | 🔴 ACTIVE | 🔴 HIGH | Government, Military, Defense, Diplomatic, Aerospace, Energy, Research, Media |
 | 027 | Gamaredon (Primitive Bear / Armageddon / Shuckworm) | State-Sponsored APT | Russia (FSB Center 18, Crimea) | 🔴 ACTIVE | 🔴 HIGH | Government, Military, Law Enforcement, Critical Infrastructure, NGOs |
 | 028 | APT73 / Bashe | Cybercriminal (RaaS) | Unknown (Czech Republic assessed) | 🔴 ACTIVE — spike Apr 2026 | 🔴 HIGH | Business Services, Technology, Financial, Healthcare, Government |
+| 029 | Medusa Ransomware / Storm-1175 | Cybercriminal (RaaS) — Multi-nation affiliates (Russia core; China/DPRK affiliate operators) | Russia-linked (core); China (Storm-1175); DPRK (Lazarus affiliate) | 🔴 ACTIVE | 🔴 HIGH | Healthcare, Education, Finance, Professional Services, Manufacturing, Critical Infrastructure |
 
 ---
 
@@ -44,4 +45,4 @@
 
 ---
 
-*Last updated: 2026-04-28 | Entry count: 28 threat actors + 1 vulnerability*
+*Last updated: 2026-04-29 | Entry count: 29 threat actors + 1 vulnerability*
