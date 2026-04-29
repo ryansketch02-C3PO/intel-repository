@@ -3,6 +3,10 @@
 > Based on Andy Piazza's Threat Box framework (SANS Whitepaper #39585)
 > Adapted for Aerospace & Defense targeting by C3PO
 > Reference: https://klrgrz.medium.com/quantifying-threat-actors-with-threat-box-e6b641109b11
+>
+> **TTP Framework:** MITRE ATT&CK (traditional infrastructure) + MITRE ATLAS v5.4.0 (AI/ML systems)
+> All profiles include ATT&CK T-codes. Profiles with AI/ML attack surface relevance additionally include ATLAS AML.T-codes.
+> ATLAS reference: https://atlas.mitre.org
 
 ---
 

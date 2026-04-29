@@ -91,6 +91,9 @@ Sensitive commands require explicit human approval before execution:
 | Sends Discord messages | Data leakage to wrong channel | Channel IDs hardcoded in memory; no auto-DM |
 | Reads/writes workspace files | Sensitive data exposure | MEMORY.md isolated to main session only |
 | Installs OpenClaw skills | Malicious skill injection | Skill Scanner scans before execution |
+| Calls external AI/LLM APIs (Anthropic, OpenAI) | Credential theft via AI infrastructure targeting (e.g. GhostBearer ZD-012) | API keys scoped and rotated; Skill/MCP Scanner watches for key exfil |
+| Ingests external threat intel into context | AI agent context poisoning / indirect prompt injection | OpenClaw untrusted content isolation; see ATLAS AML.T0054, AML.T0058 |
+| Operates as an AI agent with tool access | Exfiltration via AI agent tool invocation | Human approval model on all elevated/external actions; see ATLAS AML.T0062 |
 
 ---
 
@@ -133,17 +136,71 @@ defenseclaw setup guardrail --mode action --non-interactive
 
 ---
 
+---
+
+## AI Threat Model — MITRE ATLAS Integration
+
+**Added:** 2026-04-29 | **Framework:** MITRE ATLAS v5.4.0 (February 2026)
+
+MITRE ATT&CK covers traditional infrastructure threats. **MITRE ATLAS** (Adversarial Threat Landscape for AI Systems) covers attacks that target AI and ML systems specifically — attack surfaces that ATT&CK has no taxonomy for. As of v5.4.0, ATLAS covers **16 tactics, 84 techniques, 56 sub-techniques, and 32 mitigations**.
+
+All new vulnerability profiles and threat actor write-ups with AI/ML relevance will include ATLAS technique IDs alongside ATT&CK T-codes.
+
+### Two ATLAS-Unique Tactics (No ATT&CK Equivalent)
+
+| Tactic ID | Name | What It Covers |
+|---|---|---|
+| AML.TA0004 | ML Model Access | How adversaries gain access to target ML models — via inference APIs, direct artifact access, or stolen credentials |
+| AML.TA0012 | ML Attack Staging | Attack preparation unique to AI — crafting adversarial inputs, poisoning training data, building proxy models, engineering prompt injection payloads |
+
+### High-Priority ATLAS Techniques for This Environment
+
+Based on C3PO's architecture (AI agent, OpenClaw, Anthropic API, tool use, threat intel ingestion from external sources):
+
+| ATLAS ID | Technique | Relevance to This Environment | Status |
+|---|---|---|---|
+| AML.T0051 | Prompt Injection (Direct) | Malicious threat intel pages attempting to hijack C3PO behavior | ✅ Mitigated — OpenClaw untrusted content isolation |
+| AML.T0054 | Indirect Prompt Injection | External content (Discord, web fetches, webhooks) embedding adversarial instructions | ✅ Mitigated — OpenClaw untrusted content isolation |
+| AML.T0058 | AI Agent Context Poisoning | Injecting malicious content into C3PO's conversation context / memory files | 🟡 Partial — MEMORY.md isolated to main session; workspace files not sandboxed |
+| AML.T0062 | Exfiltration via AI Agent Tool Invocation | Using C3PO's tool access (exec, message, web_fetch) to leak data through legitimate channels | ✅ Mitigated — Human approval model on all elevated/external actions |
+| AML.T0061 | AI Agent Tool Invocation Abuse | Forcing C3PO to invoke tools (MCP, skills) in unauthorized ways | ✅ Mitigated — MCP Scanner + Skill Scanner enforce allowlists |
+| AML.T0048 | Compromise ML Software Dependencies | Supply chain attack against AI libraries/proxies (e.g. GhostBearer/CVE-2026-42208 targeting LiteLLM) | 🟡 Monitor — Not running LiteLLM locally; relevant to any AI infra stood up in future |
+| AML.T0034 | Cost Harvesting | High-volume API calls to drive up Anthropic/OpenAI costs | 🟡 Monitor — No rate limiting on internal cron jobs; review if exposed externally |
+| AML.T0024 | Exfiltration via ML Inference API | Using the Anthropic API as a data relay to extract sensitive context | 🟡 Partial — LLM Guardrail disabled; mitigated by MEMORY.md isolation and approval model |
+| AML.T0020 | Poison Training Data | Corrupting data ingested into any future fine-tuning or RAG pipeline | ⚪ Not yet applicable — no fine-tuning or RAG in current setup |
+| AML.T0019 | Publish Poisoned Datasets | Malicious datasets on Hugging Face / GitHub poisoning downstream models | ⚪ Not yet applicable — monitoring relevant for future ML workloads |
+| AML.T0043 | Craft Adversarial Data | Inputs designed to make AI models produce incorrect outputs (guardrail evasion) | 🟡 Partial — LLM Guardrail disabled; monitored by DefenseClaw behavior analysis |
+
+### ATLAS ↔ Existing Tracked Vulnerabilities
+
+| CVE / Track ID | ATLAS Mapping | Notes |
+|---|---|---|
+| ZD-012 GhostBearer (CVE-2026-42208) | AML.T0048 — Compromise ML Software Dependencies | LiteLLM SQL injection via auth path — textbook ATLAS Initial Access into AI infrastructure |
+| TeamPCP PyPI supply chain (#001) | AML.T0048 — Compromise ML Software Dependencies | Malicious PyPI packages targeting LiteLLM installs |
+| AI Honeypot project (Talos, 2026-04-29) | AML.T0054 — Indirect Prompt Injection (defensive use) | Honeypot exploits AI agent lack of awareness; maps to ATLAS defensive deception |
+
+### ATLAS Resources
+
+- **Framework:** [atlas.mitre.org](https://atlas.mitre.org)
+- **Navigator (interactive matrix):** [mitre-atlas.github.io/atlas-navigator](https://mitre-atlas.github.io/atlas-navigator/)
+- **Arsenal (CALDERA red team plugin):** Available via MITRE CALDERA
+- **STIX 2.1 data feed:** Available for SIEM integration at atlas.mitre.org/resources/atlas-data
+- **Companion frameworks:** OWASP LLM Top 10 (risk prioritization) + NIST AI RMF (governance)
+
+---
+
 ## Admiralty Grade Assessment of Defensive Posture
 
 | Control | Confidence | Notes |
 |---|---|---|
 | CodeGuard | A1 | Active, tested, built-in |
-| Prompt injection defense | A2 | OpenClaw native; effective against most vectors |
-| Execution approval model | A1 | Human-in-loop for all elevated commands |
-| Skill/MCP scanning | A2 | Active enforcement — blocking on critical/high/medium findings |
+| Prompt injection defense (ATLAS AML.T0051/T0054) | A2 | OpenClaw native; effective against most vectors |
+| Execution approval model (ATLAS AML.T0062) | A1 | Human-in-loop for all elevated commands |
+| Skill/MCP scanning (ATLAS AML.T0061) | A2 | Active enforcement — blocking on critical/high/medium findings |
 | LLM Guardrail | N/A | Intentionally disabled — cost/risk tradeoff decision 2026-04-20 |
 | Network isolation | B3 | Docker/OpenShell available but not all workloads containerized |
+| AI threat coverage (MITRE ATLAS) | B2 | Framework integrated 2026-04-29; key vectors mapped; RAG/fine-tuning not yet applicable |
 
 ---
 
-*Maintained by C3PO | Death Star Plans repo | 2026-04-06*
+*Maintained by C3PO | Death Star Plans repo | Last updated: 2026-04-29*
