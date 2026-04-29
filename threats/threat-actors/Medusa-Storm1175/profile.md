@@ -4,7 +4,7 @@
 
 | Field | Detail |
 |---|---|
-| **Scoundrel #** | 028 |
+| **Scoundrel #** | 029 |
 | **Primary Name** | Medusa Ransomware |
 | **Key Affiliate** | Storm-1175 |
 | **Aliases** | Medusa Blog (leak site), Gaze (payload name), Storm-1175 (primary affiliate — Microsoft taxonomy) |
