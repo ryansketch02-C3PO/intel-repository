@@ -128,6 +128,20 @@ TeamPCP used an **Internet Computer Protocol (ICP) blockchain canister** as a de
 
 ---
 
+## MITRE ATLAS Mapping
+
+> TeamPCP's March 2026 supply chain campaign specifically targeted AI/ML infrastructure (LiteLLM PyPI packages). The following ATLAS techniques apply to that campaign phase.
+
+| Tactic | Technique | ATLAS ID | Notes |
+|---|---|---|---|
+| ML Attack Staging | Compromise ML Software Dependencies | AML.T0048 | Malicious LiteLLM v1.82.7/1.82.8 on PyPI — 3.6M daily downloads; credential stealers triggered on Python startup |
+| Exfiltration | Exfiltration via ML Inference API | AML.T0024 | Stolen AI provider credentials (OpenAI, Anthropic, Bedrock) extracted from compromised LiteLLM installs |
+| Initial Access | ML Supply Chain Compromise | AML.T0010 | CanisterWorm seeded via stolen CI/CD tokens into 64+ npm packages and PyPI packages |
+| Collection | Data from ML Artifact | AML.T0037 | Harvesting stored API keys, virtual keys, and provider credentials from LiteLLM PostgreSQL backend |
+| Impact | Cost Harvesting | AML.T0034 | Stolen AI API keys usable for unauthorized LLM inference billed to victims |
+
+---
+
 ## Underground Presence
 
 - **Telegram (TeamPCP channel):** ~700 members, active since Nov 17, 2025; publishes stolen data dumps, breach claims, extortion activity

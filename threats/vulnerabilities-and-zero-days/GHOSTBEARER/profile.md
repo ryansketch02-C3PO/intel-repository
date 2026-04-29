@@ -21,6 +21,8 @@
 | **First Exploitation Observed** | April 26, 2026 04:24 UTC (36h 7min post-disclosure) |
 | **Threat Level** | 🔴 **CRITICAL** |
 | **Admiralty Grade** | A1 — Confirmed by Sysdig TRT with captured traffic; corroborated by BleepingComputer and Tenable |
+| **ATT&CK** | T1190 (Exploit Public-Facing Application) · T1078 (Valid Accounts — via stolen credentials) |
+| **MITRE ATLAS** | AML.T0048 (Compromise ML Software Dependencies) · AML.T0024 (Exfiltration via ML Inference API) · AML.T0034 (Cost Harvesting) |
 
 ---
 
