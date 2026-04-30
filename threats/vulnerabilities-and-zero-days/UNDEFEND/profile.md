@@ -269,3 +269,57 @@ LockerProcess: NOT ["MsMpEng.exe", "WdFilter.sys", "svchost.exe (Defender servic
 FileOperation: OpenFileExclusive
 Severity: HIGH
 ```
+
+---
+
+## Intelligence Update — 2026-04-30
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of April 30, 2026.
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| April 29, 2026 | Ayinedjimi Consultants (FR) publishes analysis confirming UnDefend + RedSun both unpatched; notes no official workaround for UnDefend exists |
+| April 30, 2026 | **Still unpatched.** No CVE. No Microsoft patch timeline. 14 days since public disclosure with active exploitation ongoing. |
+
+### Updated Technical Understanding — Telemetry Manipulation (April 30)
+
+Additional analysis has clarified a third capability within UnDefend beyond definition locking that was not fully documented in prior intelligence updates:
+
+**UnDefend manipulates health telemetry sent to MDE and SIEM dashboards.**
+
+In its aggressive mode (`-agressive` flag, confirmed in Huntress observations), UnDefend interferes with the health status data Defender reports upward to:
+- Microsoft Defender for Endpoint (MDE) console
+- Connected SIEM platforms (Sentinel, Splunk, etc.)
+- Windows Security Center
+
+**Practical impact:** Security operations consoles display a **healthy, up-to-date endpoint** while Defender's definitions are frozen and its detection coverage is degraded. This is a deliberate anti-detection layer — the gap between actual protection and reported protection is invisible to analysts relying on dashboard telemetry alone.
+
+This elevates UnDefend’s threat profile beyond a simple DoS. It is an **active deception tool** that defeats the monitoring used to detect Defender degradation.
+
+### Critical Detection Note
+
+Given telemetry manipulation, dashboard-based Defender health monitoring **cannot be trusted** as the sole detection method for UnDefend. The highest-confidence detection remains direct endpoint query via PowerShell:
+
+```powershell
+# Run directly on endpoint or via PSRemoting/Intune — do NOT rely on MDE/SIEM dashboard reporting
+Get-MpComputerStatus | Select-Object ComputerName, AntivirusSignatureLastUpdated, AntivirusSignatureVersion, RealTimeProtectionEnabled
+
+# Alert threshold: AntivirusSignatureLastUpdated older than 72h on an online, active system
+# Cross-reference against network connectivity logs to rule out legitimate update failures
+```
+
+### Best Available Compensating Controls (as of April 30)
+
+| Control | Priority | Notes |
+|---|---|---|
+| **Direct endpoint PowerShell signature query** | 🔴 IMMEDIATE | Do not rely on MDE/SIEM dashboard alone — telemetry may be falsified by UnDefend `-agressive` mode |
+| **Second EDR layer** | 🔴 IMMEDIATE | Primary gap; any EDR not reliant on Defender’s update mechanism maintains independent coverage |
+| **Alert: Defender definition age > 72h** | 🔴 HIGH | Via direct endpoint query; treat as potential active UnDefend in context of other threat signals |
+| **Monitor Defender definition directories for unexpected file locks** | 🟡 HIGH | Highest-fidelity behavioral detection available |
+| **Block execution from Downloads/Pictures** | 🟡 HIGH | UnDefend is staged in same user-writable directories as RedSun |
+
+### Patch Outlook
+
+UnDefend has been publicly available for 14 days with confirmed active exploitation and no patch. The telemetry manipulation capability — now more fully understood — makes this a more serious enterprise risk than initially assessed. An out-of-band Microsoft patch remains expected but unconfirmed. Monitor the Windows Security Update Guide and MSRC for emergency advisories.

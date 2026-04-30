@@ -9,8 +9,8 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED | 🔴 HIGH | 2026-04-18 |
-| ZD-003 | UnDefend | DoS / Defender Update Block | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED | 🟡 MEDIUM (🔴 HIGH chained) | 2026-04-18 |
+| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (14 days, no Microsoft timeline) | 🔴 HIGH | 2026-04-18 |
+| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (14 days, no Microsoft timeline) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
 
 ---
 
@@ -37,4 +37,4 @@
 
 ---
 
-*Last updated: 2026-04-29 | Entry count: 12*
+*Last updated: 2026-04-30 | Entry count: 12*

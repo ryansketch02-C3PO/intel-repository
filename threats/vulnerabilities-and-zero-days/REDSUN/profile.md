@@ -265,3 +265,35 @@ Huntress and Vectra AI analysis confirms RedSun exploitation is **not automated 
 ### Analyst Note
 
 Two of the three Defender exploits (RedSun + UnDefend) remain unpatched with no vendor timeline. The combination creates a durable offensive window: escalate to SYSTEM via RedSun, blind Defender via UnDefend. Organizations relying solely on Defender for endpoint detection have a genuine gap — independent network-layer visibility is the primary compensating control until patches arrive.
+
+---
+
+## Intelligence Update — 2026-04-30
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of April 30, 2026.
+> RedSun confirmed working on a fully patched April 2026 Windows 11 system — the April Patch Tuesday did not address this vulnerability.
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| April 25, 2026 | YouTube technical walkthrough published (Lsecqt) — live PoC demo on fully patched Windows 11; confirms SYSTEM shell from standard user |
+| April 28–29, 2026 | French security firm Ayinedjimi Consultants publishes analysis confirming RedSun remains unpatched; notes no official workaround documented |
+| April 30, 2026 | **Still unpatched.** No CVE. No Microsoft patch timeline. Exploitation window now 14 days and counting. |
+
+### Key Confirmation (April 25 — Live PoC)
+
+A detailed public walkthrough published April 25 demonstrates RedSun executing end-to-end on **fully patched Windows 11** (post-April Patch Tuesday). Confirmed:
+- Exploit runs from standard user account with no admin rights
+- EICAR trigger fires Defender scan as intended
+- Oplock + Cloud Files + junction chain executes reliably
+- COM activation of `{50d185b9-fff3-4656-92c7-e4018da4361d}` launches payload as `NT AUTHORITY\SYSTEM`
+- C2 beacon swap demonstrated: replacing `conhost.exe` spawn with arbitrary payload is trivial
+
+**Important note from walkthrough:** Defender **must have an alert triggered** for the exploit to work — whitelisting the bait file/directory in Defender exclusions prevents the initial scan from firing and breaks the exploit chain. This is a meaningful compensating control for high-value targets:
+
+> Adding the exploit staging directory to Defender exclusions removes the trigger. However, this must be applied per-machine and is not a scalable enterprise control without knowing the exact staging path in advance.
+
+### Patch Outlook
+
+BlueHammer was patched 11 days after public disclosure (April 3 → April 14). RedSun has now been public for **14 days** with active exploitation and no patch. The longer timeline likely reflects the deeper architectural complexity of fixing the reparse point validation gap in `MpSvc.dll` without breaking Defender’s legitimate cloud file remediation workflow. An out-of-band patch remains expected but unconfirmed. Monitor MSRC and the Windows Security Update Guide.
