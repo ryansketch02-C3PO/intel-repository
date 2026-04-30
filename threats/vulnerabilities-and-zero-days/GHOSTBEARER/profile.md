@@ -11,9 +11,9 @@
 | **Class** | CWE-89 — Improper Neutralization of Special Elements in SQL Query |
 | **Affected Product** | LiteLLM (open-source LLM proxy/gateway by BerriAI) |
 | **Affected Versions** | All versions prior to 1.83.7 |
-| **Fixed Version** | ✅ **PATCHED** — LiteLLM v1.83.7 |
+| **Fixed Version** | ✅ **PATCHED** — LiteLLM v1.83.7+ | **Recommended Version** | v1.83.10-stable (per BerriAI official security post, 2026-04-29) |
 | **Attack Vector** | Network — unauthenticated, no user interaction required |
-| **CVSS Score** | Not yet formally scored; classified as **Critical** by Tenable, Sysdig, BleepingComputer |
+| **CVSS Score** | **9.3 Critical** (CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N) — formally scored, per Belgium CCB advisory and The Hacker News |
 | **CISA KEV** | ❌ Not in KEV catalog as of 2026-04-29 |
 | **Exploit Status** | 🔴 **ACTIVELY EXPLOITED IN THE WILD** — targeted schema enumeration observed |
 | **Discovered/Disclosed By** | BerriAI maintainer team |
@@ -221,4 +221,78 @@ Any A&D organization using LiteLLM as a proxy for AI tools is at risk of credent
 
 ---
 
-*Profile created: 2026-04-29 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+---
+
+## Intelligence Update — 2026-04-30
+
+> No new exploitation infrastructure observed. CVSS formally scored at **9.3 Critical**. BerriAI recommends upgrading to **v1.83.10-stable**. Multiple national CERTs now issuing advisories.
+
+### New Recommended Version
+
+BerriAI published an official security blog post on April 29 clarifying:
+- Minimum fixed version: **v1.83.7**
+- **Recommended version: v1.83.10-stable** — includes additional hardening beyond the parameterized query fix
+- Upgrade path: [v1.83.10-stable release](https://github.com/BerriAI/litellm/releases/tag/v1.83.10-stable)
+
+### CVSS Score Formally Published
+
+CVSS v4.0 score confirmed as **9.3 Critical** by Belgium Centre for Cybersecurity (CCB) advisory (April 29):
+```
+CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N
+```
+The Hacker News separately reported CVSS **9.3**. Tenable's initial "no score" has been superseded.
+
+### Workaround Confirmed (If Unable to Patch)
+
+For environments that cannot immediately upgrade, BerriAI and multiple national CERTs have confirmed a working mitigation:
+
+```yaml
+# In LiteLLM general_settings (litellm_config.yaml)
+general_settings:
+  disable_error_logs: true
+```
+
+This removes the error-handling code path through which untrusted `Authorization: Bearer` input reaches the vulnerable query. It does not fix the root cause but blocks the known exploitation route. **Upgrade is still required.**
+
+### National CERT Coverage (April 29)
+
+Multiple national CERTs have now issued formal advisories:
+- **Belgium CCB** — formal advisory published April 29; classified as "patch immediately"
+- Active exploitation confirmed as basis for urgent classification
+
+### Sysdig Full Technical Report Published (April 27)
+
+Sysdig published their complete technical write-up on April 27. Key additions to prior intelligence:
+
+- **Affected version range confirmed:** `>= v1.81.16` and `< v1.83.7` — earlier versions (pre-1.81.16) not affected
+- **Exact exploit payload signatures documented:**
+  - User-agent on all attack requests: `Python/3.12 aiohttp/3.9.1`
+  - Bearer prefix used: `sk-litellm'` (single-quote terminator)
+  - Final payload in Phase 2: `sk-litellm' OR 1=1--` — attacker exhausted UNION attempts and fell back to a tautology, consistent with automated harness behavior
+- **Postgres query history audit helper:** BerriAI published a [GitHub Gist](https://gist.github.com/ishaan-berri/6f31e56e878338eb4c01990bd08378ab) with a helper query to check Postgres logs for exploitation activity
+- **Upstream billing audit recommended:** Monitor OpenAI/Anthropic/Bedrock billing for traffic from unfamiliar IPs in the days after the patch window — master-key reuse is the most reliable monetization signal
+
+### Additional IOC — Request Signatures
+
+| Indicator | Type | Notes |
+|---|---|---|
+| `Python/3.12 aiohttp/3.9.1` | User-Agent | Consistent across all observed attack requests in both phases |
+| `sk-litellm'` | Bearer token prefix | Injection entry point — single quote escapes SQL literal |
+| `sk-litellm' OR 1=1--` | Bearer token | Terminal fallback payload — automated harness exhaustion signal |
+| `POST /chat/completions` with empty or 75-byte body | HTTP pattern | Canonical attack request shape |
+| `POST /v1/chat/completions` | HTTP pattern | Alternate route probed |
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| 2026-04-27 | Sysdig TRT publishes full technical report with complete payload signatures and IOCs |
+| 2026-04-28 | BleepingComputer publishes coverage; confirmed workaround documented |
+| 2026-04-29 | BerriAI publishes official security blog post; recommends v1.83.10-stable |
+| 2026-04-29 | Belgium CCB publishes formal national CERT advisory; CVSS 9.3 confirmed |
+| 2026-04-29 | The Hacker News coverage confirms CVSS 9.3 |
+| 2026-04-30 | C3PO profile updated; no new exploitation infrastructure observed |
+
+---
+
+*Profile created: 2026-04-29 | Last updated: 2026-04-30 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
