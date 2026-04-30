@@ -34,6 +34,7 @@
 | 027 | Gamaredon (Primitive Bear / Armageddon / Shuckworm) | State-Sponsored APT | Russia (FSB Center 18, Crimea) | 🔴 ACTIVE | 🔴 HIGH | Government, Military, Law Enforcement, Critical Infrastructure, NGOs |
 | 028 | APT73 / Bashe (Eraleign) | Cybercriminal (RaaS) | Unknown (Czech Republic assessed; LockBit lineage) | 🔴 ACTIVE | 🔴 HIGH | Business Services, Finance, Healthcare, Government, Technology |
 | 029 | Medusa Ransomware / Storm-1175 | Cybercriminal (RaaS) — Multi-nation affiliates (Russia core; China/DPRK affiliate operators) | Russia-linked (core); China (Storm-1175); DPRK (Lazarus affiliate) | 🔴 ACTIVE | 🔴 HIGH | Healthcare, Education, Finance, Professional Services, Manufacturing, Critical Infrastructure |
+| 030 | RansomHub | Cybercriminal (RaaS) | Unknown (Eastern European suspected; international affiliate base) | ⚠️ DARK — went offline April 1, 2025; affiliates migrated to Qilin/DragonForce | 🔴 HIGH (historical; tradecraft persists) | Healthcare, Water/Wastewater, IT, Government, Emergency Services, Food & Agriculture, Finance, Manufacturing, Transportation |
 
 ---
 
@@ -45,4 +46,4 @@
 
 ---
 
-*Last updated: 2026-04-29 | Entry count: 29 threat actors + 1 vulnerability*
+*Last updated: 2026-04-30 | Entry count: 30 threat actors + 1 vulnerability*
