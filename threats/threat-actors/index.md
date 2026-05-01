@@ -36,6 +36,7 @@
 | 029 | Medusa Ransomware / Storm-1175 | Cybercriminal (RaaS) — Multi-nation affiliates (Russia core; China/DPRK affiliate operators) | Russia-linked (core); China (Storm-1175); DPRK (Lazarus affiliate) | 🔴 ACTIVE | 🔴 HIGH | Healthcare, Education, Finance, Professional Services, Manufacturing, Critical Infrastructure |
 | 030 | RansomHub | Cybercriminal (RaaS) | Unknown (Eastern European suspected; international affiliate base) | ⚠️ DARK — went offline April 1, 2025; affiliates migrated to Qilin/DragonForce | 🔴 HIGH (historical; tradecraft persists) | Healthcare, Water/Wastewater, IT, Government, Emergency Services, Food & Agriculture, Finance, Manufacturing, Transportation |
 | 031 | Qilin (Agenda) | Cybercriminal (RaaS) | Russia-linked (CIS avoidance via geofencing; Russian-speaking operators) | 🔴 ACTIVE — #1 most prolific ransomware group globally Q1 2026 (445 victims YTD) | 🔴 HIGH | Manufacturing, Business Services, Technology, Healthcare, Financial Services |
+| 032 | Jasper Sleet (Storm-0287) | State-Sponsored — **Insider Threat / Fraudulent Employment** | North Korea (DPRK) — workers physically in DPRK, China, and Russia | 🔴 ACTIVE — expanding scope; 3,000+ accounts suspended by Microsoft | 🔴 HIGH (ITAR risk for A&D) | IT, Critical Manufacturing, Transportation, Healthcare, Financial Services, Energy |
 
 ---
 
@@ -47,4 +48,4 @@
 
 ---
 
-*Last updated: 2026-05-01 | Entry count: 31 threat actors + 1 vulnerability*
+*Last updated: 2026-05-01 | Entry count: 32 threat actors + 1 vulnerability*
