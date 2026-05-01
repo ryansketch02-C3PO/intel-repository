@@ -29,6 +29,7 @@
 | ZD-011 | FIRESTARTER | Patch-Resistant Backdoor / Cisco ASA FTD | Cisco ASA, Firepower 1000/2100/4100/9300, Secure FW 200/1200/3100/4200/6100 | CVE-2025-20333 + CVE-2025-20362 | ⚠️ ACTIVE — Reimage required | 🔴 CRITICAL | 2026-04-27 |
 | ZD-012 | GhostBearer | Pre-Auth SQLi / Credential Theft | LiteLLM (all versions < 1.83.7) | CVE-2026-42208 | ✅ PATCHED — LiteLLM v1.83.7 (recommend v1.83.10-stable) | 🔴 CRITICAL (actively exploited) | 2026-04-29 |
 | ZD-013 | cPanel Auth Bypass | Authentication Bypass / Login Flow | cPanel & WHM (all versions after 11.40, see profile for per-branch fixed versions) | CVE-2026-41940 | ✅ PATCHED — Emergency update April 28–29, 2026 | 🔴 CRITICAL (actively exploited) | 2026-04-30 |
+| ZD-014 | Copy Fail | LPE / Page Cache Poisoning via Kernel Crypto API | Linux Kernel 4.14 through 7.0-rc (all distros since July 2017) | CVE-2026-31431 | ⚠️ PARTIAL — Upstream patched (7.0, 6.19.12, 6.18.22); most enterprise distro backports PENDING | 🔴 HIGH (public PoC + Metasploit; enterprise distros largely unpatched) | 2026-05-01 |
 
 ---
 
@@ -38,4 +39,4 @@
 
 ---
 
-*Last updated: 2026-04-30 | Entry count: 13*
+*Last updated: 2026-05-01 | Entry count: 14*
