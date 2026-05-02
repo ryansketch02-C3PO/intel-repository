@@ -37,6 +37,7 @@
 | 030 | RansomHub | Cybercriminal (RaaS) | Unknown (Eastern European suspected; international affiliate base) | ⚠️ DARK — went offline April 1, 2025; affiliates migrated to Qilin/DragonForce | 🔴 HIGH (historical; tradecraft persists) | Healthcare, Water/Wastewater, IT, Government, Emergency Services, Food & Agriculture, Finance, Manufacturing, Transportation |
 | 031 | Qilin (Agenda) | Cybercriminal (RaaS) | Russia-linked (CIS avoidance via geofencing; Russian-speaking operators) | 🔴 ACTIVE — #1 most prolific ransomware group globally Q1 2026 (445 victims YTD) | 🔴 HIGH | Manufacturing, Business Services, Technology, Healthcare, Financial Services |
 | 032 | Jasper Sleet (Storm-0287) | State-Sponsored — **Insider Threat / Fraudulent Employment** | North Korea (DPRK) — workers physically in DPRK, China, and Russia | 🔴 ACTIVE — expanding scope; 3,000+ accounts suspended by Microsoft | 🔴 HIGH (ITAR risk for A&D) | IT, Critical Manufacturing, Transportation, Healthcare, Financial Services, Energy |
+| 033 | DragonForce | Cybercriminal (RaaS — “Cartel” / White-Label Platform) | Unknown (Conti/LockBit code lineage) | 🔴 ACTIVE — growing every month; 3rd most active globally; cartel coalition with LockBit + Qilin | 🔴 HIGH | Retail, Airlines, Insurance, Technology, Logistics, MSPs, Healthcare, Financial Services |
 
 ---
 
@@ -48,4 +49,4 @@
 
 ---
 
-*Last updated: 2026-05-01 | Entry count: 32 threat actors + 1 vulnerability*
+*Last updated: 2026-05-02 | Entry count: 33 threat actors + 1 vulnerability*
