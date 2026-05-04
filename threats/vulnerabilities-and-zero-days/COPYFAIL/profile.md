@@ -18,11 +18,11 @@
 | **CVSS v3.1** | **7.8 HIGH** (`CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H`) |
 | **Public PoC** | 🔴 **PUBLIC** — Theori `theori-io/copy-fail-CVE-2026-31431` (~732 bytes Python) |
 | **Metasploit Module** | 🔴 **AVAILABLE** — `exploits/linux/local/cve_2026_31431_copy_fail` |
-| **CISA KEV** | ❌ Not listed as of 2026-05-01 |
-| **Exploit Status** | ⚠️ Public PoC + Metasploit — no confirmed in-the-wild exploitation reported yet |
+| **CISA KEV** | ✅ **LISTED** — Added to CISA KEV catalog ~May 1–2, 2026 |
+| **Exploit Status** | 🔴 **ACTIVE** — CISA KEV listed; Microsoft Defender observing preliminary threat-actor testing activity; widespread exploitation expected imminently |
 | **Disclosed By** | Theori Xint Code team (coordinated disclosure with Linux kernel security team) |
 | **Disclosed** | April 29, 2026 |
-| **Threat Level** | 🔴 HIGH — trivial post-foothold root escalation on 9 years of Linux builds |
+| **Threat Level** | 🔴 HIGH — CISA KEV listed; preliminary exploitation activity observed; trivial post-foothold root on 9 years of Linux builds |
 | **Admiralty Grade** | A1 — Theori technical disclosure; confirmed by Sysdig TRT, AlmaLinux, Amazon Linux security teams |
 | **ATT&CK** | T1068 (Exploitation for Privilege Escalation) · T1005 (Data from Local System) · T1543 (Create or Modify System Process) |
 
@@ -94,10 +94,11 @@ Step 5 — Execute
 |---|---|---|
 | **Linux upstream** | ✅ PATCHED | 7.0, 6.19.12, 6.18.22 |
 | **AlmaLinux** | ✅ PATCHED | ALESCo pre-RHEL patched kernel released May 1, 2026 |
-| **Amazon Linux 2 (all extras)** | ⚠️ PENDING | Amazon Linux Security Center: fix pending; workaround available |
+| **Ubuntu 26.04 LTS Resolute** | ✅ NOT AFFECTED | Ships kernel not affected by this CVE |
+| **Ubuntu 14.04–25.10** | ⚠️ KERNEL PENDING | `kmod` mitigation package released (disables module via `modprobe.d`); kernel patch in progress — `sudo apt install --only-upgrade kmod` |
+| **Amazon Linux 2 (all extras)** | ⚠️ PENDING | Amazon Linux Security Center: fix pending; module disable workaround available |
 | **Amazon Linux 2023** | ⚠️ PENDING | All kernel variants (kernel, kernel6.12, kernel6.18) — fix pending |
 | **RHEL 10.1** | ⚠️ PENDING | Upstream fix merged; vendor backport not yet released |
-| **Ubuntu 24.04** | ⚠️ PENDING | Backport in progress |
 | **SUSE 16** | ⚠️ PENDING | Backport in progress |
 | **Debian** | ⚠️ PENDING | Backport in progress |
 | **Arch / Gentoo / rolling** | ✅ PATCHED | Upstream kernel 6.19.12+ available |
@@ -245,7 +246,10 @@ auditctl -a always,exit -F arch=b64 -S socket -F a0=38 -k af_alg_audit
 | April 29, 2026 | Theori Xint Code team public disclosure — technical write-up + PoC released (`theori-io/copy-fail-CVE-2026-31431`) |
 | April 30, 2026 | Sysdig TRT analysis published; Falco detection rule released; Metasploit module available |
 | May 1, 2026 | AlmaLinux patched kernel released; Amazon Linux advisory updated (fix pending); CERT-EU advisory |
+| May 1, 2026 | Microsoft Defender analysis published; CISA adds CVE-2026-31431 to KEV catalog; preliminary threat-actor testing activity observed |
+| May 1, 2026 | Ubuntu releases `kmod` mitigation package for all affected LTS releases (14.04–25.10); confirms Ubuntu 26.04 Resolute not affected |
 | May 1, 2026 | C3PO profile created (ZD-014) |
+| May 4, 2026 | Profile updated: CISA KEV confirmed, Ubuntu mitigation package status, exploitation escalation expected |
 
 ---
 
@@ -257,7 +261,11 @@ auditctl -a always,exit -F arch=b64 -S socket -F a0=38 -k af_alg_audit
 - [Amazon Linux Security Center — CVE-2026-31431](https://explore.alas.aws.amazon.com/CVE-2026-31431.html)
 - [Metasploit — exploits/linux/local/cve_2026_31431_copy_fail](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/local/cve_2026_31431_copy_fail.rb)
 - [GHSA-2274-3hgr-wxv6 — GitHub Security Advisory](https://github.com/advisories/GHSA-2274-3hgr-wxv6)
+- [Microsoft Defender — CVE-2026-31431 analysis + hunting guidance (May 1, 2026)](https://www.microsoft.com/en-us/security/blog/2026/05/01/cve-2026-31431-copy-fail-vulnerability-enables-linux-root-privilege-escalation/)
+- [Ubuntu Security — Copy Fail fixes available (April 30, 2026)](https://ubuntu.com/blog/copy-fail-vulnerability-fixes-available)
+- [CERT-EU Security Advisory 2026-005](https://cert.europa.eu/publications/security-advisories/2026-005/)
+- [Xint — Copy Fail Part 2: From Pod to Host (Kubernetes container escape)](https://xint.io/blog/copy-fail-linux-distributions) *(Part 2 pending publication)*
 
 ---
 
-*Profile created: 2026-05-01 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+*Profile created: 2026-05-01 | Updated: 2026-05-04 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*

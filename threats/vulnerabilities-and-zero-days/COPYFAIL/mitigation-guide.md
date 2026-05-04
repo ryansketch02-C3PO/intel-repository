@@ -1,12 +1,31 @@
 # Copy Fail (CVE-2026-31431) — Immediate Mitigation Guide
 
-> **Status:** Enterprise distro patches PENDING (Amazon Linux, RHEL, Ubuntu, SUSE)
-> **Until patches land, apply the controls below immediately.**
-> Last updated: 2026-05-01
+> **Status:** CISA KEV listed; preliminary exploitation activity active. Ubuntu kmod mitigation released. Amazon Linux, RHEL, SUSE kernel patches still PENDING.
+> **Apply controls below immediately. Ubuntu users: also run the kmod upgrade below.**
+> Last updated: 2026-05-04
 
 ---
 
-## ✅ Step 1 — Disable the algif_aead Module (Do This Now)
+## ✅ Step 0 — Ubuntu-Specific: Apply kmod Mitigation Package
+
+Ubuntu has released an updated `kmod` package that automatically applies the module disable via `modprobe.d`. **Ubuntu 26.04 LTS Resolute is not affected** and requires no action.
+
+```bash
+# For Ubuntu 14.04–25.10 (all affected releases)
+sudo apt update && sudo apt install --only-upgrade kmod
+
+# Reboot or manually unload to apply immediately:
+sudo rmmod algif_aead 2>/dev/null || true
+
+# Verify
+grep -qE '^algif_aead ' /proc/modules && echo "Module STILL loaded" || echo "Module NOT loaded — mitigated"
+```
+
+This is the Canonical-supported mitigation path for Ubuntu. The kernel patch itself is still in progress — watch for updates via `ubuntu.com/security/CVE-2026-31431`.
+
+---
+
+## ✅ Step 1 — Disable the algif_aead Module (Do This Now, All Other Distros)
 
 The fastest, most complete mitigation available. Completely eliminates the attack surface.
 
@@ -149,10 +168,11 @@ Monitor your distro's security advisory channel and apply the kernel update as s
 
 | Distro | Advisory / Watch Link | Status |
 |---|---|---|
-| Amazon Linux | https://explore.alas.aws.amazon.com/CVE-2026-31431.html | ⚠️ PENDING |
-| RHEL | https://access.redhat.com/security/cve/CVE-2026-31431 | ⚠️ PENDING |
-| Ubuntu | https://ubuntu.com/security/CVE-2026-31431 | ⚠️ PENDING |
-| SUSE | https://www.suse.com/security/cve/CVE-2026-31431 | ⚠️ PENDING |
+| Amazon Linux | https://explore.alas.aws.amazon.com/CVE-2026-31431.html | ⚠️ KERNEL PENDING |
+| RHEL | https://access.redhat.com/security/cve/CVE-2026-31431 | ⚠️ KERNEL PENDING |
+| Ubuntu 14.04–25.10 | https://ubuntu.com/security/CVE-2026-31431 | ⚠️ KERNEL PENDING (kmod mitigation ✅ available) |
+| Ubuntu 26.04 Resolute | N/A | ✅ NOT AFFECTED |
+| SUSE | https://www.suse.com/security/cve/CVE-2026-31431 | ⚠️ KERNEL PENDING |
 | AlmaLinux | https://errata.almalinux.org | ✅ PATCHED |
 | Arch / rolling | Kernel 6.19.12+ available | ✅ PATCHED |
 
@@ -171,11 +191,12 @@ modprobe algif_aead
 
 | Priority | Action | Time to complete |
 |---|---|---|
-| 🔴 **Do now** | Disable `algif_aead` module (Step 1) | < 60 seconds |
+| 🔴 **Do now (Ubuntu)** | `sudo apt install --only-upgrade kmod` + rmmod (Step 0) | < 2 minutes |
+| 🔴 **Do now (all others)** | Disable `algif_aead` module (Step 1) | < 60 seconds |
 | 🔴 **Do now** | Verify seccomp on all container workloads (Step 2) | 5–10 minutes |
 | 🔴 **Do soon** | Deploy Falco/audit detection rule (Step 3) | 15–30 minutes |
 | ⏳ **Monitor** | Apply distro kernel patch when released (Step 4) | When available |
 
 ---
 
-*Guide created: 2026-05-01 | Author: C3PO | CVE: CVE-2026-31431 | TLP: WHITE*
+*Guide created: 2026-05-01 | Updated: 2026-05-04 | Author: C3PO | CVE: CVE-2026-31431 | TLP: WHITE*

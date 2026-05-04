@@ -9,8 +9,8 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (14 days, no Microsoft timeline) | 🔴 HIGH | 2026-04-18 |
-| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (14 days, no Microsoft timeline) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
+| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (18 days, no Microsoft timeline; May PT ~May 13 next window) | 🔴 HIGH | 2026-04-18 |
+| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (18 days, no Microsoft timeline; May PT ~May 13 next window) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
 
 ---
 
@@ -29,7 +29,7 @@
 | ZD-011 | FIRESTARTER | Patch-Resistant Backdoor / Cisco ASA FTD | Cisco ASA, Firepower 1000/2100/4100/9300, Secure FW 200/1200/3100/4200/6100 | CVE-2025-20333 + CVE-2025-20362 | ⚠️ ACTIVE — Reimage required | 🔴 CRITICAL | 2026-04-27 |
 | ZD-012 | GhostBearer | Pre-Auth SQLi / Credential Theft | LiteLLM (all versions < 1.83.7) | CVE-2026-42208 | ✅ PATCHED — LiteLLM v1.83.7 (recommend v1.83.10-stable) | 🔴 CRITICAL (actively exploited) | 2026-04-29 |
 | ZD-013 | cPanel Auth Bypass | Authentication Bypass / Login Flow | cPanel & WHM (all versions after 11.40, see profile for per-branch fixed versions) | CVE-2026-41940 | ✅ PATCHED — Emergency update April 28–29, 2026 | 🔴 CRITICAL (actively exploited) | 2026-04-30 |
-| ZD-014 | Copy Fail | LPE / Page Cache Poisoning via Kernel Crypto API | Linux Kernel 4.14 through 7.0-rc (all distros since July 2017) | CVE-2026-31431 | ⚠️ PARTIAL — Upstream patched (7.0, 6.19.12, 6.18.22); most enterprise distro backports PENDING | 🔴 HIGH (public PoC + Metasploit; enterprise distros largely unpatched) | 2026-05-01 |
+| ZD-014 | Copy Fail | LPE / Page Cache Poisoning via Kernel Crypto API | Linux Kernel 4.14 through 7.0-rc (all distros since July 2017) | CVE-2026-31431 | ⚠️ PARTIAL — Upstream patched (7.0, 6.19.12, 6.18.22); Ubuntu kmod mitigation out; AlmaLinux patched; RHEL/Amazon Linux/SUSE kernel backports PENDING | 🔴 HIGH (✅ CISA KEV; preliminary exploitation active; enterprise distros largely unpatched) | 2026-05-01 |
 
 ---
 
@@ -39,4 +39,4 @@
 
 ---
 
-*Last updated: 2026-05-01 | Entry count: 14*
+*Last updated: 2026-05-04 (RedSun + UnDefend 18-day mark; CopyFail CISA KEV) | Entry count: 14*

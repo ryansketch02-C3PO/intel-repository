@@ -9,7 +9,7 @@
 | **Type** | Denial-of-Service (DoS) / Security Tool Degradation |
 | **Class** | Defender Update Mechanism Abuse — Standard User Privilege |
 | **Affected Platforms** | Windows 10, Windows 11, Windows Server 2019 and later |
-| **Patch Status** | 🔴 **UNPATCHED** — No official patch, no CVE, no Microsoft timeline |
+| **Patch Status** | 🔴 **UNPATCHED** — No official patch, no CVE, no Microsoft timeline (18 days and counting as of 2026-05-04) |
 | **PoC Status** | 🔴 **PUBLIC** — Source code on GitHub (Nightmare-Eclipse repository) |
 | **Discovered By** | Chaotic Eclipse / Nightmare Eclipse (pseudonymous researcher) |
 | **Public Disclosure** | April 16, 2026 (released simultaneously with RedSun) |
@@ -269,6 +269,32 @@ LockerProcess: NOT ["MsMpEng.exe", "WdFilter.sys", "svchost.exe (Defender servic
 FileOperation: OpenFileExclusive
 Severity: HIGH
 ```
+
+---
+
+## Intelligence Update — 2026-05-04
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 4, 2026.
+> UnDefend has now been publicly available for **18 days** with no patch, no CVE, and no out-of-band advisory from Microsoft.
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| May 4, 2026 | **Still unpatched.** No CVE. No Microsoft patch timeline. 18 days since public disclosure with active exploitation ongoing. |
+| May 6, 2026 | CISA KEV deadline for FCEB agencies to patch BlueHammer (CVE-2026-33825). UnDefend has no KEV listing and no federal remediation mandate. |
+| ~May 13, 2026 | May Patch Tuesday — **next potential patch window** for both RedSun and UnDefend. Monitor MSRC for advisory. |
+
+### Threat Level Reassessment
+
+At 18 days unpatched, UnDefend's telemetry manipulation capability (confirmed in `-agressive` mode) remains largely unknown to security operations teams relying on MDE/SIEM dashboards. The combination of:
+- **Definition staleness** (silent, no alerts)
+- **Health telemetry falsification** (dashboard shows healthy endpoint)
+- **Stealthy file-lock mechanism** (no service stop, no hard error)
+
+...means the majority of organizations without direct endpoint PowerShell queries have no reliable way to know if UnDefend is active in their environment. This is no longer just a chained enabler — it is an independent operational security risk that widens with every additional day unpatched.
+
+Microsoft's public posture: *"reviewing the reported issues and committed to addressing vulnerabilities through its standard security response process."* No timeline.
 
 ---
 
