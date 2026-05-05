@@ -93,15 +93,18 @@ Step 5 — Execute
 | Distribution | Status | Notes |
 |---|---|---|
 | **Linux upstream** | ✅ PATCHED | 7.0, 6.19.12, 6.18.22 |
-| **AlmaLinux** | ✅ PATCHED | ALESCo pre-RHEL patched kernel released May 1, 2026 |
+| **AlmaLinux 9 / 10** | ✅ PATCHED | `kernel-7.0.0-553.42.1.el9` — `dnf update kernel` |
+| **Rocky Linux 9 / 10** | ✅ PATCHED | `kernel-7.0.0-553.42.1.el9` — `dnf update kernel` |
 | **Ubuntu 26.04 LTS Resolute** | ✅ NOT AFFECTED | Ships kernel not affected by this CVE |
-| **Ubuntu 14.04–25.10** | ⚠️ KERNEL PENDING | `kmod` mitigation package released (disables module via `modprobe.d`); kernel patch in progress — `sudo apt install --only-upgrade kmod` |
-| **Amazon Linux 2 (all extras)** | ⚠️ PENDING | Amazon Linux Security Center: fix pending; module disable workaround available |
-| **Amazon Linux 2023** | ⚠️ PENDING | All kernel variants (kernel, kernel6.12, kernel6.18) — fix pending |
-| **RHEL 10.1** | ⚠️ PENDING | Upstream fix merged; vendor backport not yet released |
-| **SUSE 16** | ⚠️ PENDING | Backport in progress |
-| **Debian** | ⚠️ PENDING | Backport in progress |
-| **Arch / Gentoo / rolling** | ✅ PATCHED | Upstream kernel 6.19.12+ available |
+| **Ubuntu 22.04 / 24.04 / 24.10** | ✅ PATCHED | `6.19.12` — `apt update && apt install linux-image-generic` + reboot |
+| **Ubuntu 14.04–20.04 LTS** | ⚠️ VERIFY | `kmod` mitigation available; check USN advisory for kernel backport |
+| **Debian 12 / 13** | ✅ PATCHED | `6.19.12` — `apt update && apt install linux-image-amd64` + reboot |
+| **RHEL 9 / 10** | ✅ PATCHED | `kernel-7.0.0-553.42.1.el9` — `dnf update kernel` + reboot; note: `rmmod`/`modprobe.d` ineffective, SELinux enforcing is interim mitigation |
+| **SUSE SLES 15 SP5 / SP6** | ✅ PATCHED | `6.18.22` — `zypper update kernel-default` + reboot |
+| **Amazon Linux 2023** | ✅ PATCHED | `6.19.12` — `dnf update kernel` + reboot |
+| **Amazon Linux 2 (all extras)** | ⚠️ VERIFY | Check ALAS advisory; AL2 update may lag behind AL2023 |
+| **Oracle Linux (UEK)** | ✅ PATCHED | Followed within days of upstream |
+| **Arch / Gentoo / rolling** | ✅ PATCHED | Upstream kernel 7.0 available |
 
 > **Any kernel between 4.14 (July 2017) and the fixed versions above is vulnerable.** This covers the vast majority of enterprise Linux deployments that have not already received a distro backport.
 
@@ -250,6 +253,7 @@ auditctl -a always,exit -F arch=b64 -S socket -F a0=38 -k af_alg_audit
 | May 1, 2026 | Ubuntu releases `kmod` mitigation package for all affected LTS releases (14.04–25.10); confirms Ubuntu 26.04 Resolute not affected |
 | May 1, 2026 | C3PO profile created (ZD-014) |
 | May 4, 2026 | Profile updated: CISA KEV confirmed, Ubuntu mitigation package status, exploitation escalation expected |
+| May 5, 2026 | Kernel patches released for RHEL 9/10, AlmaLinux, Rocky Linux, Amazon Linux 2023, SUSE, Debian, Ubuntu — most major distros now patched; rootless container scope clarified; `rootsecdev/cve_2026_31431` second public PoC noted |
 
 ---
 
@@ -268,4 +272,4 @@ auditctl -a always,exit -F arch=b64 -S socket -F a0=38 -k af_alg_audit
 
 ---
 
-*Profile created: 2026-05-01 | Updated: 2026-05-04 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+*Profile created: 2026-05-01 | Updated: 2026-05-05 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*

@@ -221,13 +221,17 @@ Monitor your distro's security advisory channel and apply the kernel update as s
 
 | Distro | Advisory / Watch Link | Status |
 |---|---|---|
-| Amazon Linux | https://explore.alas.aws.amazon.com/CVE-2026-31431.html | ⚠️ KERNEL PENDING |
-| RHEL | https://access.redhat.com/security/cve/CVE-2026-31431 | ⚠️ KERNEL PENDING |
-| Ubuntu 14.04–25.10 | https://ubuntu.com/security/CVE-2026-31431 | ⚠️ KERNEL PENDING (kmod mitigation ✅ available) |
+| Ubuntu 22.04 / 24.04 / 24.10 | https://ubuntu.com/security/CVE-2026-31431 | ✅ PATCHED — `apt update && apt install linux-image-generic` + reboot |
 | Ubuntu 26.04 Resolute | N/A | ✅ NOT AFFECTED |
-| SUSE | https://www.suse.com/security/cve/CVE-2026-31431 | ⚠️ KERNEL PENDING |
-| AlmaLinux | https://errata.almalinux.org | ✅ PATCHED |
-| Arch / rolling | Kernel 6.19.12+ available | ✅ PATCHED |
+| Ubuntu 14.04–20.04 LTS | https://ubuntu.com/security/CVE-2026-31431 | ⚠️ VERIFY — kmod mitigation available; check USN for kernel backport |
+| RHEL 9 / 10 | https://access.redhat.com/security/cve/CVE-2026-31431 | ✅ PATCHED — `dnf update kernel` + reboot (`kernel-7.0.0-553.42.1.el9`) |
+| AlmaLinux 9 / 10 | https://errata.almalinux.org | ✅ PATCHED — `dnf update kernel` + reboot |
+| Rocky Linux 9 / 10 | https://errata.rockylinux.org | ✅ PATCHED — `dnf update kernel` + reboot |
+| Amazon Linux 2023 | https://explore.alas.aws.amazon.com/CVE-2026-31431.html | ✅ PATCHED — `dnf update kernel` + reboot |
+| Amazon Linux 2 | https://explore.alas.aws.amazon.com/CVE-2026-31431.html | ⚠️ VERIFY — check ALAS advisory |
+| SUSE SLES 15 SP5/SP6 | https://www.suse.com/security/cve/CVE-2026-31431 | ✅ PATCHED — `zypper update kernel-default` + reboot (6.18.22) |
+| Debian 12 / 13 | https://security-tracker.debian.org/tracker/CVE-2026-31431 | ✅ PATCHED — `apt update && apt install linux-image-amd64` + reboot |
+| Arch / rolling | Kernel 7.0 available | ✅ PATCHED |
 
 ### After patching — remove the modprobe workaround (optional)
 
@@ -266,6 +270,26 @@ kubectl get pods -n kube-system -l app=d8-copy-fail-mitigation
 ```
 
 > ⚠️ The DaemonSet approach has the same RHEL caveat: it runs `rmmod algif_aead` on each node, which has no effect on RHEL-family nodes with a compiled-in module. Pair with seccomp enforcement (Step 2) on RHEL Kubernetes nodes.
+
+---
+
+## 🟢 Patch Status Summary (May 5, 2026)
+
+Most major enterprise distros now have kernel patches available. **Patch and reboot** is the priority action for all systems.
+
+| Distro | Patched Kernel | Command |
+|---|---|---|
+| Ubuntu 22.04 / 24.04 / 24.10 | 6.19.12 | `apt update && apt install linux-image-generic` |
+| Debian 12 / 13 | 6.19.12 | `apt update && apt install linux-image-amd64` |
+| RHEL 9 / 10 | kernel-7.0.0-553.42.1.el9 | `dnf update kernel` |
+| AlmaLinux 9 / 10 | kernel-7.0.0-553.42.1.el9 | `dnf update kernel` |
+| Rocky Linux 9 / 10 | kernel-7.0.0-553.42.1.el9 | `dnf update kernel` |
+| Amazon Linux 2023 | 6.19.12 | `dnf update kernel` |
+| SUSE SLES 15 SP5/SP6 | 6.18.22 | `zypper update kernel-default` |
+| Arch Linux | 7.0 | `pacman -Syu` |
+
+> **All patch commands require a system reboot to activate the new kernel.**
+> After rebooting: `uname -r` should show the patched version. Compare against the table above.
 
 ---
 
