@@ -9,7 +9,7 @@
 | **Type** | Local Privilege Escalation (LPE) |
 | **Class** | Defender Cloud-File Remediation Path Abuse — Standard User Privilege |
 | **Affected Platforms** | Windows 10, Windows 11, Windows Server 2019 and later |
-| **Patch Status** | 🔴 **UNPATCHED** — No official patch, no CVE, no Microsoft timeline (18 days and counting as of 2026-05-04) |
+| **Patch Status** | 🔴 **UNPATCHED** — No official patch, no CVE, no Microsoft timeline (19 days as of 2026-05-05; confirmed next window: May 12 Patch Tuesday) |
 | **PoC Status** | 🔴 **PUBLIC** — Full C++ source on GitHub (Nightmare-Eclipse/RedSun) |
 | **Discovered By** | Chaotic Eclipse / Nightmare-Eclipse (pseudonymous researcher) |
 | **Public Disclosure** | April 16, 2026 (released simultaneously with UnDefend) |
@@ -268,6 +268,28 @@ Two of the three Defender exploits (RedSun + UnDefend) remain unpatched with no 
 
 ---
 
+## Intelligence Update — 2026-05-05
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 5, 2026.
+> RedSun has been publicly exploitable for **19 days** with no patch, no CVE, and no out-of-band advisory from Microsoft.
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| May 4, 2026 | **Still unpatched.** 18 days. No material change from Microsoft. |
+| May 5, 2026 | **Still unpatched.** 19 days. Exploitation active. No new CVE or patch signal. |
+| May 6, 2026 | CISA KEV deadline for FCEB agencies to patch BlueHammer (CVE-2026-33825). RedSun has no KEV listing and no federal mandate. |
+| **May 12, 2026** | **May Patch Tuesday — confirmed.** This is the next Microsoft patch release and the most likely window for RedSun and UnDefend to be addressed. Monitor MSRC pre-release notice. |
+
+### Patch Outlook
+
+BlueHammer was patched 11 days after public disclosure. RedSun is at 19 days with no fix. May 12 Patch Tuesday is now confirmed as the next Microsoft release window. This is the most realistic opportunity for a patch — Microsoft has had 19 days and multiple rounds of public reporting to prepare a fix. An out-of-band release remains possible before May 12 but has not materialized despite sustained exploitation pressure.
+
+Microsoft's public posture: *"reviewing the reported issues and committed to addressing vulnerabilities through its standard security response process."* No CVE assigned. No timeline.
+
+---
+
 ## Intelligence Update — 2026-05-04
 
 > **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 4, 2026.
@@ -279,11 +301,11 @@ Two of the three Defender exploits (RedSun + UnDefend) remain unpatched with no 
 |---|---|
 | May 4, 2026 | **Still unpatched.** No CVE. No Microsoft patch timeline. 18 days of active exploitation window. |
 | May 6, 2026 | CISA KEV deadline for FCEB agencies to patch BlueHammer (CVE-2026-33825). RedSun has no KEV listing and no federal mandate. |
-| ~May 13, 2026 | May Patch Tuesday — **next potential patch window**. Monitor MSRC for pre-release notice of emergency or scheduled fix. |
+| ~May 13, 2026 | May Patch Tuesday — next potential patch window (now confirmed as May 12). |
 
 ### Patch Outlook
 
-BlueHammer was patched 11 days after public disclosure. RedSun is now at 18 days with no fix. The architectural complexity of fixing MpSvc.dll's reparse point validation gap without breaking Defender's cloud-file remediation workflow likely explains the delay. May Patch Tuesday (~May 13) is the next credible patch window. An out-of-band patch remains possible but has not materialized in 18 days of active exploitation.
+BlueHammer was patched 11 days after public disclosure. RedSun is now at 18 days with no fix. The architectural complexity of fixing MpSvc.dll's reparse point validation gap without breaking Defender's cloud-file remediation workflow likely explains the delay. May Patch Tuesday is the next credible patch window. An out-of-band patch remains possible but has not materialized in 18 days of active exploitation.
 
 Microsoft's public posture: *"reviewing the reported issues and committed to addressing vulnerabilities through its standard security response process."* No timeline provided.
 

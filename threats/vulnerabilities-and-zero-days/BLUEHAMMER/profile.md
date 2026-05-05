@@ -205,6 +205,8 @@ This is particularly relevant given the current threat landscape (April 2026):
 | April 14, 2026 | **Microsoft patches BlueHammer — CVE-2026-33825 (April Patch Tuesday).** Defender platform update 4.18.26050.3011. |
 | April 16, 2026 | Chaotic Eclipse drops RedSun + UnDefend — two further unpatched Defender zero-days. BlueHammer patch does NOT cover them. |
 | April 27, 2026 | RedSun and UnDefend remain unpatched. BlueHammer fully remediated on patched systems. |
+| May 6, 2026 | CISA KEV deadline passes — FCEB agencies required to have patched CVE-2026-33825 by this date. |
+| May 5, 2026 | Profile reviewed — BlueHammer fully patched and remediated. RedSun and UnDefend remain unpatched (19 days). Next Microsoft patch window: **May 12, 2026 Patch Tuesday**. |}
 
 ---
 
