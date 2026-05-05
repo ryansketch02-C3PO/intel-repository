@@ -1,8 +1,8 @@
 # Copy Fail (CVE-2026-31431) — Immediate Mitigation Guide
 
-> **Status:** CISA KEV listed; preliminary exploitation activity active. Ubuntu kmod mitigation released. Amazon Linux, RHEL, SUSE kernel patches still PENDING.
-> **Apply controls below immediately. Ubuntu users: also run the kmod upgrade below.**
-> Last updated: 2026-05-04
+> **Status:** CISA KEV listed; active exploitation confirmed. Ubuntu kmod mitigation released. Amazon Linux, RHEL, SUSE kernel patches still PENDING.
+> ⚠️ **RHEL/AlmaLinux/Rocky/CloudLinux users: `rmmod` and `modprobe.d` do NOT work — see Step 1a.**
+> Last updated: 2026-05-05
 
 ---
 
@@ -25,9 +25,9 @@ This is the Canonical-supported mitigation path for Ubuntu. The kernel patch its
 
 ---
 
-## ✅ Step 1 — Disable the algif_aead Module (Do This Now, All Other Distros)
+## ✅ Step 1 — Disable the algif_aead Module (Debian, SUSE, Amazon Linux, Arch)
 
-The fastest, most complete mitigation available. Completely eliminates the attack surface.
+The fastest, most complete mitigation where applicable. Completely eliminates the attack surface.
 
 ```bash
 # Block module from loading on reboot
@@ -41,6 +41,59 @@ lsmod | grep algif_aead   # Should return nothing
 ```
 
 **Survives reboots.** The `modprobe.d` entry prevents the module from loading again after restart.
+
+> ⚠️ **This step does NOT apply to RHEL-family systems.** See Step 1a below.
+
+---
+
+## ⚠️ Step 1a — RHEL / AlmaLinux / Rocky Linux / CloudLinux: Different Approach Required
+
+**`rmmod` and `modprobe.d` blacklisting have no effect on RHEL-family systems** because `algif_aead` is compiled directly into the kernel (`CONFIG_CRYPTO_USER_API_AEAD=y`), not built as a loadable module. There is no module to remove or block.
+
+### First: confirm whether you're affected
+```bash
+# Check if algif_aead is a loadable module or built-in
+lsmod | grep algif_aead         # Returns nothing if built-in OR if not loaded
+grep algif_aead /proc/crypto    # Returns entry if built-in AND available
+grep -r algif_aead /lib/modules/$(uname -r)/  # Returns nothing if compiled in
+```
+If `/proc/crypto` shows `algif_aead` but `lsmod` shows nothing — it's compiled in and `rmmod` will not help.
+
+### Mitigations available on RHEL-family (without kernel patch)
+
+**Option A — SELinux Enforcement (Recommended — Already Active on Most RHEL Systems)**
+
+SELinux in enforcing mode is confirmed to block the Copy Fail exploit on RHEL. If you have SELinux enabled (the default on RHEL), verify it is in enforcing mode:
+
+```bash
+getenforce   # Should return "Enforcing"
+
+# If it returns "Permissive" or "Disabled", switch to enforcing:
+setenforce 1
+
+# Make permanent:
+sed -i 's/SELINUX=permissive/SELINUX=enforcing/' /etc/selinux/config
+sed -i 's/SELINUX=disabled/SELINUX=enforcing/' /etc/selinux/config
+```
+
+> ⚠️ Do not disable SELinux as a workaround for other issues on RHEL — it is your primary Copy Fail mitigation until the kernel patch arrives.
+
+**Option B — Seccomp Block (Containers / Kubernetes)**
+
+Block `AF_ALG` socket creation (domain=38) at the seccomp layer for all container workloads (see Step 2 below). This is effective regardless of whether `algif_aead` is a module or compiled in.
+
+**Option C — AppArmor (if deployed)**
+
+Restrict `AF_ALG` socket creation to known disk-encryption processes only via AppArmor profile.
+
+**Option D — KernelCare Livepatch (Commercial)**
+
+KernelCare can apply the upstream fix in memory without a reboot — no module interaction required. Useful for RHEL systems that cannot afford a maintenance window.
+
+### The only complete fix for RHEL
+Apply the Red Hat kernel errata when released. Monitor: https://access.redhat.com/security/cve/CVE-2026-31431
+
+---
 
 ### What it breaks
 
@@ -199,4 +252,21 @@ modprobe algif_aead
 
 ---
 
-*Guide created: 2026-05-01 | Updated: 2026-05-04 | Author: C3PO | CVE: CVE-2026-31431 | TLP: WHITE*
+## Step 2a — Kubernetes: Cluster-Wide Mitigation DaemonSet
+
+For teams managing large clusters who cannot patch node kernels individually, **Deckhouse** has published an open-source DaemonSet manifest (`d8-copy-fail-mitigation`) that applies the `algif_aead` module disable across all nodes automatically:
+
+```bash
+# Apply the Deckhouse DaemonSet to your cluster
+kubectl apply -f https://raw.githubusercontent.com/deckhouse/deckhouse/main/modules/040-node-manager/d8-copy-fail-mitigation.yaml
+
+# Verify it's running on all nodes
+kubectl get daemonset d8-copy-fail-mitigation -n kube-system
+kubectl get pods -n kube-system -l app=d8-copy-fail-mitigation
+```
+
+> ⚠️ The DaemonSet approach has the same RHEL caveat: it runs `rmmod algif_aead` on each node, which has no effect on RHEL-family nodes with a compiled-in module. Pair with seccomp enforcement (Step 2) on RHEL Kubernetes nodes.
+
+---
+
+*Guide created: 2026-05-01 | Updated: 2026-05-05 | Author: C3PO | CVE: CVE-2026-31431 | TLP: WHITE*
