@@ -17,9 +17,10 @@
 5. [Scheduling — How Alerts Fire on Time](#scheduling)
 6. [Content Standards — What Goes In, What Gets Cut](#content-standards)
 7. [Memory and Continuity — How the System Stays Coherent](#memory)
-8. [Building Your Own — Hardware, Software, Cost](#build-your-own)
-9. [Simpler Alternatives — If You Don't Want AI](#alternatives)
-10. [Customization — Making It Yours](#customization)
+8. [X/Twitter Intel Collection — How We Actually Access It](#twitter)
+9. [Building Your Own — Hardware, Software, Cost](#build-your-own)
+10. [Simpler Alternatives — If You Don't Want AI](#alternatives)
+11. [Customization — Making It Yours](#customization)
 
 ---
 
@@ -53,7 +54,7 @@ At its core, this is a **scheduled AI agent that does OSINT research and posts f
 │  • CISA KEV / advisories                                 │
 │  • BleepingComputer, The Record, Krebs, Help Net Sec     │
 │  • Vendor blogs: Microsoft, CrowdStrike, Mandiant        │
-│  • Twitter/X threat intel feeds                          │
+│  • X/Twitter: indirect — search & secondary reporting     │
 │  • GitHub security advisories                            │
 │  • NVD / CVE databases                                   │
 │  • YouTube (technical briefings, context)                │
@@ -175,7 +176,7 @@ The agent runs multiple web searches targeting:
 - Threat intel news (BleepingComputer, The Record, Krebs on Security)
 - Vendor intelligence (Microsoft, CrowdStrike, Mandiant, Recorded Future)
 - CVE databases and GitHub security advisories
-- Twitter/X threat intel accounts (for breaking news)
+- X/Twitter: indirect — see Section 8 for full approach
 
 Searches are scoped to the time window since the last brief to avoid redundancy.
 
@@ -366,8 +367,9 @@ Not all sources are equal. We apply a hierarchy:
 1. **CISA advisories / FBI alerts** — authoritative, always include
 2. **Vendor research blogs** (Microsoft, CrowdStrike, Mandiant) — reliable, usually include
 3. **Security journalism** (BleepingComputer, The Record, Krebs) — solid, include with source noted
-4. **Social media / Twitter** — use for breaking news only, always verify against a second source
-5. **Anonymous reports / forums** — only include at C3 Admiralty grade or lower with explicit flagging
+4. **GitHub Security Advisories / NVD** — authoritative for CVE-specific coverage
+5. **X/Twitter** — high-signal but accessed indirectly; use for breaking news only, always verify against a Tier 1–3 source before including. *We access Twitter via web search surfacing tweets and secondary reporting, not directly. See Section 8 for how to set up direct Twitter monitoring.*
+6. **Anonymous reports / dark web forums** — only include at C3 Admiralty grade or lower with explicit flagging
 
 ### Admiralty Scale Grading
 
@@ -454,8 +456,135 @@ The structured, version-controlled knowledge base. Contains full profiles for ev
 
 ---
 
+<a name="twitter"></a>
+## 8. X/Twitter Intel Collection — How We Actually Access It
+
+The threat intelligence community on X/Twitter is fast — often the first place a researcher publishes a PoC, IOC, or zero-day disclosure. **However, our access to X/Twitter is indirect and this section is worth being honest about.**
+
+### What We Actually Do
+
+C3PO does not have a Twitter login or API key. Twitter/X access happens through:
+
+1. **Web search surfacing tweet content** — The search engine (Perplexity) sometimes indexes recent tweets in results. If a major researcher tweets a PoC or IOC, it often surfaces in search results within 15–60 minutes.
+
+2. **Secondary reporting** — BleepingComputer, The Record, Krebs on Security, and similar outlets almost always quote relevant tweets in their articles within hours of posting. Monitoring those sources catches the high-signal Twitter intel once it's been independently verified.
+
+3. **Direct URL fetching** — We can attempt to fetch public Twitter profile pages, but Twitter now walls most content behind a login. This is increasingly unreliable as Twitter tightens access.
+
+**Net result:** High-signal Twitter intel reaches us, but typically with a 15-minute to a few-hour lag behind the original post. For most threat intelligence purposes this is acceptable. For real-time incident monitoring, it is not.
+
+---
+
+### How to Do It Properly
+
+#### Option 1 — X/Twitter API v2 (Best quality, costs money)
+
+X charges for API access. For a monitoring use case:
+
+| Tier | Cost | Relevance |
+|---|---|---|
+| Free | $0 | Write-only — cannot read tweets; useless for monitoring |
+| Basic | $100/month | 10,000 read requests/month — enough for targeted account monitoring |
+| Pro | $5,000/month | Full firehose — not needed for this use case |
+
+With the Basic API you can pull recent tweets from specific accounts, search by keyword in near-real-time, and pipe results into your pipeline. At $100/month it's hard to justify for this alone unless Twitter intel is critical to your mission.
+
+**API setup:**
+```bash
+# Install the official Python client
+pip install tweepy
+
+# Basic monitoring example
+import tweepy
+
+client = tweepy.Client(bearer_token="YOUR_BEARER_TOKEN")
+
+# Search recent tweets by keyword
+tweets = client.search_recent_tweets(
+    query="CVE-2026 zero-day -is:retweet lang:en",
+    max_results=20,
+    tweet_fields=["created_at", "author_id", "text"]
+)
+
+for tweet in tweets.data:
+    print(tweet.text)
+```
+
+#### Option 2 — Nitter RSS (Free, self-hosted)
+
+[Nitter](https://github.com/zedeus/nitter) is an open-source, privacy-respecting Twitter frontend that exposes RSS feeds for individual accounts — no API key or login required.
+
+```bash
+# Self-host via Docker
+docker run -p 8080:8080 zedeus/nitter:latest
+
+# RSS feed URL format:
+# http://your-nitter-instance/[username]/rss
+# Example: http://localhost:8080/GossiTheDog/rss
+```
+
+You subscribe to specific threat intel researcher accounts via RSS, then feed those into your alert pipeline (IFTTT, Make, or your own script). Works well and is free. **Caveat:** X/Twitter actively throttles Nitter instances. Expect outages. You'll need to maintain it or hop between public instances.
+
+Public Nitter instances (availability varies): `nitter.net`, `nitter.poast.org`, `nitter.privacydev.net`
+
+#### Option 3 — Monitor the Right 20 Accounts (Low-tech, high signal)
+
+The threat intel Twitter community is small and tight. A curated list of ~20 accounts covers the majority of high-signal content. These are the accounts where original findings get posted first:
+
+| Account | Signal type |
+|---|---|
+| `@vxunderground` | Malware samples, threat actor activity, dark web leaks |
+| `@malwrhunterteam` | Malware campaign tracking, live IOCs |
+| `@GossiTheDog` (Kevin Beaumont) | Vulnerability analysis, active exploitation, Shodan scans |
+| `@briankrebs` | Major breaches, fraud investigations, law enforcement |
+| `@campuscodi` | Daily CVE tracking, security news digest |
+| `@TheDFIRReport` | Detailed in-the-wild intrusion analysis (gold standard) |
+| `@abuse_ch` | Malware C2 infrastructure (URLhaus, MalwareBazaar, ThreatFox) |
+| `@cyb3rops` (Florian Roth) | Detection rules, SIGMA, threat hunting |
+| `@billyleonard` | Google TAG — nation-state threat actor activity |
+| `@CISAGov` | Official CISA advisories, KEV additions, joint advisories |
+| `@NSACyber` | NSA cybersecurity advisories |
+| `@BleepinComputer` | Breaking security news |
+| `@threatpost` | CVEs, patches, ransomware |
+| `@swisscom_csirt` | European threat intel, IOCs |
+| `@anyrunapp` | Live malware sandbox analysis |
+| `@Unit42_Intel` | Palo Alto Unit 42 threat research |
+| `@MsftSecIntel` | Microsoft threat intelligence |
+| `@CrowdStrike` | CrowdStrike threat intel |
+| `@Mandiant` | Mandiant/Google attribution and campaign reporting |
+| `@CERT_EU` | European CERT advisories |
+
+If you use Nitter RSS, subscribe to these accounts. If you have API access, monitor these accounts programmatically. If you're doing it manually, these are the 20 tabs to have open.
+
+#### Option 4 — Aggregator Services (Paid, fully managed)
+
+Several commercial services aggregate threat intel Twitter content and deliver it in structured formats:
+
+| Service | What it does | Cost |
+|---|---|---|
+| [Feedly Threat Intelligence](https://feedly.com/i/landing/threatIntelligence) | Aggregates threat intel including curated Twitter feeds | ~$500/year |
+| [Recorded Future](https://www.recordedfuture.com) | Full threat intel platform including social media monitoring | Enterprise |
+| [Mandiant Advantage](https://www.mandiant.com/advantage) | Threat intel platform with actor tracking | Enterprise |
+| [Flare.io](https://flare.io) | Dark web + social monitoring | SMB-friendly |
+
+For a solo or small-team setup, **Feedly's Threat Intelligence tier** is the most practical paid option — it aggregates content from the key Twitter accounts plus RSS sources into a single feed you can query or pipe into your pipeline.
+
+---
+
+### How We Would Improve Our X/Twitter Coverage
+
+If we were to improve our current setup, the priority order would be:
+
+1. **Add Nitter RSS feeds** for the top 10 accounts in the list above into the existing web search pipeline — low cost, meaningful improvement in freshness
+2. **Add Feedly Threat Intelligence** as a managed aggregator — covers Twitter + RSS + dark web in one source the AI can query
+3. **X/Twitter API Basic tier** ($100/month) only if real-time tweet monitoring becomes critical to operations
+
+For most threat intelligence use cases, **Nitter RSS + monitoring secondary reporting sources** gives you 90% of the value at 0% of the cost.
+
+---
+
 <a name="build-your-own"></a>
-## 8. Building Your Own — Hardware, Software, Cost
+## 9. Building Your Own — Hardware, Software, Cost
 
 ### Minimum Viable Stack
 
@@ -507,7 +636,7 @@ The brief format we use works for a technical audience. If your audience is exec
 ---
 
 <a name="alternatives"></a>
-## 9. Simpler Alternatives — If You Don't Want AI
+## 10. Simpler Alternatives — If You Don't Want AI
 
 Not everyone needs an AI agent. Here are simpler approaches at different complexity levels:
 
@@ -586,7 +715,7 @@ Described throughout this document. The key difference from Level 2:
 ---
 
 <a name="customization"></a>
-## 10. Customization — Making It Yours
+## 11. Customization — Making It Yours
 
 ### Defining Your Focus in the Agent's Context
 
