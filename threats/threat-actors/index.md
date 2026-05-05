@@ -50,4 +50,4 @@
 
 ---
 
-*Last updated: 2026-05-03 | Entry count: 34 threat actors + 1 vulnerability*
+*Last updated: 2026-05-04 | Entry count: 34 threat actors*
