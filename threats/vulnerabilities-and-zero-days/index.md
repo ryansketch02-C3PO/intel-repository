@@ -40,8 +40,7 @@
 | ZD-010 | CVE-2026-33827 | Race Condition RCE / TCP/IP Stack | Windows 10/11/Server (all supported) | CVE-2026-33827 | ✅ PATCHED — April 2026 Patch Tuesday | 🔴 HIGH | 2026-04-27 |
 | ZD-011 | FIRESTARTER | Patch-Resistant Backdoor / Cisco ASA FTD | Cisco ASA, Firepower 1000/2100/4100/9300, Secure FW 200/1200/3100/4200/6100 | CVE-2025-20333 + CVE-2025-20362 | ⚠️ ACTIVE — Reimage required | 🔴 CRITICAL | 2026-04-27 |
 | ZD-012 | GhostBearer | Pre-Auth SQLi / Credential Theft | LiteLLM (all versions < 1.83.7) | CVE-2026-42208 | ✅ PATCHED — LiteLLM v1.83.7 (recommend v1.83.10-stable) | 🔴 CRITICAL (actively exploited) | 2026-04-29 |
-| ZD-013 | cPanel Auth Bypass | Authentication Bypass / Login Flow | cPanel & WHM (all versions after 11.40, see profile for per-branch fixed versions) | CVE-2026-41940 | ✅ PATCHED — Emergency update April 28–29, 2026 | 🔴 CRITICAL (actively exploited) | 2026-04-30 |
-| ZD-015 | CVE-2026-41940 | Pre-Auth CRLF Injection → WHM Root | cPanel & WHM (all versions after 11.40) · WP Squared | CVE-2026-41940 | ✅ PATCHED — April 28, 2026 | 🔴 CRITICAL — CISA KEV; 40K+ hosts compromised; ransomware + APT | 2026-05-06 |
+| ZD-013 | cPanel Auth Bypass | Pre-Auth CRLF Injection → WHM Root | cPanel & WHM (all versions after 11.40) · WP Squared | CVE-2026-41940 | ✅ PATCHED — April 28, 2026 | 🔴 CRITICAL — CISA KEV; 40K+ hosts compromised; ransomware + APT | 2026-04-30 |
 | ZD-014 | Copy Fail | LPE / Page Cache Poisoning via Kernel Crypto API | Linux Kernel 4.14 through 7.0-rc (all distros since July 2017) | CVE-2026-31431 | ⚠️ PARTIAL — Upstream patched (7.0, 6.19.12, 6.18.22); Ubuntu kmod mitigation out; AlmaLinux patched; RHEL/Amazon Linux/SUSE kernel backports PENDING | 🔴 HIGH (✅ CISA KEV; preliminary exploitation active; enterprise distros largely unpatched) | 2026-05-01 |
 
 ---
@@ -52,4 +51,4 @@
 
 ---
 
-*Last updated: 2026-05-06 (4 new profiles: CVE-2026-0300 PAN-OS RCE, CVE-2026-23918 Apache mod_http2, CVE-2026-4670 MOVEit Automation, CVE-2026-41940 cPanel; RedSun/UnDefend at 20-day mark) | Entry count: 18*
+*Last updated: 2026-05-06 (profiles merged: CPANEL-AUTHBYPASS + CVE-2026-41940 → single file; 3 other new profiles: CVE-2026-0300, CVE-2026-23918, CVE-2026-4670; RedSun/UnDefend at 20-day mark) | Entry count: 17*
