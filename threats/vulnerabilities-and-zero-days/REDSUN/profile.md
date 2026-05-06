@@ -268,6 +268,31 @@ Two of the three Defender exploits (RedSun + UnDefend) remain unpatched with no 
 
 ---
 
+## Intelligence Update — 2026-05-06
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 6, 2026.
+> RedSun has been publicly exploitable for **20 days** with no patch, no CVE, and no out-of-band advisory from Microsoft.
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| May 5, 2026 | **Still unpatched.** 19 days. No material change from Microsoft. |
+| May 6, 2026 | **Still unpatched.** 20 days. CISA KEV deadline passes for BlueHammer (CVE-2026-33825) — RedSun has no KEV listing and no federal mandate. |
+| **May 12, 2026** | **May Patch Tuesday — confirmed.** Next Microsoft patch release. Most likely window for RedSun and UnDefend patches. Monitor MSRC. |
+
+### CISA KEV Context
+
+Today's CISA KEV compliance deadline (May 6) applied only to BlueHammer (CVE-2026-33825), which is fully patched. RedSun has **no CVE assigned**, **no KEV listing**, and **no federal mandate** despite active exploitation confirmed since April 16. This creates a structural gap: RedSun is arguably more dangerous than BlueHammer in unpatched environments (no credential access required — straight file-write-to-SYSTEM), yet lacks the regulatory enforcement pressure.
+
+### Patch Outlook
+
+BlueHammer was patched 11 days after public disclosure. RedSun is at 20 days. May 12 Patch Tuesday is the confirmed next Microsoft release window and the most realistic patch opportunity. Microsoft has had 20 days and sustained public reporting to prepare a fix. An out-of-band release before May 12 has not materialized. **If no patch ships May 12, RedSun will have been publicly exploitable for 26 days across all supported Windows versions.**
+
+Microsoft's public posture: *"reviewing the reported issues and committed to addressing vulnerabilities through its standard security response process."* No CVE. No timeline.
+
+---
+
 ## Intelligence Update — 2026-05-05
 
 > **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 5, 2026.

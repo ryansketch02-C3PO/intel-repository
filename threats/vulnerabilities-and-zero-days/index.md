@@ -9,8 +9,20 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (19 days; May 12 PT confirmed — next patch window) | 🔴 HIGH | 2026-04-18 |
-| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (19 days; May 12 PT confirmed — next patch window) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
+| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (20 days; May 12 PT — next patch window) | 🔴 HIGH | 2026-04-18 |
+| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (20 days; May 12 PT — next patch window) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
+| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | 🔴 UNPATCHED — First patches ETA May 13, 2026 | 🔴 HIGH — Active exploitation (limited; likely state-sponsored) | 2026-05-06 |
+
+---
+
+## 📋 N-Day CVEs (Patched, Actively Exploited or High Risk)
+
+### Recently Added (2026-05-06)
+
+| ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
+|---|---|---|---|---|---|---|---|
+| — | CVE-2026-23918 | Double Free DoS + RCE / mod_http2 | Apache HTTP Server 2.4.66 only | CVE-2026-23918 | ✅ PATCHED — Apache 2.4.67 (May 4, 2026) | 🟠 HIGH — Trivial DoS; credible RCE on Debian/Docker; no in-the-wild exploitation yet | 2026-05-06 |
+| — | CVE-2026-4670 | Authentication Bypass / Backend Command Port | Progress MOVEit Automation (MFT) | CVE-2026-4670 | ✅ PATCHED — 2024.1.8 / 2025.0.9 / 2025.1.5 | 🟠 HIGH — CVSS 9.8; ~1,400 exposed instances; MFT threat-actor interest; no active exploitation yet | 2026-05-06 |
 
 ---
 
@@ -29,6 +41,7 @@
 | ZD-011 | FIRESTARTER | Patch-Resistant Backdoor / Cisco ASA FTD | Cisco ASA, Firepower 1000/2100/4100/9300, Secure FW 200/1200/3100/4200/6100 | CVE-2025-20333 + CVE-2025-20362 | ⚠️ ACTIVE — Reimage required | 🔴 CRITICAL | 2026-04-27 |
 | ZD-012 | GhostBearer | Pre-Auth SQLi / Credential Theft | LiteLLM (all versions < 1.83.7) | CVE-2026-42208 | ✅ PATCHED — LiteLLM v1.83.7 (recommend v1.83.10-stable) | 🔴 CRITICAL (actively exploited) | 2026-04-29 |
 | ZD-013 | cPanel Auth Bypass | Authentication Bypass / Login Flow | cPanel & WHM (all versions after 11.40, see profile for per-branch fixed versions) | CVE-2026-41940 | ✅ PATCHED — Emergency update April 28–29, 2026 | 🔴 CRITICAL (actively exploited) | 2026-04-30 |
+| ZD-015 | CVE-2026-41940 | Pre-Auth CRLF Injection → WHM Root | cPanel & WHM (all versions after 11.40) · WP Squared | CVE-2026-41940 | ✅ PATCHED — April 28, 2026 | 🔴 CRITICAL — CISA KEV; 40K+ hosts compromised; ransomware + APT | 2026-05-06 |
 | ZD-014 | Copy Fail | LPE / Page Cache Poisoning via Kernel Crypto API | Linux Kernel 4.14 through 7.0-rc (all distros since July 2017) | CVE-2026-31431 | ⚠️ PARTIAL — Upstream patched (7.0, 6.19.12, 6.18.22); Ubuntu kmod mitigation out; AlmaLinux patched; RHEL/Amazon Linux/SUSE kernel backports PENDING | 🔴 HIGH (✅ CISA KEV; preliminary exploitation active; enterprise distros largely unpatched) | 2026-05-01 |
 
 ---
@@ -39,4 +52,4 @@
 
 ---
 
-*Last updated: 2026-05-05 (RedSun + UnDefend 19-day mark; May 12 PT confirmed; BlueHammer CISA deadline passed) | Entry count: 14*
+*Last updated: 2026-05-06 (4 new profiles: CVE-2026-0300 PAN-OS RCE, CVE-2026-23918 Apache mod_http2, CVE-2026-4670 MOVEit Automation, CVE-2026-41940 cPanel; RedSun/UnDefend at 20-day mark) | Entry count: 18*

@@ -206,7 +206,32 @@ This is particularly relevant given the current threat landscape (April 2026):
 | April 16, 2026 | Chaotic Eclipse drops RedSun + UnDefend — two further unpatched Defender zero-days. BlueHammer patch does NOT cover them. |
 | April 27, 2026 | RedSun and UnDefend remain unpatched. BlueHammer fully remediated on patched systems. |
 | May 6, 2026 | CISA KEV deadline passes — FCEB agencies required to have patched CVE-2026-33825 by this date. |
-| May 5, 2026 | Profile reviewed — BlueHammer fully patched and remediated. RedSun and UnDefend remain unpatched (19 days). Next Microsoft patch window: **May 12, 2026 Patch Tuesday**. |}
+| May 5, 2026 | Profile reviewed — BlueHammer fully patched and remediated. RedSun and UnDefend remain unpatched (19 days). Next Microsoft patch window: **May 12, 2026 Patch Tuesday**. |
+| May 6, 2026 | **CISA KEV deadline reached.** FCEB agencies required to have patched CVE-2026-33825 by today. BlueHammer remains fully remediated on patched systems. |
+
+---
+
+## Intelligence Update — 2026-05-06
+
+> **Status: FULLY PATCHED AND REMEDIATED.** CVE-2026-33825 patched April 14. CISA KEV compliance deadline for FCEB agencies was today, May 6, 2026.
+
+### CISA KEV Deadline — Passed Today
+
+The CISA KEV action-due date for CVE-2026-33825 (BlueHammer) was **May 6, 2026**. Federal Civilian Executive Branch (FCEB) agencies were required to apply mitigations per vendor instructions by today. The patch (Defender platform update 4.18.26050.3011) has been available since April 14 — any agency that has not applied it by this date is in violation of BOD 22-01.
+
+**Verify patch status:**
+```powershell
+Get-MpComputerStatus | Select-Object AMProductVersion
+# Patched: 4.18.26050.3011 or later
+```
+
+### Defender False-Positive Note (May 3)
+
+Microsoft Defender was observed on May 3 flagging legitimate DigiCert root certificates as `Trojan:Win32/Cerdigent.A!dha` — a false-positive unrelated to BlueHammer. In some cases Defender was removing the certificates from Windows. This is a separate detection quality issue, not a BlueHammer-related incident. Track via Microsoft MSRC and BleepingComputer.
+
+### Threat Context (May 2026)
+
+BlueHammer has been confirmed integrated into ransomware operator toolkits since at least April 22. With the CISA KEV deadline now passed, any unpatched FCEB or enterprise system still running Defender engine versions below 4.18.26050.3011 represents a direct compliance and security gap. The RedSun and UnDefend companion zero-days remain unpatched — see their respective profiles.
 
 ---
 

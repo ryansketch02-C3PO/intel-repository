@@ -254,6 +254,49 @@ auditctl -a always,exit -F arch=b64 -S socket -F a0=38 -k af_alg_audit
 | May 1, 2026 | C3PO profile created (ZD-014) |
 | May 4, 2026 | Profile updated: CISA KEV confirmed, Ubuntu mitigation package status, exploitation escalation expected |
 | May 5, 2026 | Kernel patches released for RHEL 9/10, AlmaLinux, Rocky Linux, Amazon Linux 2023, SUSE, Debian, Ubuntu — most major distros now patched; rootless container scope clarified; `rootsecdev/cve_2026_31431` second public PoC noted |
+| May 6, 2026 | Profile updated: CloudLinux & KernelCare livepatch rollout confirmed; CISA KEV action-due date set (May 15); Microsoft Defender detection signatures published |
+
+---
+
+## Intelligence Update — 2026-05-06
+
+### Patch & Livepatch Rollout — Now Broadly Available
+
+**CloudLinux (May 1–2):** Full patch advisory published. All affected CloudLinux versions now have patched kernels available:
+- CL7h / CL8: `kernel-4.18.0-553.121.1.lve.el7h/el8` — from CloudLinux beta channel (`cloudlinux-updates-testing`); stable channel expected shortly
+- CL9 / CL10: AlmaLinux kernel now in production repos — plain `dnf update 'kernel*' && reboot` is sufficient
+- LTS kernel (els30) patched for CL8/CL9: `dnf update 'kernel-lts*' --enablerepo=cloudlinux-updates-testing && reboot`
+
+**KernelCare Livepatches (May 1–2 — main feed):** No-reboot livepatches now available on the main KernelCare feed for:
+- `ubuntu-focal`, `rockylinux8`, `rockylinux9`, `oraclelinux8`, `oraclelinux8-uek6`, `oraclelinux7-uek6`, `oraclelinux9`, `debian11`, `debian12`
+- Auto-delivered on next `kcarectl --update`. Verify with: `kcarectl --patch-info | grep -i CVE-2026-31431`
+
+### CISA KEV — Action Due May 15, 2026
+
+CISA KEV listing for CVE-2026-31431 now specifies **action due May 15, 2026** — FCEB agencies must apply mitigations per vendor instructions or discontinue use by that date.
+
+### Microsoft Defender Detection Signatures Published (May 1)
+
+Microsoft has deployed detection coverage for Copy Fail exploitation attempts:
+
+| Signature / Coverage | Type |
+|---|---|
+| `Exploit:Linux/CopyFailExpDl.A` | Defender Antivirus |
+| `Exploit:Python/CopyFail.A` | Defender Antivirus |
+| `Exploit:Linux/CVE-2026-31431.A` | Defender Antivirus |
+| `Behavior:Linux/CVE-2026-31431` | Defender Antivirus |
+| *Possible CVE-2026-31431 exploitation* | Defender for Endpoint |
+| *Potential exploitation of copy-fail vulnerability detected* | Defender for Cloud |
+
+These signatures catch currently observed exploitation patterns. Recompiled or modified exploit variants may evade antivirus signatures but behavioral detections remain effective.
+
+### Cumulative Patch Status (as of May 6)
+
+All major Linux distributions now have patched kernels in production repositories. The primary remaining risk is **unpatched enterprise systems that have not yet applied available updates** — patch fatigue and change-freeze windows are the biggest obstacles at this stage. Organizations using KernelCare have a no-reboot livepatch path available for all major distros.
+
+---
+
+*Profile created: 2026-05-01 | Updated: 2026-05-06 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
 
 ---
 
@@ -269,7 +312,4 @@ auditctl -a always,exit -F arch=b64 -S socket -F a0=38 -k af_alg_audit
 - [Ubuntu Security — Copy Fail fixes available (April 30, 2026)](https://ubuntu.com/blog/copy-fail-vulnerability-fixes-available)
 - [CERT-EU Security Advisory 2026-005](https://cert.europa.eu/publications/security-advisories/2026-005/)
 - [Xint — Copy Fail Part 2: From Pod to Host (Kubernetes container escape)](https://xint.io/blog/copy-fail-linux-distributions) *(Part 2 pending publication)*
-
----
-
-*Profile created: 2026-05-01 | Updated: 2026-05-05 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+- [CloudLinux — CVE-2026-31431 Copy Fail Kernel Update (May 2, 2026)](https://blog.cloudlinux.com/cve-2026-31431-copy-fail-kernel-update)

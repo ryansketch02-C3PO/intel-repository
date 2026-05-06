@@ -272,6 +272,42 @@ Severity: HIGH
 
 ---
 
+## Intelligence Update — 2026-05-06
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 6, 2026.
+> UnDefend has been publicly available for **20 days** with no patch, no CVE, and no out-of-band advisory from Microsoft.
+
+### Disclosure Timeline (continued)
+
+| Date | Event |
+|---|---|
+| May 5, 2026 | **Still unpatched.** 19 days. No material change from Microsoft. |
+| May 6, 2026 | **Still unpatched.** 20 days. CISA KEV compliance deadline passes for BlueHammer (CVE-2026-33825). UnDefend has no KEV listing, no CVE, no federal mandate. |
+| **May 12, 2026** | **May Patch Tuesday — confirmed.** Next Microsoft patch release and most likely window for RedSun and UnDefend fixes. Monitor MSRC. |
+
+### CISA KEV Context
+
+Today's CISA KEV deadline (May 6) applied only to BlueHammer, which is patched. UnDefend — despite confirmed active exploitation as an enabler in hands-on-keyboard intrusions and the presence of telemetry manipulation capabilities — has **no CVE**, **no KEV listing**, and **no federal remediation mandate** after 20 days.
+
+This gap is operationally significant: organizations relying on CISA KEV as their primary vulnerability triage signal may not have UnDefend on their radar at all. The combination of no CVE + dashboard telemetry falsification (`-agressive` mode) + no federal mandate creates conditions for silent, durable deployment across enterprise environments.
+
+### Threat Level Reassessment
+
+At 20 days unpatched, UnDefend has transitioned from a tactical chaining tool to an **independent persistent threat**. Key factors driving this reassessment:
+
+1. **Telemetry falsification** — `-agressive` mode makes MDE/SIEM dashboards show healthy endpoints while Defender is blind
+2. **Cascading risk** — RedSun's LPE is significantly more effective on systems where UnDefend has degraded Defender coverage
+3. **No detection pressure** — organizations without direct PowerShell endpoint queries and a second EDR layer have no reliable signal that UnDefend is active
+4. **Expanding staleness** — every day without a patch widens the definition gap on any deployed UnDefend instance
+
+### Patch Outlook
+
+May 12 Patch Tuesday is the confirmed next Microsoft release window and the last realistic opportunity for a patch before UnDefend crosses the 26-day public exploitation threshold. If Microsoft ships a fix May 12, it will have taken significantly longer than BlueHammer's 11-day patch cycle, despite UnDefend representing equal or greater operational risk through its telemetry manipulation capabilities.
+
+Microsoft's public posture: *"reviewing the reported issues and committed to addressing vulnerabilities through its standard security response process."* No CVE. No timeline.
+
+---
+
 ## Intelligence Update — 2026-05-05
 
 > **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 5, 2026.
