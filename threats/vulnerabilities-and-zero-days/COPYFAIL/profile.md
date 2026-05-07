@@ -24,7 +24,7 @@
 | **Disclosed** | April 29, 2026 |
 | **Threat Level** | 🔴 HIGH — CISA KEV listed; preliminary exploitation activity observed; trivial post-foothold root on 9 years of Linux builds |
 | **Admiralty Grade** | A1 — Theori technical disclosure; confirmed by Sysdig TRT, AlmaLinux, Amazon Linux security teams |
-| **ATT&CK** | T1068 (Exploitation for Privilege Escalation) · T1005 (Data from Local System) · T1543 (Create or Modify System Process) |
+| **ATT&CK** | T1068 (Exploitation for Privilege Escalation) · T1548.001 (Abuse Elevation Control Mechanism: Setuid and Setgid) · T1055 (Process Injection) · T1574 (Hijack Execution Flow) · T1611 (Escape to Host) |
 
 ---
 
@@ -296,7 +296,7 @@ All major Linux distributions now have patched kernels in production repositorie
 
 ---
 
-*Profile created: 2026-05-01 | Updated: 2026-05-06 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+*Profile created: 2026-05-01 | Updated: 2026-05-07 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
 
 ---
 
@@ -313,3 +313,21 @@ All major Linux distributions now have patched kernels in production repositorie
 - [CERT-EU Security Advisory 2026-005](https://cert.europa.eu/publications/security-advisories/2026-005/)
 - [Xint — Copy Fail Part 2: From Pod to Host (Kubernetes container escape)](https://xint.io/blog/copy-fail-linux-distributions) *(Part 2 pending publication)*
 - [CloudLinux — CVE-2026-31431 Copy Fail Kernel Update (May 2, 2026)](https://blog.cloudlinux.com/cve-2026-31431-copy-fail-kernel-update)
+
+---
+
+## Intelligence Update — 2026-05-07
+
+### MITRE ATT&CK Mapping — Corrected
+
+Previous mapping contained two incorrect techniques (T1005 — Data from Local System; T1543 — Create or Modify System Process) that do not accurately represent Copy Fail's attack chain. Both were removed. Mapping updated to reflect the actual exploit mechanics:
+
+| Technique | ID | Rationale |
+|---|---|---|
+| Exploitation for Privilege Escalation | **T1068** | Core technique — kernel LPE via `algif_aead` page cache corruption |
+| Abuse Elevation Control Mechanism: Setuid and Setgid | **T1548.001** | Exploit specifically targets `/usr/bin/su`; the setuid bit is the mechanism being weaponized |
+| Process Injection | **T1055** | Shellcode is staged into `/usr/bin/su`'s in-memory page cache before execution — functionally equivalent to code injection into a legitimate process |
+| Hijack Execution Flow | **T1574** | Page cache poisoning redirects what code executes when `su` runs without modifying the on-disk binary |
+| Escape to Host | **T1611** | Documented as a container-to-host escape path in Kubernetes environments (Xint Part 2); matches 🔴 CRITICAL rating for K8s nodes in high-risk scenarios |
+
+*No new exploitation or patch status changes at this update.*
