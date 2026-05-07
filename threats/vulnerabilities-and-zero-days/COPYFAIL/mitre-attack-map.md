@@ -2,7 +2,7 @@
 
 > Full ATT&CK coverage for the Copy Fail exploit chain: from initial foothold through post-exploitation.
 > Scope includes the LPE primitive itself, observed in-the-wild TTPs, and post-exploitation capabilities unlocked by root access.
-> Last updated: 2026-05-05
+> Last updated: 2026-05-07
 
 ---
 
@@ -33,7 +33,7 @@ Sources referenced throughout this document. Cited inline by **[S#]**.
 
 ## Navigator Layer Summary
 
-**Total techniques mapped: 30**
+**Total techniques mapped: 33**
 **Tactics covered: 10 of 14**
 
 | Tactic | Techniques Mapped |
@@ -41,8 +41,8 @@ Sources referenced throughout this document. Cited inline by **[S#]**.
 | Initial Access | 3 |
 | Execution | 3 |
 | Persistence | 3 |
-| Privilege Escalation | 1 |
-| Defense Evasion | 6 |
+| Privilege Escalation | 3 |
+| Defense Evasion | 8 |
 | Credential Access | 3 |
 | Discovery | 5 |
 | Lateral Movement | 2 |
@@ -188,9 +188,42 @@ Post-root, the following persistence mechanisms become available.
 
 ---
 
+#### T1548.001 — Abuse Elevation Control Mechanism: Setuid and Setgid
+
+| Field | Detail |
+|---|---|
+| **Relevance** | The exploit specifically weaponizes the setuid bit on `/usr/bin/su` to obtain root |
+| **In-the-Wild** | ✅ Confirmed |
+| **Notes** | Copy Fail's terminal step is to execute a setuid binary (`/usr/bin/su`, `/usr/bin/passwd`, `/usr/bin/newgrp`, etc.) whose page cache has been poisoned with attacker shellcode. The setuid mechanism — which causes the kernel to execute the binary as UID 0 regardless of the caller’s privilege level — is the vehicle for privilege elevation. The attacker does not bypass the setuid check; they abuse it: let the kernel do exactly what it’s supposed to do with a setuid binary, but ensure the binary it loads is theirs. T1548.001 is a more precise label for the *mechanism* than T1068 alone; both apply. |
+| **Sources** | **[S1]** Xint: *"We target /usr/bin/su because it is setuid root and readable by all users — the kernel will execute whatever code we’ve staged in its page cache as root."* **[S2]** Theori PoC: `/usr/bin/su` hardcoded as default target; alternative setuid binaries documented. **[S3]** Sysdig TRT: *"exploiting the setuid binary to execute staged shellcode as root"* — exact mechanism described. **[S4]** Microsoft Defender: *"exploiting... setuid binaries (for example, /usr/bin/su)"* confirmed in attack chain. |
+
+---
+
 ### TA0005 — Defense Evasion
 
-Copy Fail's stealth profile is exceptional. Multiple evasion characteristics are inherent to the exploit — not optional add-ons.
+Copy Fail’s stealth profile is exceptional. Multiple evasion characteristics are inherent to the exploit — not optional add-ons.
+
+---
+
+#### T1055 — Process Injection
+
+| Field | Detail |
+|---|---|
+| **Relevance** | Shellcode is staged into `/usr/bin/su`’s in-memory page cache before execution |
+| **In-the-Wild** | ✅ Confirmed |
+| **Notes** | Functionally equivalent to process injection: attacker-controlled code is written into a legitimate binary’s execution context at the kernel level, then triggered by running that binary. Unlike classic ptrace/DLL injection, the payload is written into the page cache via the `algif_aead` crypto scratch path — bypassing all user-space memory protections and write guards. The on-disk binary is never touched, making this form of injection invisible to conventional detections that monitor `ptrace`, `WriteProcessMemory`, or `/proc/<pid>/mem` writes. |
+| **Sources** | **[S1]** Xint: *"Copy Fail writes controlled bytes into the page cache of a setuid binary, redirecting its execution path entirely from within an unprivileged context."* **[S3]** Sysdig TRT: page cache corruption confirmed as the mechanism converting the 4-byte AEAD scratch write into arbitrary shellcode staging. **[S4]** Microsoft Defender: *"This corruption occurs entirely within the kernel, bypassing traditional user-space protections."* |
+
+---
+
+#### T1574 — Hijack Execution Flow
+
+| Field | Detail |
+|---|---|
+| **Relevance** | Page cache poisoning redirects `/usr/bin/su`’s execution flow without modifying the binary on disk |
+| **In-the-Wild** | ✅ Confirmed |
+| **Notes** | When `/usr/bin/su` is executed after a successful Copy Fail attack, the kernel serves the attacker’s poisoned in-memory version rather than the legitimate on-disk binary. `sha256sum /usr/bin/su` still matches the expected hash — but the code that actually runs is entirely attacker-controlled. Distinct from T1055: T1055 describes injecting into an already-running process; T1574 describes hijacking what gets loaded when a process starts. Both apply here and are complementary. |
+| **Sources** | **[S1]** Xint: *"The next time the setuid binary is executed, the kernel serves the attacker’s version from page cache rather than reading from disk."* **[S3]** Sysdig TRT: *"only the in-memory page cache is corrupted — on-disk checksums remain valid"* — confirms execution flow redirect without disk modification. **[S4]** Microsoft Defender: *"The exploit is deterministic, does not rely on race conditions"* — confirms the hijack is reliable and intentional. |
 
 ---
 
@@ -448,6 +481,9 @@ Copy Fail's stealth profile is exceptional. Multiple evasion characteristics are
 | T1098 | Account Manipulation | — | Persistence | ⚠️ | 🟡 MEDIUM | S4, S7 |
 | T1053.003 | Scheduled Task: Cron | — | Persistence | ⚠️ | 🟡 MEDIUM | S4, S8 |
 | T1068 | Exploitation for Privilege Escalation | — | Privilege Escalation | ✅ | 🔴 HIGH | S1, S4, S5, S10 |
+| T1548.001 | Abuse Elevation Control Mechanism | Setuid and Setgid | Privilege Escalation | ✅ | 🔴 HIGH | S1, S2, S3, S4 |
+| T1055 | Process Injection | — | Defense Evasion / Priv Esc | ✅ | 🔴 HIGH | S1, S3, S4 |
+| T1574 | Hijack Execution Flow | — | Defense Evasion / Priv Esc | ✅ | 🔴 HIGH | S1, S3, S4 |
 | T1211 | Exploitation for Defense Evasion | — | Defense Evasion | ✅ | 🔴 HIGH | S1, S3, S4 |
 | T1070.004 | Indicator Removal: File Deletion | — | Defense Evasion | ✅ | 🔴 HIGH | S3, S4 |
 | T1036 | Masquerading | — | Defense Evasion | ✅ | 🔴 HIGH | S2, S12 |
@@ -499,6 +535,9 @@ The following can be imported directly into [MITRE ATT&CK Navigator](https://mit
     { "techniqueID": "T1098",     "tactic": "persistence",          "color": "#ffcc99", "comment": "[S4,S7] Account-level persistence in Microsoft Defender post-exploitation phase; consistent with Huntress intrusion chain", "enabled": true, "score": 60 },
     { "techniqueID": "T1053.003", "tactic": "persistence",          "color": "#ffcc99", "comment": "[S4,S8] Post-root persistence mechanisms noted; consistent with cloud scanning campaign pattern (Microsoft Defender; XM Cyber)", "enabled": true, "score": 60 },
     { "techniqueID": "T1068",     "tactic": "privilege-escalation", "color": "#cc0000", "comment": "[S1,S5,S10,S4] CORE — CVE-2026-31431. Unprivileged→UID 0, deterministic (Xint/Theori Apr 29); CISA KEV May 1; NVD CVSS 7.8; Microsoft Defender active telemetry", "enabled": true, "score": 100 },
+    { "techniqueID": "T1548.001", "tactic": "privilege-escalation", "color": "#cc0000", "comment": "[S1,S2,S3,S4] Setuid bit on /usr/bin/su weaponized as escalation vehicle — kernel executes poisoned page cache as UID 0 (Xint; Theori PoC; Sysdig TRT; Microsoft Defender)", "enabled": true, "score": 100 },
+    { "techniqueID": "T1055",     "tactic": "defense-evasion",      "color": "#ff6666", "comment": "[S1,S3,S4] Shellcode staged into /usr/bin/su page cache at kernel level — no ptrace, no /proc writes, no userspace injection artifacts (Xint; Sysdig TRT; Microsoft Defender)", "enabled": true, "score": 100 },
+    { "techniqueID": "T1574",     "tactic": "defense-evasion",      "color": "#ff6666", "comment": "[S1,S3,S4] Execution flow of setuid binary hijacked via page cache — on-disk checksums valid; kernel serves poisoned in-memory version (Xint; Sysdig TRT; Microsoft Defender)", "enabled": true, "score": 100 },
     { "techniqueID": "T1211",     "tactic": "defense-evasion",      "color": "#ff6666", "comment": "[S1,S3,S4] Page cache only — on-disk file unchanged; FIM bypass confirmed (Xint: 'on-disk file unchanged'; Sysdig TRT; Microsoft Defender)", "enabled": true, "score": 100 },
     { "techniqueID": "T1070.004", "tactic": "defense-evasion",      "color": "#ff6666", "comment": "[S3,S4] Script deletion post-root; memory modifications revert on reboot — no disk artifact (Sysdig TRT; Microsoft Defender Phase 5)", "enabled": true, "score": 100 },
     { "techniqueID": "T1036",     "tactic": "defense-evasion",      "color": "#ff6666", "comment": "[S2,S12] EICAR string reversed at compile time, flipped at runtime — documented in Theori PoC source; confirmed CloudSEK analysis", "enabled": true, "score": 100 },
@@ -532,11 +571,11 @@ The following can be imported directly into [MITRE ATT&CK Navigator](https://mit
     { "name": "CVSS", "value": "7.8 HIGH" },
     { "name": "Platform", "value": "Linux Kernel 4.14 – 7.0-rc" },
     { "name": "Author", "value": "C3PO" },
-    { "name": "Last Updated", "value": "2026-05-05" }
+    { "name": "Last Updated", "value": "2026-05-07" }
   ]
 }
 ```
 
 ---
 
-*Created: 2026-05-04 | Updated: 2026-05-05 | Author: C3PO | CVE: CVE-2026-31431 | TLP: WHITE*
+*Created: 2026-05-04 | Updated: 2026-05-07 | Author: C3PO | CVE: CVE-2026-31431 | TLP: WHITE*
