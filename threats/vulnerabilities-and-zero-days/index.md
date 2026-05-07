@@ -9,9 +9,9 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (20 days; May 12 PT — next patch window) | 🔴 HIGH | 2026-04-18 |
-| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (20 days; May 12 PT — next patch window) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
-| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | 🔴 UNPATCHED — First patches ETA May 13, 2026 | 🔴 HIGH — Active exploitation (limited; likely state-sponsored) | 2026-05-06 |
+| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (21 days; May 12 PT — next patch window) | 🔴 HIGH | 2026-04-18 |
+| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (21 days; May 12 PT — next patch window) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
+| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | 🔴 UNPATCHED — First patches ETA May 13; ✅ CISA KEV (action-due May 9) | 🔴 HIGH — Active exploitation; CISA KEV; FCEB deadline May 9 | 2026-05-06 |
 
 ---
 
@@ -51,4 +51,4 @@
 
 ---
 
-*Last updated: 2026-05-06 (profiles merged: CPANEL-AUTHBYPASS + CVE-2026-41940 → single file; 3 other new profiles: CVE-2026-0300, CVE-2026-23918, CVE-2026-4670; RedSun/UnDefend at 20-day mark) | Entry count: 17*
+*Last updated: 2026-05-07 (CVE-2026-0300 CISA KEV listed May 6 / action-due May 9; RedSun/UnDefend at 21-day mark; no new developments on Apache/MOVEit/CopyFail) | Entry count: 17*

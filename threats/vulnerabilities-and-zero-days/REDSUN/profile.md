@@ -268,6 +268,22 @@ Two of the three Defender exploits (RedSun + UnDefend) remain unpatched with no 
 
 ---
 
+## Intelligence Update — 2026-05-07
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 7, 2026.
+> RedSun has been publicly exploitable for **21 days** with no patch, no CVE, and no out-of-band advisory from Microsoft.
+
+### Day 21 Status
+
+| Date | Event |
+|---|---|
+| May 7, 2026 | **Still unpatched.** 21 days. No CVE. No KEV. No advisory. May 12 Patch Tuesday is 5 days away. |
+| **May 12, 2026** | **May Patch Tuesday.** Confirmed next Microsoft release. Most realistic patch window for RedSun and UnDefend. Monitor MSRC. |
+
+No material change from May 6. Microsoft has not issued a CVE, out-of-band advisory, or interim mitigation guidance for RedSun. The Patch Tuesday outlook remains the same: if Microsoft ships a fix May 12, it will be 26 days from public disclosure with active exploitation. If not, day 26 passes without a patch and RedSun joins a very short list of actively exploited Windows zero-days that survived an entire Patch Tuesday cycle.
+
+---
+
 ## Intelligence Update — 2026-05-06
 
 > **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 6, 2026.

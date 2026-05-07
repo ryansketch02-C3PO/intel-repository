@@ -272,6 +272,22 @@ Severity: HIGH
 
 ---
 
+## Intelligence Update — 2026-05-07
+
+> **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 7, 2026.
+> UnDefend has been publicly available for **21 days** with no patch, no CVE, and no out-of-band advisory from Microsoft.
+
+### Day 21 Status
+
+| Date | Event |
+|---|---|
+| May 7, 2026 | **Still unpatched.** 21 days. No CVE. No KEV. No advisory. May 12 Patch Tuesday is 5 days away. |
+| **May 12, 2026** | **May Patch Tuesday.** Confirmed next Microsoft release and last realistic patch window before 26-day threshold. Monitor MSRC. |
+
+No material change from May 6. The combination of UnDefend (Defender blind + telemetry falsification) and RedSun (LPE to SYSTEM) remains one of the most operationally dangerous unpatched tool combinations in the current Windows threat landscape. Organizations relying on Defender telemetry dashboards have no reliable signal that UnDefend is active in their environment without direct PowerShell endpoint queries and secondary EDR coverage.
+
+---
+
 ## Intelligence Update — 2026-05-06
 
 > **Status: STILL UNPATCHED.** No CVE assigned. No Microsoft patch timeline. Active exploitation ongoing as of May 6, 2026.
