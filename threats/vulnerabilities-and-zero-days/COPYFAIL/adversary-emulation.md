@@ -1,6 +1,7 @@
 # Copy Fail (CVE-2026-31431) — Adversary Emulation Guide
 
 > **Purpose:** Purple team / adversary emulation playbook for validating detection coverage and mitigation effectiveness against the Copy Fail Linux kernel LPE.
+> **Diagram:** See [`adversary-emulation-diagram.png`](./adversary-emulation-diagram.png) for a full visual flow reference.
 > **Scope:** Lab environment emulation only. Do not run against production systems you do not own.
 > **ATT&CK Coverage:** T1068 · T1548.001 · T1055 · T1574 · T1611 · T1059.006 · T1106
 > **Last updated:** 2026-05-07 | Author: C3PO | TLP: WHITE
