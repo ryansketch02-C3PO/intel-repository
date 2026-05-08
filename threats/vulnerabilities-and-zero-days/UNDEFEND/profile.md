@@ -428,3 +428,28 @@ Get-MpComputerStatus | Select-Object ComputerName, AntivirusSignatureLastUpdated
 ### Patch Outlook
 
 UnDefend has been publicly available for 14 days with confirmed active exploitation and no patch. The telemetry manipulation capability — now more fully understood — makes this a more serious enterprise risk than initially assessed. An out-of-band Microsoft patch remains expected but unconfirmed. Monitor the Windows Security Update Guide and MSRC for emergency advisories.
+
+---
+
+## Intelligence Update — 2026-05-08
+
+### Status: STILL UNPATCHED — Day 23 | May 12 Patch Tuesday Is the Next Window
+
+As of May 8, UnDefend remains unpatched with no CVE assigned, mirroring RedSun’s status. Both vulnerabilities are expected to be addressed on **May 12, 2026 Patch Tuesday** if Microsoft maintains its scheduled cycle.
+
+UnDefend continues to be deployed **as a pre-exploitation layer alongside RedSun** in confirmed intrusions. The attack flow observed in the wild:
+1. UnDefend degrades Defender detection capability and falsifies telemetry
+2. RedSun executes LPE to SYSTEM under reduced detection coverage
+3. Post-exploitation (credential dump, persistence, lateral movement) proceeds with limited EDR visibility
+
+**Day count:** UnDefend public disclosure April 15, 2026 → May 8 = **23 days unpatched**.
+
+### Elevated Risk: Telemetry Gap Still Active
+
+The most operationally significant aspect of UnDefend remains the `-aggressive` mode’s ability to falsify Defender health telemetry. Security teams relying on MDE dashboards for endpoint health are still flying blind on any system where UnDefend has been deployed. **Direct endpoint PowerShell query (not dashboard) remains the only reliable detection path** — see detection section above.
+
+### May 12 Expectations
+
+Same as RedSun: watch MSRC for Defender platform updates. If no fix ships May 12, UnDefend will have been exploited in the wild for 30+ days without a patch — a significant enough gap that CISA KEV listing becomes likely.
+
+*No change to mitigations or detection guidance from April 30 update.*

@@ -9,9 +9,9 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (21 days; May 12 PT — next patch window) | 🔴 HIGH | 2026-04-18 |
-| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (21 days; May 12 PT — next patch window) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
-| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | 🔴 UNPATCHED — First patches ETA May 13; ✅ CISA KEV (action-due May 9) | 🔴 HIGH — Active exploitation; CISA KEV; FCEB deadline May 9 | 2026-05-06 |
+| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (23 days; May 12 PT — 4 days out) | 🔴 HIGH | 2026-04-18 |
+| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED (23 days; May 12 PT — 4 days out) | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
+| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | 🔴 UNPATCHED — First patches ETA May 13; ✅ CISA KEV (action-due **May 9**); exploitation back to April 9 | 🔴 HIGH — China attribution emerging; CL-STA-1132; 5,400+ exposed; FCEB deadline May 9 | 2026-05-06 |
 
 ---
 
@@ -51,4 +51,4 @@
 
 ---
 
-*Last updated: 2026-05-07 (CVE-2026-0300 CISA KEV listed May 6 / action-due May 9; RedSun/UnDefend at 21-day mark; no new developments on Apache/MOVEit/CopyFail) | Entry count: 17*
+*Last updated: 2026-05-08 (RedSun/UnDefend at day 23 — May 12 PT 4 days out; CVE-2026-0300 China attribution emerging, exploitation confirmed back to April 9, CISA KEV deadline May 9; COPYFAIL KEV deadline May 15; MOVEit/Apache no active exploitation) | Entry count: 17*
