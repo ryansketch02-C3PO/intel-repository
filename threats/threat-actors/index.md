@@ -41,6 +41,7 @@
 | 034 | Moonstone Sleet (Storm-1789) | State-Sponsored — Dual Mandate (Espionage + Revenue) | North Korea (DPRK) | 🔴 ACTIVE | 🔴 HIGH — ⚠️ **Confirmed A&D targeting** | **Defense Industrial Base**, Aerospace, Software/IT, Education |
 | 035 | FIN7 (Sangria Tempest / Carbon Spider) | Cybercriminal — Multi-Faceted Criminal Enterprise (IAB + RaaS + Tool Vendor) | Russia / CIS (Russian-speaking) | 🔴 ACTIVE — Resumed April 2024; Cl0p partnership active | 🔴 HIGH — Confirmed A&D targeting; feeding Cl0p; selling AvNeutralizer to other groups | Finance, Healthcare, Hospitality, Retail, Technology, **Defense (expanding)** |
 | 036 | Lapsus$ (Strawberry Tempest / DEV-0537) | Cybercriminal — Extortion and Data Destruction | UK / Brazil (teenagers) | ⚠️ DISPERSED — Inactive since Sep 2022; key members convicted; techniques live in Scattered Spider / The Com / ShinyHunters collective | 🟡 MEDIUM (historical) — Techniques remain 🔴 HIGH relevance; spawned Scattered Spider lineage | Technology, Gaming, Telecom, Government, Identity Platforms |
+| 037 | OilRig (APT34 / Hazel Sandstorm / Earth Simnavaz) | State-Sponsored APT — Espionage | Iran (MOIS) | 🔴 ACTIVE — Ongoing campaigns through Q1 2026; Iraq + UAE/Gulf government targeting | 🔴 HIGH | Government · Energy (Oil & Gas) · Defense · Telecommunications · Finance · Critical Infrastructure |
 
 ---
 
@@ -52,4 +53,4 @@
 
 ---
 
-*Last updated: 2026-05-07 | Entry count: 36 threat actors*
+*Last updated: 2026-05-08 | Entry count: 37 threat actors*
