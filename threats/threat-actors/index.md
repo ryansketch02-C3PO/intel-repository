@@ -42,6 +42,7 @@
 | 035 | FIN7 (Sangria Tempest / Carbon Spider) | Cybercriminal — Multi-Faceted Criminal Enterprise (IAB + RaaS + Tool Vendor) | Russia / CIS (Russian-speaking) | 🔴 ACTIVE — Resumed April 2024; Cl0p partnership active | 🔴 HIGH — Confirmed A&D targeting; feeding Cl0p; selling AvNeutralizer to other groups | Finance, Healthcare, Hospitality, Retail, Technology, **Defense (expanding)** |
 | 036 | Lapsus$ (Strawberry Tempest / DEV-0537) | Cybercriminal — Extortion and Data Destruction | UK / Brazil (teenagers) | ⚠️ DISPERSED — Inactive since Sep 2022; key members convicted; techniques live in Scattered Spider / The Com / ShinyHunters collective | 🟡 MEDIUM (historical) — Techniques remain 🔴 HIGH relevance; spawned Scattered Spider lineage | Technology, Gaming, Telecom, Government, Identity Platforms |
 | 037 | OilRig (APT34 / Hazel Sandstorm / Earth Simnavaz) | State-Sponsored APT — Espionage | Iran (MOIS) | 🔴 ACTIVE — Ongoing campaigns through Q1 2026; Iraq + UAE/Gulf government targeting | 🔴 HIGH | Government · Energy (Oil & Gas) · Defense · Telecommunications · Finance · Critical Infrastructure |
+| 038 | Conti (WIZARD SPIDER / Gold Ulrick) | Cybercriminal — RaaS + Direct Operations | Russia (St. Petersburg / CIS-aligned) | ❌ DEFUNCT — Dissolved May 2022; operators active via Akira, Black Basta, BlackCat, Royal/BlackSuit, DragonForce | 🔴 HIGH — Root node of modern ransomware ecosystem | Healthcare · Government · Critical Infrastructure · Education · Manufacturing · Finance |
 
 ---
 
@@ -53,4 +54,4 @@
 
 ---
 
-*Last updated: 2026-05-08 | Entry count: 37 threat actors*
+*Last updated: 2026-05-09 | Entry count: 38 threat actors*
