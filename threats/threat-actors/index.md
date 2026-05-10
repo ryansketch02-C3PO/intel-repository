@@ -43,6 +43,7 @@
 | 036 | Lapsus$ (Strawberry Tempest / DEV-0537) | Cybercriminal — Extortion and Data Destruction | UK / Brazil (teenagers) | ⚠️ DISPERSED — Inactive since Sep 2022; key members convicted; techniques live in Scattered Spider / The Com / ShinyHunters collective | 🟡 MEDIUM (historical) — Techniques remain 🔴 HIGH relevance; spawned Scattered Spider lineage | Technology, Gaming, Telecom, Government, Identity Platforms |
 | 037 | OilRig (APT34 / Hazel Sandstorm / Earth Simnavaz) | State-Sponsored APT — Espionage | Iran (MOIS) | 🔴 ACTIVE — Ongoing campaigns through Q1 2026; Iraq + UAE/Gulf government targeting | 🔴 HIGH | Government · Energy (Oil & Gas) · Defense · Telecommunications · Finance · Critical Infrastructure |
 | 038 | Conti (WIZARD SPIDER / Gold Ulrick) | Cybercriminal — RaaS + Direct Operations | Russia (St. Petersburg / CIS-aligned) | ❌ DEFUNCT — Dissolved May 2022; operators active via Akira, Black Basta, BlackCat, Royal/BlackSuit, DragonForce | 🔴 HIGH — Root node of modern ransomware ecosystem | Healthcare · Government · Critical Infrastructure · Education · Manufacturing · Finance |
+| 039 | CyberAv3ngers (IRGC-EWCD) | State-Sponsored — OT/ICS Sabotage + Hacktivist Proxy | Iran (IRGC-EWCD) | 🔴 ACTIVE — Ongoing targeting of US, Israeli, and Western critical infrastructure OT/ICS systems | 🔴 HIGH — Confirmed physical OT access; DOJ-indicted; CISA Emergency Directive | Water & Wastewater · Energy · Food & Agriculture · Transportation · Any Israeli-made ICS equipment |
 
 ---
 
@@ -54,4 +55,4 @@
 
 ---
 
-*Last updated: 2026-05-09 | Entry count: 38 threat actors*
+*Last updated: 2026-05-10 | Entry count: 39 threat actors*
