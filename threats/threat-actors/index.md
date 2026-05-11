@@ -44,6 +44,7 @@
 | 037 | OilRig (APT34 / Hazel Sandstorm / Earth Simnavaz) | State-Sponsored APT — Espionage | Iran (MOIS) | 🔴 ACTIVE — Ongoing campaigns through Q1 2026; Iraq + UAE/Gulf government targeting | 🔴 HIGH | Government · Energy (Oil & Gas) · Defense · Telecommunications · Finance · Critical Infrastructure |
 | 038 | Conti (WIZARD SPIDER / Gold Ulrick) | Cybercriminal — RaaS + Direct Operations | Russia (St. Petersburg / CIS-aligned) | ❌ DEFUNCT — Dissolved May 2022; operators active via Akira, Black Basta, BlackCat, Royal/BlackSuit, DragonForce | 🔴 HIGH — Root node of modern ransomware ecosystem | Healthcare · Government · Critical Infrastructure · Education · Manufacturing · Finance |
 | 039 | CyberAv3ngers (IRGC-EWCD) | State-Sponsored — OT/ICS Sabotage + Hacktivist Proxy | Iran (IRGC-EWCD) | 🔴 ACTIVE — Ongoing targeting of US, Israeli, and Western critical infrastructure OT/ICS systems | 🔴 HIGH — Confirmed physical OT access; DOJ-indicted; CISA Emergency Directive | Water & Wastewater · Energy · Food & Agriculture · Transportation · Any Israeli-made ICS equipment |
+| 040 | Evil Corp (Indrik Spider / GOLD DRAKE) | Cybercriminal — Financial Fraud + RaaS + FSB-Affiliated | Russia (Moscow) | 🔴 ACTIVE — Dridex persistent; operators running under evolving ransomware brands post-LockBit disruption | 🔴 HIGH — OFAC-sanctioned; FSB nexus; $5M DOJ bounty; paying their ransom may be a federal crime | Finance · Healthcare · Government · Critical Infrastructure · Manufacturing · Technology |
 
 ---
 
@@ -55,4 +56,4 @@
 
 ---
 
-*Last updated: 2026-05-10 | Entry count: 39 threat actors*
+*Last updated: 2026-05-11 | Entry count: 40 threat actors*
