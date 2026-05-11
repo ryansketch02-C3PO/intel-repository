@@ -15,6 +15,14 @@
 
 ---
 
+## 🔴 Active Zero-Days (Partially Patched — One Half Still Unpatched)
+
+| ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
+|---|---|---|---|---|---|---|---|
+| ZD-017 | Dirty Frag | LPE / Page Cache Write via IPSec ESP + RxRPC in-place decryption | Linux kernel 4.10–7.0 (all major distros) | CVE-2026-43284 (ESP) + CVE-2026-43500 (RxRPC) | ⚠️ PARTIAL — ESP (CVE-2026-43284) patched upstream + AlmaLinux/CloudLinux; **RxRPC (CVE-2026-43500) UNPATCHED**; RHEL/Ubuntu kernel packages pending | 🔴 HIGH — Public PoC; active exploitation confirmed (Microsoft); container escape path; Copy Fail mitigation provides NO protection | 2026-05-11 |
+
+---
+
 ## 📋 N-Day CVEs (Patched, Actively Exploited or High Risk)
 
 ### Recently Added (2026-05-06)
@@ -51,4 +59,4 @@
 
 ---
 
-*Last updated: 2026-05-11 | RedSun/UnDefend Day 25 — **PT TOMORROW**; CVE-2026-0300 patches tomorrow (May 13), FCEB deadline passed; COPYFAIL KEV deadline May 15 (4 days); MOVEit <100 exposed, no active exploitation; cPanel patched, backdoor sweep recommended for hosts exposed during zero-day window | Entry count: 17*
+*Last updated: 2026-05-11 | Added DIRTYFRAG (CVE-2026-43284 + CVE-2026-43500); RedSun/UnDefend Day 25 — **PT TOMORROW**; CVE-2026-0300 patches tomorrow (May 13); COPYFAIL KEV deadline May 15 (4 days) | Entry count: 18*
