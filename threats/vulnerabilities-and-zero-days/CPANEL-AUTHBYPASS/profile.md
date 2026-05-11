@@ -304,4 +304,22 @@ Any organization with a web presence on shared hosting should verify their hosti
 
 ---
 
-*Profile created: 2026-04-30 | Updated: 2026-05-06 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+---
+
+## Intelligence Update — 2026-05-11
+
+### Patched | Sorry Ransomware Campaign Ongoing | Southeast Asia APT Active
+
+**Patch status:** Emergency patch shipped April 28–29, 2026. All cPanel & WHM installations should be on the patched version by now. CISA KEV federal deadline (May 3) passed — FCEB agencies required to have remediated.
+
+**Current exploitation landscape:**
+- **Sorry Ransomware** campaign confirmed at 7,135+ compromised hosts as of May 4; operators continue scanning for unpatched stragglers
+- **Southeast Asia APT** campaign — government and military targets in the Philippines, Laos, and regionally; MSPs and hosting providers used as pivots
+- **Mirai botnet** operators incorporated CVE-2026-41940 into automated scanning infrastructure
+- Approximately **2,000 compromised IPs** were still active as of May 6; this number declining but not zero
+
+**Remaining risk:** Organizations that patched are protected from new intrusions, but any system that was compromised during the 64-day zero-day window (Feb 23 – Apr 28) may still have active webshells or backdoors installed. Patching stops new exploitation; it does not evict existing implants. Incident response sweep recommended for any cPanel host that was internet-accessible during that window.
+
+**Hosting provider supply chain angle:** cPanel's massive deployment footprint (~1.5M instances, ~70M domains) means a single compromised hosting provider can yield access to thousands of customer sites. MSPs and shared hosting environments that were compromised during the zero-day window remain a latent threat to all downstream customers.
+
+*Profile created: 2026-04-30 | Updated: 2026-05-11 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*

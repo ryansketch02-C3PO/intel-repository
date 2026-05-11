@@ -410,3 +410,28 @@ As of May 8, RedSun remains unpatched with no CVE assigned. The **May 12, 2026 P
 | May 13, 2026 | Day 28 — if no fix, escalate |
 
 *No change to mitigations or detection guidance from April 30 update.*
+
+---
+
+## Intelligence Update — 2026-05-11
+
+### Status: STILL UNPATCHED — Day 25 | Patch Tuesday Is TOMORROW
+
+RedSun remains unpatched at **25 days** with active exploitation ongoing. **May 12 Patch Tuesday is tomorrow.** This is the highest-confidence fix window based on BlueHammer precedent and Microsoft's scheduled cycle.
+
+**What to expect tomorrow:**
+- Watch MSRC Security Update Guide for Windows Defender platform updates
+- Fix will likely arrive as a Defender security intelligence update (auto-applied on connected systems) or an explicit KB — same delivery path as BlueHammer (CVE-2026-33825)
+- If no fix ships: RedSun crosses **30 days unpatched** on May 15 — the same day as the COPYFAIL CISA KEV deadline; CISA advisory and possible KEV listing become highly probable
+
+**No new exploitation reporting** this week, consistent with the pattern: active threat actors using RedSun have no incentive to generate detection signatures or public noise.
+
+**A&D relevance flagged this week:** OPSWAT's Defense Cybersecurity 2026 report (published May 6) confirmed 80%+ of A&D organizations experienced a breach in the past year and China-nexus actors averaged 393 days undetected dwell time in A&D-specific campaigns. RedSun as an LPE tool feeding longer-dwell operations in this sector is a realistic concern.
+
+| Date | Milestone |
+|---|---|
+| April 16, 2026 | RedSun public PoC + active exploitation confirmed |
+| May 8, 2026 | Day 23 — no patch |
+| May 11, 2026 | Day 25 — PT eve |
+| **May 12, 2026** | **Patch Tuesday — expected fix** |
+| May 15, 2026 | Day 29 — if no fix: CISA KEV watch; escalate |

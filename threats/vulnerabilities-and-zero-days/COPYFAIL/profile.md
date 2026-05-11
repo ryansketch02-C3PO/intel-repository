@@ -316,6 +316,30 @@ All major Linux distributions now have patched kernels in production repositorie
 
 ---
 
+## Intelligence Update — 2026-05-11
+
+### CISA KEV Deadline in 4 Days | Active Exploitation Ongoing
+
+**CISA KEV deadline: May 15, 2026** — FCEB agencies have 4 days to patch or discontinue use of affected Linux systems. No extension has been announced.
+
+**Patch availability:** All major distributions have shipped fixes (Ubuntu, Debian, RHEL, Amazon Linux, AlmaLinux, CloudLinux, Arch). Kernel versions 7.0, 6.19.12, 6.18.22 and corresponding distro backports are all available. No excuse for unpatched exposure at this point.
+
+**Exploitation status:** CISA KEV listing and active exploitation remain confirmed. No significant new public reporting this week, consistent with threat actors quietly exploiting rather than generating noise. The 732-byte Python PoC and Metasploit module remain fully operational.
+
+**Container environments remain highest-risk.** Any Kubernetes node running an affected kernel is a confirmed container-escape path (T1611). Cloud-hosted K8s clusters using kernel 4.14–7.0-rc without distro backports applied are still vulnerable.
+
+**A&D context:** Copy Fail is a post-foothold root escalation tool. Combined with the OPSWAT report's finding that China-nexus actors average 393 days of undetected dwell time in A&D environments, COPYFAIL is a realistic enabler for privilege escalation deep inside a long-running intrusion. Ensure all Linux-based systems in the A&D environment are audited for kernel version — build servers, CI/CD runners, and OT-adjacent Linux hosts are common blind spots.
+
+| Date | Milestone |
+|---|---|
+| April 29, 2026 | Public disclosure |
+| ~May 1–2, 2026 | CISA KEV listed |
+| May 7, 2026 | ATT&CK mapping corrected |
+| May 11, 2026 | All distros patched; exploitation ongoing |
+| **May 15, 2026** | **CISA KEV FCEB deadline** |
+
+---
+
 ## Intelligence Update — 2026-05-07
 
 ### MITRE ATT&CK Mapping — Corrected

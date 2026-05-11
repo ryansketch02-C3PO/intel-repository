@@ -453,3 +453,28 @@ The most operationally significant aspect of UnDefend remains the `-aggressive` 
 Same as RedSun: watch MSRC for Defender platform updates. If no fix ships May 12, UnDefend will have been exploited in the wild for 30+ days without a patch — a significant enough gap that CISA KEV listing becomes likely.
 
 *No change to mitigations or detection guidance from April 30 update.*
+
+---
+
+## Intelligence Update — 2026-05-11
+
+### Status: STILL UNPATCHED — Day 25 | Patch Tuesday Is TOMORROW
+
+UnDefend remains unpatched at **25 days**, mirroring RedSun exactly. **May 12 Patch Tuesday is tomorrow.**
+
+UnDefend continues to be deployed as the **first stage in the RedSun kill chain** in confirmed intrusions:
+1. UnDefend degrades Defender detection + falsifies health telemetry
+2. RedSun executes LPE to SYSTEM under reduced visibility
+3. Post-exploitation proceeds with limited EDR coverage
+
+**Telemetry gap still active.** Any system where UnDefend has been run continues to report false-healthy Defender status to MDE dashboards. Direct PowerShell endpoint queries remain the only reliable detection path.
+
+**If no fix ships May 12:** UnDefend crosses 30 days unpatched on May 15. At that threshold, both RedSun and UnDefend become strong CISA KEV candidates. The pair's continued exploitation in the wild without a patch would be notable enough for a joint CISA advisory.
+
+| Date | Milestone |
+|---|---|
+| April 16, 2026 | UnDefend public PoC + active exploitation confirmed |
+| May 8, 2026 | Day 23 — no patch |
+| May 11, 2026 | Day 25 — PT eve |
+| **May 12, 2026** | **Patch Tuesday — expected fix** |
+| May 15, 2026 | Day 29 — if no fix: CISA KEV watch; escalate |
