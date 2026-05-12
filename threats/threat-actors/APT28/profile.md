@@ -221,4 +221,46 @@ APT28's "hack-and-leak" model — steal it, then weaponize it in media — makes
 
 ---
 
-*Last Updated: 2026-04-03 | Profile by C3PO*
+*Last Updated: 2026-05-12 | Profile by C3PO*
+
+---
+
+## 📡 Intelligence Update — 2026-05-12
+
+### CVE-2026-32202 Zero-Click NTLM Coercion — Formally Attributed to APT28
+
+On **May 4, 2026**, industry corroboration formally attributed exploitation of **CVE-2026-32202** (Windows Shell NTLM coercion, patched April 2026 Patch Tuesday) to APT28. This closes the attribution gap that existed when CISA added CVE-2026-32202 to the KEV catalog on April 28–29, 2026 without naming a specific actor.
+
+**Technical chain:** APT28 chained CVE-2026-21510 (parent zero-day, exploited December 2025) with the **residual authentication-coercion path** left by Microsoft's incomplete February 2026 patch for CVE-2026-32202. This yielded ten additional weeks of credential-theft capability after Microsoft believed the issue was resolved. The chain operates as a **true zero-click on folder navigation** — a victim navigating to a compromised network folder triggers NTLM hash extraction with no user action required.
+
+**What happens next:** The NTLM hash is used for relay attacks against domain controllers or offline cracking, enabling pass-the-hash lateral movement.
+
+**Targeting window:** APT28 was assessed to be intensifying exploitation against unpatched targets in the pre-deadline window (assessed peak: May 8–12). FCEB patch deadline was **May 12, 2026 (today)**. Non-federal critical infrastructure and DIB organizations face no mandatory deadline and constitute the residual unpatched population most exposed.
+
+**Targets confirmed:** European government entities, NATO logistics chain organizations in **Poland, Romania, Slovakia, and the Czech Republic**, and Ukrainian defense and diplomatic targets.
+
+### Polish Water Treatment Plant OT Breach — APT28/APT29 Joint Attribution
+
+On **May 9, 2026**, Poland's Internal Security Agency (ABW) disclosed that APT28, APT29, and Belarusian UNC1151 **breached industrial control systems at five Polish municipal water treatment facilities** between 2024 and 2025:
+
+- Jabłonna Lacka
+- Szczytno
+- Małdyty
+- Tolkmicko
+- Sierakowo
+
+The breaches were **not reconnaissance-only**. In multiple cases, attackers **gained modify-level permissions on control logic, sensors, and actuators** — the ability to alter water treatment chemical dosing, pressure settings, flow rates, and disable safety interlocks. This constitutes a direct and immediate risk to public health.
+
+ABW identified two key enabling factors: weak/default passwords on ICS systems and direct internet exposure of ICS management interfaces without segmentation. Concurrent with the water utility attacks, ABW documented attacks on wastewater treatment plants, waste incineration facilities, and supply chains targeting critical infrastructure contractors.
+
+**Geopolitical significance:** This is the first confirmed APT28/APT29-attributed OT breach with modify-level access to a NATO member state's critical infrastructure water systems in the current conflict cycle. The DynoWiper attack on Polish energy infrastructure (December 2025, Sandworm) and now this ABW disclosure mark a pattern of Russian hybrid operations targeting Polish critical infrastructure as NATO's eastern front anchor.
+
+### Roundcube Prosecutorial Targeting — Ukraine
+
+CERT-UA documented an intensification of Roundcube and Office-document attacks against Ukrainian municipal and prosecutorial institutions: **170+ accounts** at the Specialized Prosecutor's Office in the Field of Defense, the Asset Recovery and Management Agency, and Kyiv-area law enforcement were compromised in the Jan–Mar 2026 window. Parallel compromises documented in Romania, Greece, Serbia, Bulgaria, and North Macedonia.
+
+**Add to Signature Campaigns table:**
+
+| CVE-2026-32202 NTLM Coercion | May 2026 | European/NATO/Ukrainian gov+defense | Zero-click NTLM hash extraction; formally attributed May 4; exploitation peak before May 12 deadline |
+| Polish Water OT Breach | 2024–2025 (disclosed May 9, 2026) | 5 Polish municipal water treatment plants | Joint APT28/APT29/UNC1151; OT modify-level access to ICS; ABW attribution |
+| Roundcube Prosecutorial Wave | Jan–Mar 2026 | Ukrainian prosecutorial + defense oversight institutions | 170+ accounts; Roundcube XSS continuation of Operation RoundPress |

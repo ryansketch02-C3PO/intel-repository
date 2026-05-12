@@ -214,4 +214,38 @@ The group reportedly has 6,000+ personnel in the broader DPRK cyber apparatus, w
 
 ---
 
-*Last Updated: 2026-04-01 | Profile by C3PO*
+*Last Updated: 2026-05-12 | Profile by C3PO*
+
+---
+
+## 📡 Intelligence Update — 2026-05-12
+
+### "Mach-O Man" macOS Campaign — $500M+ Stolen in April 2026 (CertiK, April 22)
+
+In **April 2026**, Lazarus Group launched the **"Mach-O Man" macOS campaign** — a large-scale operation targeting cryptocurrency exchange employees and DeFi protocol developers. Key events:
+
+- **March 1, 2026** — Bitrefill compromise
+- **April 18, 2026** — **Kelp DAO heist**: approximately **$292 million stolen** in a single operation
+- **April 22, 2026** — CertiK discloses "Mach-O Man" macOS campaign; combined April losses exceed **$500 million**
+
+**Campaign profile:**
+- Targets: Crypto exchange employees and DeFi protocol developers with macOS workstations
+- Initial access: **Trojanized developer tools and fake job offer packages** (continuation of Operation Dream Job playbook, adapted for macOS)
+- Malware: macOS-specific implants distributed as developer utilities or legitimate-looking software
+- Rationale: Exploits the security assumption that macOS environments are less monitored than Windows — this gap persists in most SOCs, enabling extended dwell time
+
+**Running total:** Lazarus Group's cumulative cryptocurrency theft since 2017 is now estimated at approximately **$6.7 billion**. Their 2025 total was $2.02 billion (51% YoY increase from 2024's $1.34B).
+
+**Add to Signature Campaigns table:**
+
+| Mach-O Man macOS Campaign | Apr 2026 | Crypto exchanges, DeFi developers (macOS) | Trojanized dev tools; fake job lures; Kelp DAO heist ~$292M; $500M+ total April losses |
+
+### Medusa Ransomware Affiliate Relationship Confirmed
+
+Lazarus Group has established an affiliate relationship with the **Medusa Ransomware** operation (tracked as Storm-1175 in our repository, Scoundrel #029). This allows Lazarus to conduct ransomware attacks against non-cryptocurrency targets through the Medusa RaaS platform — generating revenue while maintaining operational cover.
+
+**Intelligence assessment:** This represents a convergence of state-sponsored espionage/theft capability with the ransomware-as-a-service ecosystem. A confirmed Lazarus affiliate within Medusa means any Medusa victim could potentially be a Lazarus intelligence-collection target, not just a ransomware victim. Organizations in defense-adjacent sectors should treat Medusa ransomware with the same concern as a Lazarus direct-action operation.
+
+### New Malware Arsenal Entry
+
+| **Mach-O Man implants** | macOS backdoor family | macOS/Swift | April 2026; trojanized dev tools targeting crypto/DeFi engineers; distributed via fake job packages |

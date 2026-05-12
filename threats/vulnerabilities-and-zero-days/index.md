@@ -25,6 +25,13 @@
 
 ## 📋 N-Day CVEs (Patched, Actively Exploited or High Risk)
 
+### Recently Added (2026-05-12)
+
+| ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
+|---|---|---|---|---|---|---|---|
+| ZD-019 | CVE-2026-6973 | Authenticated RCE / Memory Corruption | Ivanti EPMM (MDM) | CVE-2026-6973 | ✅ PATCHED — Apply immediately | 🔴 HIGH — Active exploitation confirmed by Ivanti; MDM compromise = device fleet control | 2026-05-12 |
+| ZD-020 | Bleeding Llama | Heap OOB Read / Data Exfiltration | Ollama AI inference server (all versions < 0.17.1) | CVE-2026-7482 | ✅ PATCHED — Ollama 0.17.1 | 🔴 HIGH — CVSS 9.1; leaks API keys, env vars, chat data; unauthenticated on default deployments; AI lab threat | 2026-05-12 |
+
 ### Recently Added (2026-05-06)
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
@@ -59,4 +66,4 @@
 
 ---
 
-*Last updated: 2026-05-11 | Added DIRTYFRAG (CVE-2026-43284 + CVE-2026-43500); RedSun/UnDefend Day 25 — **PT TOMORROW**; CVE-2026-0300 patches tomorrow (May 13); COPYFAIL KEV deadline May 15 (4 days) | Entry count: 18*
+*Last updated: 2026-05-12 | Added ZD-019 (CVE-2026-6973 Ivanti EPMM — actively exploited) + ZD-020 (CVE-2026-7482 Bleeding Llama Ollama — CVSS 9.1); CVE-2026-0300 patches TODAY (May 13); RedSun/UnDefend Patch Tuesday TODAY; COPYFAIL KEV deadline May 15 (3 days) | Entry count: 20*

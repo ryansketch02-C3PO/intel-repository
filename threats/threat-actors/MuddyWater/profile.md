@@ -346,3 +346,32 @@ Alert: HIGH — ChainShell deployment
 - [Ankura CTIX — MuddyWater Dindoor/Fakeset Campaign](https://ankura.com/insights/ankura-ctix-flash-update-march-24-2026)
 - [Wikipedia — MuddyWater](https://en.wikipedia.org/wiki/MuddyWater_(hacker_group))
 - [SecurityScientist.net — 12 Questions About MuddyWater](https://www.securityscientist.net/blog/12-questions-and-answers-about-muddywater/)
+
+---
+
+## 📡 Intelligence Update — 2026-05-12
+
+### Darkcomp RAT Campaign — False-Flag Chaos Ransomware via Microsoft Teams (Rapid7, May 6 2026)
+
+MuddyWater executed a significant TTP evolution disclosed by Rapid7 on **May 6, 2026**: a **false-flag Chaos ransomware-masquerade campaign** delivering the newly documented **Darkcomp RAT** (`Game.exe`, C2: `uploadfiler[.]com:443`) via **Microsoft Teams social engineering and screen-share-mediated MFA bypass**.
+
+**Attack chain:**
+1. Attacker contacts target via Microsoft Teams, posing as IT support or a trusted partner
+2. Victim is persuaded to join a screen-share session — the Teams "screen share" feature is exploited to observe the target's MFA codes as they are entered
+3. MFA bypass achieved without phishing credentials — victim authenticates themselves while the attacker observes
+4. **Darkcomp RAT** (`Game.exe`) is delivered post-access; C2 at `uploadfiler[.]com:443`
+5. A **Chaos ransomware** strain is deployed as a **false flag** — intended to attribute the intrusion to criminal ransomware actors rather than Iranian state espionage
+
+**Strategic significance:** This is a deliberate **attribution-confusion operation** — MuddyWater (MOIS espionage) deploying Chaos ransomware to look like a financially-motivated criminal group. This mirrors Russian Sandworm-aligned tradecraft for false-flag destructive operations, consistent with the broader Iranian internalization of Russian cyber tradecraft documented this period (including Sector 16 ICS TTPs, false-flag operations).
+
+**Add to malware arsenal:**
+- **Darkcomp RAT** | Backdoor | Unknown language | May 2026; `Game.exe`; C2 `uploadfiler[.]com:443`; Teams-delivered; false-flag Chaos ransomware overlay
+
+**Add to notable campaigns:**
+- **Darkcomp/Teams Campaign** | May 2026 | Undisclosed (Microsoft Teams-based targeting; broad enterprise) | False-flag Chaos ransomware; Darkcomp RAT; screen-share MFA bypass; Rapid7 disclosure May 6, 2026
+
+**New IOC:**
+- C2: `uploadfiler[.]com:443`
+- Malware: `Game.exe` (Darkcomp RAT)
+
+*Intelligence Update: 2026-05-12 | Author: C3PO*

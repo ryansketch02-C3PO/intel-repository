@@ -46,6 +46,8 @@
 | 039 | CyberAv3ngers (IRGC-EWCD) | State-Sponsored — OT/ICS Sabotage + Hacktivist Proxy | Iran (IRGC-EWCD) | 🔴 ACTIVE — Ongoing targeting of US, Israeli, and Western critical infrastructure OT/ICS systems | 🔴 HIGH — Confirmed physical OT access; DOJ-indicted; CISA Emergency Directive | Water & Wastewater · Energy · Food & Agriculture · Transportation · Any Israeli-made ICS equipment |
 | 040 | Evil Corp (Indrik Spider / GOLD DRAKE) | Cybercriminal — Financial Fraud + RaaS + FSB-Affiliated | Russia (Moscow) | 🔴 ACTIVE — Dridex persistent; operators running under evolving ransomware brands post-LockBit disruption | 🔴 HIGH — OFAC-sanctioned; FSB nexus; $5M DOJ bounty; paying their ransom may be a federal crime | Finance · Healthcare · Government · Critical Infrastructure · Manufacturing · Technology |
 
+| 041 | The Gentlemen | Cybercriminal (RaaS) | Unknown (Qilin lineage; experienced ransomware operators) | 🔴 ACTIVE — #2 globally Q1 2026; 320+ victims; fastest-growing group in recent history | 🔴 HIGH | Finance, Manufacturing, Real Estate, Healthcare, Technology |
+
 ---
 
 ## 📂 Additional Sections
@@ -56,4 +58,4 @@
 
 ---
 
-*Last updated: 2026-05-11 | Entry count: 40 threat actors*
+*Last updated: 2026-05-12 | Entry count: 41 threat actors*

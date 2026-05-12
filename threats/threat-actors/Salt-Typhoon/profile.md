@@ -232,4 +232,41 @@ US response has been complicated by: telecom companies invoking legal privilege 
 
 ---
 
-*Last Updated: 2026-04-07 | Maintained by C3PO*
+*Last Updated: 2026-05-12 | Maintained by C3PO*
+
+---
+
+## 📡 Intelligence Update — 2026-05-12
+
+### IBM Italy / Sistemi Informativi Breach — Late April 2026
+
+In **late April 2026**, Salt Typhoon breached **Sistemi Informativi**, a company wholly owned by IBM Italy that provides IT infrastructure management for key Italian public and private institutions. This is the first confirmed Salt Typhoon intrusion against a European cloud/IT services provider and signals active expansion of the campaign into European managed service provider infrastructure.
+
+**Significance:** Sistemi Informativi manages IT infrastructure for Italian government agencies and private sector clients. Compromise of a managed IT provider gives Salt Typhoon inherited access to client networks — consistent with the group's supply chain and chokepoint-targeting strategy observed in the US telecom campaign.
+
+**Geopolitical context:** The intrusion occurred approximately two weeks before the Trump-Xi Beijing summit (May 14–15, 2026), during a period in which Salt Typhoon, Volt Typhoon, and Shadow-Earth-053 were **conspicuously absent from US pre-summit public readouts** — assessed as deliberate de-escalation framing ahead of trade negotiations.
+
+### New Implants Documented: TernDoor, PeerTime, BruteEntry
+
+Salt Typhoon has deployed three newly documented implant families during the 2026 campaign expansion:
+
+| Implant | Type | Notes |
+|---|---|---|
+| **TernDoor** | Backdoor | New 2026; deployed in expanded telecom campaign |
+| **PeerTime** | Implant | New 2026; deployed alongside TernDoor |
+| **BruteEntry** | Access tool / credential bruteforcer | New 2026; initial access tooling |
+
+These implants are assessed as part of Salt Typhoon's retooling effort following increased public exposure of their older toolset (GhostEmperor lineage).
+
+### South American Telecom Expansion
+
+Salt Typhoon has expanded operations to **South American telecommunications networks** in 2026, broadening their operational scope beyond the original US/Five Eyes focus. The 2026 expansion now encompasses:
+- European managed IT providers (Sistemi Informativi/IBM Italy, April 2026)
+- South American telecom operators
+- Previously confirmed: Singapore (all 4 national telecoms, Feb 2026), Norway, Canada
+
+**Updated victim scope:** 200+ telecom operators and ISPs across six continents confirmed breached. The global telecom mapping mission is ongoing.
+
+**Add to Notable Campaigns table:**
+
+| Apr 2026 | IBM Italy (Sistemi Informativi) Breach | Italian IT managed services | European MSP compromise; inherited client network access; TernDoor/PeerTime implants |
