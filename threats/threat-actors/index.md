@@ -47,6 +47,7 @@
 | 040 | Evil Corp (Indrik Spider / GOLD DRAKE) | Cybercriminal — Financial Fraud + RaaS + FSB-Affiliated | Russia (Moscow) | 🔴 ACTIVE — Dridex persistent; operators running under evolving ransomware brands post-LockBit disruption | 🔴 HIGH — OFAC-sanctioned; FSB nexus; $5M DOJ bounty; paying their ransom may be a federal crime | Finance · Healthcare · Government · Critical Infrastructure · Manufacturing · Technology |
 
 | 041 | The Gentlemen | Cybercriminal (RaaS) | Unknown (Qilin lineage; experienced ransomware operators) | 🔴 ACTIVE — #2 globally Q1 2026; 320+ victims; fastest-growing group in recent history | 🔴 HIGH | Finance, Manufacturing, Real Estate, Healthcare, Technology |
+| 042 | Chaotic Eclipse (Nightmare-Eclipse) | Independent Researcher — Protest Disclosure | Unknown (identity unmasked) | 🔴 ACTIVE — 5 tools public; explicit threat of June PT disclosure | 🟠 HIGH (indirect) — tooling weaponized by third-party actors within 24–48h of release | Windows ecosystem (all sectors) |
 
 ---
 
@@ -58,4 +59,4 @@
 
 ---
 
-*Last updated: 2026-05-12 | Entry count: 41 threat actors*
+*Last updated: 2026-05-13 | Added #042 Chaotic Eclipse (Nightmare-Eclipse) — protest researcher; 5 tools public (BlueHammer/RedSun/UnDefend/YellowKey/GreenPlasma) | Entry count: 42 threat actors*
