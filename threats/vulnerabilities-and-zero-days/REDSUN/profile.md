@@ -435,3 +435,24 @@ RedSun remains unpatched at **25 days** with active exploitation ongoing. **May 
 | May 11, 2026 | Day 25 — PT eve |
 | **May 12, 2026** | **Patch Tuesday — expected fix** |
 | May 15, 2026 | Day 29 — if no fix: CISA KEV watch; escalate |
+
+---
+
+### 🔴 Status Update — Day 27 | May 12 Patch Tuesday SHIPPED — NO FIX | 2026-05-13
+
+> **RedSun has been publicly exploitable for 27 days. May 12 Patch Tuesday shipped without a fix.**
+
+May 12 Patch Tuesday released 138 CVE-numbered vulnerabilities. Multiple analysis sources confirm **none of the included vulnerabilities are actively exploited or publicly disclosed** — meaning RedSun (confirmed actively exploited and publicly disclosed since April 16) was not addressed. RedSun has now survived a complete Microsoft Patch Tuesday cycle with no patch, no CVE, and no KEV listing.
+
+**Day 30 threshold:** May 15, 2026 — CISA KEV listing and joint advisory become highly probable.
+
+**Next realistic fix windows:** Out-of-band emergency patch (any day) or June Patch Tuesday (~June 9, 2026).
+
+| Date | Milestone |
+|---|---|
+| April 16, 2026 | RedSun public PoC + active exploitation confirmed |
+| May 11, 2026 | Day 25 — PT eve |
+| May 12, 2026 | **Patch Tuesday shipped — NO FIX for RedSun** |
+| May 13, 2026 | Day 27 — this update |
+| May 15, 2026 | Day 29 — 🚨 CISA KEV watch threshold |
+| ~June 9, 2026 | June Patch Tuesday — next scheduled window if no OOB patch |

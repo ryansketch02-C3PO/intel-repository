@@ -9,9 +9,9 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 25; PT TOMORROW May 12)** | 🔴 HIGH | 2026-04-18 |
-| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 25; PT TOMORROW May 12)** | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
-| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | 🔴 UNPATCHED — **Patches ETA May 13 (tomorrow)** ✅ CISA KEV; FCEB deadline May 9 PASSED | 🔴 HIGH — CL-STA-1132 (China-nexus); exploitation since April 9; 5,400+ exposed; patch tomorrow | 2026-05-06 |
+| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 27 — PT SHIPPED, NO FIX; CISA KEV watch May 15)** | 🔴 HIGH | 2026-04-18 |
+| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 27 — PT SHIPPED, NO FIX; CISA KEV watch May 15)** | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
+| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | ✅ PATCHED — May 13, 2026 ✅ CISA KEV; FCEB deadline May 9 PASSED | 🔴 HIGH — CL-STA-1132 (China-nexus); exploitation since April 9; 5,400+ exposed | 2026-05-06 |
 
 ---
 
@@ -29,6 +29,8 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
+| ZD-024 | CVE-2026-26083 | Missing Authorization RCE (Unauthenticated) | Fortinet FortiSandbox (on-prem, Cloud, PaaS) | CVE-2026-26083 | ✅ PATCHED — Fortinet FG-IR-26-136 (May 12, 2026) | 🔴 CRITICAL — CVSS 9.8; no auth required; security appliance + SOC visibility at risk; apply immediately | 2026-05-13 |
+| ZD-025 | CVE-2026-40361 | Use-After-Free RCE (Local) | Microsoft Office Word · Microsoft 365 | CVE-2026-40361 | ✅ PATCHED — May 2026 Patch Tuesday | 🟠 HIGH — CVSS 8.4; local, no user interaction; post-exploitation chaining primitive | 2026-05-13 |
 | ZD-021 | CVE-2026-41096 | Unauthenticated RCE / Heap Buffer Overflow | Windows DNS Client (all Windows 10/11/Server) | CVE-2026-41096 | ✅ PATCHED — May 2026 Patch Tuesday | 🔴 HIGH — CVSS 9.8; affects every Windows machine; MitM/rogue DNS → mass RCE; "Exploitation More Likely" | 2026-05-13 |
 | ZD-022 | CVE-2026-41089 | Pre-Auth RCE / Stack Buffer Overflow | Windows Netlogon (Windows Server 2012–2025) | CVE-2026-41089 | ✅ PATCHED — May 2026 Patch Tuesday | 🔴 HIGH — CVSS 9.8; pre-auth RCE on domain controllers; patch ALL DCs in same window; forest-wide credential access if exploited | 2026-05-13 |
 | ZD-023 | CVE-2026-44277 | Unauthenticated RCE / Improper Access Control | Fortinet FortiAuthenticator (IAM) < 6.5.7 / 6.6.9 / 8.0.3 | CVE-2026-44277 | ✅ PATCHED — FortiAuthenticator 6.5.7 / 6.6.9 / 8.0.3 | 🔴 HIGH — Critical; unauthenticated RCE on authentication infrastructure; RADIUS secrets at risk; widely deployed in A&D environments | 2026-05-13 |
@@ -74,4 +76,4 @@
 
 ---
 
-*Last updated: 2026-05-13 | Added ZD-021 (CVE-2026-41096 Windows DNS Client CVSS 9.8 RCE) + ZD-022 (CVE-2026-41089 Windows Netlogon CVSS 9.8 pre-auth RCE on DCs) + ZD-023 (CVE-2026-44277 FortiAuthenticator unauthenticated RCE); May 2026 Patch Tuesday = 138 CVEs, 30 critical, no zero-days; CVE-2026-0300 patches now available; COPYFAIL KEV deadline May 15 (2 days) | Entry count: 23*
+*Last updated: 2026-05-13 | Added ZD-024 (CVE-2026-26083 FortiSandbox CRITICAL RCE) + ZD-025 (CVE-2026-40361 Office Word HIGH RCE); RedSun/UnDefend Day 27 — PT shipped NO FIX, CISA KEV watch May 15 (2 days); CVE-2026-0300 patched May 13; COPYFAIL KEV deadline May 15 (2 days) | Entry count: 25*
