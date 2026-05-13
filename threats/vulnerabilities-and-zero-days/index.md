@@ -9,6 +9,8 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
+| ZD-026 | YellowKey | BitLocker Bypass / WinRE FStX Feature Update Simulation | Windows 11 · Server 2022/2025 (Win10 unaffected) | None — UNPATCHED | 🔴 UNPATCHED **(Day 1; full PoC public; TPM-only confirmed; TPM+PIN unconfirmed)** | 🔴 HIGH — Public PoC; encryption assurance bypass; same researcher as RedSun/UnDefend | 2026-05-13 |
+| ZD-027 | GreenPlasma | EoP / CTFMON Arbitrary Section Creation | Windows 11 · Server 2022/2025 | None — UNPATCHED | 🔴 UNPATCHED **(Day 1; partial PoC — SYSTEM shell component withheld)** | 🟡 MEDIUM (🔴 HIGH if completed; cldapi.dll abuse; Nightmare-Eclipse fifth tool) | 2026-05-13 |
 | ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 27 — PT SHIPPED, NO FIX; CISA KEV watch May 15)** | 🔴 HIGH | 2026-04-18 |
 | ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 27 — PT SHIPPED, NO FIX; CISA KEV watch May 15)** | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
 | ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | ✅ PATCHED — May 13, 2026 ✅ CISA KEV; FCEB deadline May 9 PASSED | 🔴 HIGH — CL-STA-1132 (China-nexus); exploitation since April 9; 5,400+ exposed | 2026-05-06 |
@@ -76,4 +78,4 @@
 
 ---
 
-*Last updated: 2026-05-13 | Added ZD-024 (CVE-2026-26083 FortiSandbox CRITICAL RCE) + ZD-025 (CVE-2026-40361 Office Word HIGH RCE); RedSun/UnDefend Day 27 — PT shipped NO FIX, CISA KEV watch May 15 (2 days); CVE-2026-0300 patched May 13; COPYFAIL KEV deadline May 15 (2 days) | Entry count: 25*
+*Last updated: 2026-05-13 | Added ZD-026 YellowKey (BitLocker bypass, full PoC) + ZD-027 GreenPlasma (CTFMON EoP, partial PoC) — both Nightmare-Eclipse Day 1; RedSun/UnDefend Day 27 NO FIX; CISA KEV watch May 15 (2 days) | Entry count: 27*
