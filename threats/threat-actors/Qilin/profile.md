@@ -210,4 +210,28 @@ Primary rival. Qilin claimed ~30% more victims in 2025. Both grew from the same 
 
 ---
 
-*Profile created: 2026-05-01 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+*Profile created: 2026-05-01 | Last Updated: 2026-05-13 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+
+---
+
+## 📡 Intelligence Update — 2026-05-13
+
+### Q1 2026 Dominance Confirmed — 3rd Consecutive Quarter as #1 Global Ransomware Group
+
+Check Point Research's **State of Ransomware Q1 2026** report (May 11, 2026) confirmed Qilin as the most active ransomware operation for the **third consecutive quarter**, posting **338 victims** in Q1 2026 alone.
+
+Key metrics:
+- **338 DLS victims** in Q1 2026; more than the combined output of the bottom 50 active ransomware groups
+- **20% of all March 2026 ransomware attacks** attributed to Qilin (672 total March incidents)
+- **Qilin + Akira + LockBit + The Gentlemen** = 41% of all Q1 2026 victims
+- Ecosystem consolidation: top 10 groups now account for 71.1% of all victims (sharpest concentration since Q1 2024)
+
+Qilin's expansion of affiliate recruitment since early 2025 and continued preference for high-impact targets in manufacturing and healthcare drove sustained volume. RansomHub's April 2025 exit from the market drove affiliate migration to Qilin, further strengthening its affiliate pool.
+
+### Die Linke (German Political Party) Attack — March 2026
+
+Qilin **claimed responsibility for a cyberattack on the German democratic socialist political party Die Linke** in March 2026, threatening to publish stolen data if a ransom was not paid. Die Linke shut down parts of its IT infrastructure to limit further damage.
+
+This is consistent with Qilin's pattern of targeting politically sensitive organizations — particularly in Europe — where the threat of public data exposure carries reputational leverage beyond operational disruption.
+
+**Note on The Gentlemen:** Qilin's most prominent spin-off, **The Gentlemen** (Scoundrel #041), was founded by a former Qilin affiliate (Hastalamuerte) who left following a commission dispute of ~$48,000. The Gentlemen achieved third place globally in Q1 2026 with 166 victims — fueled by ~14,700 pre-compromised FortiGate devices from Qilin-era access. The Qilin lineage is now branching into a multi-group criminal ecosystem.

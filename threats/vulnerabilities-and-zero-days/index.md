@@ -25,6 +25,14 @@
 
 ## 📋 N-Day CVEs (Patched, Actively Exploited or High Risk)
 
+### Recently Added (2026-05-13)
+
+| ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
+|---|---|---|---|---|---|---|---|
+| ZD-021 | CVE-2026-41096 | Unauthenticated RCE / Heap Buffer Overflow | Windows DNS Client (all Windows 10/11/Server) | CVE-2026-41096 | ✅ PATCHED — May 2026 Patch Tuesday | 🔴 HIGH — CVSS 9.8; affects every Windows machine; MitM/rogue DNS → mass RCE; "Exploitation More Likely" | 2026-05-13 |
+| ZD-022 | CVE-2026-41089 | Pre-Auth RCE / Stack Buffer Overflow | Windows Netlogon (Windows Server 2012–2025) | CVE-2026-41089 | ✅ PATCHED — May 2026 Patch Tuesday | 🔴 HIGH — CVSS 9.8; pre-auth RCE on domain controllers; patch ALL DCs in same window; forest-wide credential access if exploited | 2026-05-13 |
+| ZD-023 | CVE-2026-44277 | Unauthenticated RCE / Improper Access Control | Fortinet FortiAuthenticator (IAM) < 6.5.7 / 6.6.9 / 8.0.3 | CVE-2026-44277 | ✅ PATCHED — FortiAuthenticator 6.5.7 / 6.6.9 / 8.0.3 | 🔴 HIGH — Critical; unauthenticated RCE on authentication infrastructure; RADIUS secrets at risk; widely deployed in A&D environments | 2026-05-13 |
+
 ### Recently Added (2026-05-12)
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
@@ -66,4 +74,4 @@
 
 ---
 
-*Last updated: 2026-05-12 | Added ZD-019 (CVE-2026-6973 Ivanti EPMM — actively exploited) + ZD-020 (CVE-2026-7482 Bleeding Llama Ollama — CVSS 9.1); CVE-2026-0300 patches TODAY (May 13); RedSun/UnDefend Patch Tuesday TODAY; COPYFAIL KEV deadline May 15 (3 days) | Entry count: 20*
+*Last updated: 2026-05-13 | Added ZD-021 (CVE-2026-41096 Windows DNS Client CVSS 9.8 RCE) + ZD-022 (CVE-2026-41089 Windows Netlogon CVSS 9.8 pre-auth RCE on DCs) + ZD-023 (CVE-2026-44277 FortiAuthenticator unauthenticated RCE); May 2026 Patch Tuesday = 138 CVEs, 30 critical, no zero-days; CVE-2026-0300 patches now available; COPYFAIL KEV deadline May 15 (2 days) | Entry count: 23*

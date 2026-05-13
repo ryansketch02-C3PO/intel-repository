@@ -173,4 +173,30 @@ In 2024–2026, APT29 has pivoted hard into **cloud identity attacks** — steal
 
 ---
 
-*Last Updated: 2026-04-06 | Maintained by C3PO Intel*
+*Last Updated: 2026-05-13 | Maintained by C3PO Intel*
+
+---
+
+## 📡 Intelligence Update — 2026-05-13
+
+### Polish Water Treatment Plant OT Breach — Joint APT28/APT29/UNC1151 Attribution
+
+On **May 9, 2026**, Poland's Internal Security Agency (ABW) disclosed a sustained cyberattack campaign by Russian-linked actors targeting five municipal water treatment facilities between 2024 and 2025. APT29 was jointly attributed alongside **APT28 (GRU) and UNC1151 (Belarusian-linked)**.
+
+**Compromised facilities:**
+- Jabłonna Lacka · Szczytno · Małdyty · Tolkmicko · Sierakowo
+
+The breaches were not reconnaissance-only. In multiple cases, attackers **gained modify-level permissions on industrial control system logic, sensors, and actuators** — with the demonstrated ability to alter water treatment chemical dosing, pressure settings, flow rates, and disable safety interlocks.
+
+**SVR involvement in the context of ongoing operations:** ABW's disclosure does not separate the SVR/APT29 contribution from GRU/APT28, but the targeting profile (water supply, ICS/OT) represents a departure from APT29's traditional strategic espionage mandate. This suggests either direct mandate expansion or joint operational planning with Sandworm/APT28 for hybrid warfare pre-positioning against Polish critical infrastructure — consistent with the December 2025 Sandworm DynoWiper attack on Polish energy infrastructure.
+
+**Enabling factors (ABW findings):** Weak/default passwords on ICS; direct internet exposure of ICS management interfaces without segmentation. Concurrent compromise of wastewater treatment plants, waste incineration facilities, and supply chain contractors.
+
+### German Signal Phishing — APT29 / Star Blizzard Suspected Attribution
+
+German federal prosecutors confirmed in **April 26–28, 2026** that a Signal phishing campaign targeting approximately **300 accounts** of German politicians, government ministers, and military personnel was *"presumably run from Russia."* Campaign TTPs are consistent with **APT29 and Star Blizzard (FSB)** tradecraft for messaging-platform account compromise.
+
+- Technique: Phishing targeting Signal's legitimate "linked devices" feature — adding attacker-controlled devices to victim accounts without triggering authentication alerts
+- Targets: Senior German government personnel including ministers and military officers
+- Attribution status: German BfV/BSI assessment of "presumed Russian state actor"; formal technical attribution pending
+- Significance: Consistent with the broader Russian shift (APT29, Star Blizzard) toward messaging-platform account compromise documented by Dutch AIVD/MIVD in March 2026

@@ -164,4 +164,23 @@ LockBit's affiliate ecosystem overlaps extensively with other tracked actors:
 
 ---
 
-*Profile created: 2026-04-11 | Source grade: A2 | TLP: WHITE*
+*Profile created: 2026-04-11 | Last Updated: 2026-05-13 | Source grade: A2 | TLP: WHITE*
+
+---
+
+## 📡 Intelligence Update — 2026-05-13
+
+### Q1 2026: LockBit 5.0 Comeback Fully Confirmed
+
+Check Point Research's **State of Ransomware Q1 2026** report (May 11, 2026) confirmed LockBit's operational recovery following the 2024 law enforcement disruption (Operation Cronos).
+
+Key Q1 2026 metrics:
+- **163 victims** posted to the LockBit 5.0 DLS in Q1 2026 — a **106% increase** from Q4 2025's 79 victims
+- Climbed from outside the top 10 to **fourth place globally** in Q1 2026
+- Activity pattern: January surge (85 victims, access stockpile drawdown), February dip (33), March recovery (45)
+
+**Geographic shift:** The most significant operational change from historical LockBit behavior is the geographic distribution. LockBit historically targeted the US at 50%+ of victims. In Q1 2026, **US victims fell to only 21.2%** of the total — with Italy (8.6%), Brazil (8.6%), and Turkey (5.1%) representing meaningful new geographic expansion. Analysts assess this reflects a deliberate decision to reduce targeting of US entities (reducing law enforcement pressure) while expanding into European and LATAM markets where RaaS disruption is less aggressive.
+
+**Operational status:** LockBit 5.0 was officially launched on the RAMP underground forum in September 2025, coinciding with the group's sixth anniversary. The operation has rebuilt affiliate infrastructure and is assessed as fully operational.
+
+**Coalition context:** DragonForce announced a symbolic "coalition" with LockBit and Qilin in September 2025. While primarily a marketing move with no confirmed shared infrastructure, the convergence of LockBit 5.0 + Qilin + DragonForce + The Gentlemen represents the reconsolidated top tier of the global ransomware ecosystem.
