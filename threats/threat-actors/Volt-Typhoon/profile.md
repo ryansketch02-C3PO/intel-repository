@@ -224,3 +224,38 @@ Native tools observed in use:
 - Microsoft Volt Typhoon attribution (May 2023): https://www.microsoft.com/en-us/security/blog/2023/05/24/volt-typhoon-targets-us-critical-infrastructure-with-living-off-the-land-techniques/
 - IISS analysis (Feb 2026): https://industrialcyber.co/industrial-cyber-attacks/iiss-notes-volt-typhoons-targeting-of-us-infrastructure-signals-disruptive-intent-beyond-espionage/
 - MITRE ATT&CK G1017: https://attack.mitre.org/groups/G1017/
+
+---
+
+*Last Updated: 2026-05-14 | Profile by C3PO*
+
+---
+
+## 📡 Intelligence Update — 2026-05-14
+
+### CISA CI Fortify Initiative — Direct Response to Volt Typhoon / Salt Typhoon Threat
+
+CISA launched **CI Fortify**, a new initiative specifically designed to prepare critical infrastructure operators for **weeks-to-months of isolated operation** in the event of a Volt Typhoon or Salt Typhoon attack that forces IT/OT disconnection. Announced in early May 2026:
+
+- CISA will conduct **targeted technical assessments** of critical infrastructure entities to develop survivability plans
+- Goal: enable **safe service delivery after disconnection from IT networks, third-party vendors, and telecom providers**
+- CISA Acting Director Nick Anderson: "The goal is service delivery that can still reach critical infrastructure after the asset owner has disconnected from IT, OT, third-party vendors, service provider connections, and third-party telecommunications equipment."
+- Initial pilot engagements already underway; CISA plans to scale as additional staff are hired
+
+**Significance:** CI Fortify is the U.S. government's formal acknowledgment that Volt Typhoon's pre-positioned access is deep enough to require infrastructure operators to plan for operating in a fully disconnected state. This is a doctrinal shift from "patch and detect" to "survive the attack."
+
+### Expanded OT/Sector Targeting Confirmed — Oil & Gas
+
+Multiple independent sources (including CyberWarCon 2025 analysis republished May 8, 2026) confirm that Volt Typhoon has **expanded beyond its originally documented electric/comms/water portfolio** into the **oil and gas sector**. Confirmed 2025–2026 targeting expansion:
+
+- **Electric utility co-ops** (opportunistic broadening beyond strategic locations like Guam and West Coast ports)
+- **Oil and gas infrastructure** (pipelines, processing facilities, distribution)
+- Continued pre-positioning in **port authorities and maritime logistics nodes** linked to Taiwan contingency
+
+**Assessment:** Volt Typhoon's expanding targeting scope lowers the barrier to entry in their model — shifting from highly specific strategic pre-positioning to broader "access banking" across critical infrastructure. A wider foothold provides more options for coordinated disruption timing.
+
+### Trump-Xi Beijing Summit Context (May 14–15, 2026)
+
+Volt Typhoon, Salt Typhoon, and Shadow-Earth-053 were **conspicuously absent from US pre-summit public readouts** ahead of the Trump-Xi Beijing summit (May 14–15, 2026), assessed as deliberate de-escalation framing to avoid complicating trade negotiations. This does **not** indicate reduced operational activity — LOTL techniques make attribution difficult and post-summit scrutiny will likely reveal whether any operations were paused or continued through the summit window.
+
+**Tracking note:** The absence of these groups from diplomatic discussions does not reduce the threat. Assess with moderate confidence that Volt Typhoon maintained pre-positioned access through the summit period.

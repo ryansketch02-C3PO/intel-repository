@@ -189,5 +189,38 @@ See `iocs.md` for full IOC listing.
 |---|---|
 | **Intel Grade** | A1 |
 | **TLP** | TLP:WHITE |
-| **Last Updated** | 2026-04-21 |
-| **Primary Sources** | CISA/FBI/HHS AA24-109A (Nov 2025), Arctic Wolf Labs, Qualys, Blackpoint Cyber, HHS HC3, Picus Security |
+| **Last Updated** | 2026-05-14 |
+| **Primary Sources** | CISA/FBI/HHS AA24-109A (Nov 2025), Arctic Wolf Labs, Qualys, Blackpoint Cyber, HHS HC3, Picus Security, Arete IR April 2026, Check Point Q1 2026 Ransomware Report |
+
+---
+
+## 📡 Intelligence Update — 2026-05-14
+
+### Q1 2026: Second Most Active Ransomware Group; 41% Market Share with Qilin/LockBit/Gentlemen
+
+Check Point Research's **State of Ransomware Q1 2026** report (May 11, 2026) confirmed Akira as the **second most active ransomware group** in Q1 2026, behind Qilin. Akira, Qilin, LockBit, and The Gentlemen together accounted for **41% of all 2,122 Q1 victims** posted on data leak sites.
+
+Akira was the **#1 group for every month from July 2025 through March 2026** (dethroned by Qilin in April 2026). The group maintained consistent victim volumes throughout Q1 with heavy targeting of **Consumer Goods** (23.9%, +9.8 pp above baseline) and **Industrial Manufacturing** (17.8%, +6.7 pp above baseline) — consistent with an economically optimized disruption model.
+
+### New TTP: BYOVD with rwdrv.sys and hlpdrv.sys (Confirmed April 2026)
+
+Arete IR confirmed Akira has adopted **Bring Your Own Vulnerable Driver (BYOVD)** techniques in multiple Q3 2025 and Q1–Q2 2026 engagements:
+
+- **rwdrv.sys** — vulnerable driver loaded via DLL side-loading
+- **hlpdrv.sys** — second vulnerable driver used in same BYOVD chain
+
+Akira leverages these drivers to **gain kernel-level access and disable security processes** (EDR/AV) before ransomware deployment. This technique bypasses user-mode endpoint protection and renders traditional AV/EDR ineffective if not defended at the driver/kernel level.
+
+*Note: DragonForce was also observed using the same vulnerable drivers in overlapping engagements, suggesting shared affiliate tradecraft or tooling exchange.*
+
+### New TTP: Microsoft Teams IT Help Desk Impersonation (Resurgent, 2026)
+
+Akira (along with Payouts King ransomware group) has resurrected the **Microsoft Teams IT help desk social engineering** tactic originally pioneered by Black Basta and Cactus in 2024–2025:
+
+1. Threat actors create external Microsoft Teams accounts impersonating IT or help desk staff
+2. Reach out to employees via **cross-tenant Teams chat** claiming to resolve a security incident
+3. Trick employees into installing remote access tools (**Quick Assist**, AnyDesk, etc.)
+4. Use remote access to gain initial foothold and conduct data theft or ransomware deployment
+5. **Rclone** utility used for data exfiltration to cloud storage
+
+Microsoft has observed multiple intrusions following this exact chain linked to Akira. Organizations should brief employees that legitimate IT help desk staff will **never contact users via external Teams tenant accounts** to request remote access installation.

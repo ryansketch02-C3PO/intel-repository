@@ -370,4 +370,27 @@ index=linux_auditd syscall=openat
 
 ---
 
-*Profile created: 2026-05-11 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+*Profile created: 2026-05-11 | Last Updated: 2026-05-14 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+
+---
+
+## 📡 Intelligence Update — 2026-05-14
+
+### Fragnesia Variant Disclosed (ZD-027) — More Reliable Exploitation Path
+
+On **May 13, 2026**, researcher **William Bowling (Zelic)** disclosed **Fragnesia** — a new Linux kernel LPE vulnerability in the same XFRM/ESP + TCP subsystem that underlies Dirty Frag. A **full proof-of-concept exploit** achieving a root shell was published simultaneously.
+
+**Critical difference from Dirty Frag:** Fragnesia exploits a **logic bug** (not a race condition), making exploitation **deterministic and reliable**. Dirty Frag required precise timing; Fragnesia works on the first attempt regardless of system load.
+
+**Patch status:** The upstream Linux kernel patch for Fragnesia was merged **May 13, 2026**. Distribution packages for Debian, Ubuntu, RHEL, and others are still being built and are **pending**. Defenders applying the Copy Fail (ZD-014) KEV deadline patch (due **May 15 — tomorrow**) should check whether their distribution's kernel update also addresses Fragnesia.
+
+**See ZD-027 (FRAGNESIA) profile** for full technical details.
+
+| Property | Dirty Frag (ZD-017) | Fragnesia (ZD-027) |
+|---|---|---|
+| CVE | CVE-2026-43284 + CVE-2026-43500 | TBD |
+| Kernel subsystem | XFRM/ESP + RxRPC | XFRM/ESP + TCP |
+| Exploitation | Race condition (timing-dependent) | Logic bug (deterministic) |
+| RxRPC unpatched | Yes | N/A (different path) |
+| Distro patches | Partial (ESP done; RxRPC pending) | Pending all distros |
+| Container escape | Yes | Yes |

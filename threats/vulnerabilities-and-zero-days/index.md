@@ -9,6 +9,7 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
+| ZD-026 | Green Plasma | LPE / Kernel Memory Section Object Squatting | Windows 10/11/Server (all versions) | None — UNPATCHED | 🔴 UNPATCHED — Public PoC (partial) by Chaotic Eclipse; Microsoft response pending | 🔴 HIGH — Public PoC, "Exploitation More Likely"; researcher threatens future disclosures; chains with CVE-2026-4361 for email→SYSTEM | 2026-05-14 |
 | ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 25; PT TOMORROW May 12)** | 🔴 HIGH | 2026-04-18 |
 | ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 25; PT TOMORROW May 12)** | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
 | ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | 🔴 UNPATCHED — **Patches ETA May 13 (tomorrow)** ✅ CISA KEV; FCEB deadline May 9 PASSED | 🔴 HIGH — CL-STA-1132 (China-nexus); exploitation since April 9; 5,400+ exposed; patch tomorrow | 2026-05-06 |
@@ -19,11 +20,19 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
+| ZD-027 | Fragnesia | LPE / Page Cache Write via XFRM/ESP + TCP Logic Bug | Linux kernel (all before May 13, 2026 upstream) | CVE TBD — Dirty Frag class (new variant) | ⚠️ PARTIAL — Upstream kernel patched May 13, 2026; **all major distribution packages still pending** | 🔴 HIGH — Public PoC (full root shell); more reliable than Dirty Frag (no race condition); container escape path; distros still unpatched | 2026-05-14 |
 | ZD-017 | Dirty Frag | LPE / Page Cache Write via IPSec ESP + RxRPC in-place decryption | Linux kernel 4.10–7.0 (all major distros) | CVE-2026-43284 (ESP) + CVE-2026-43500 (RxRPC) | ⚠️ PARTIAL — ESP (CVE-2026-43284) patched upstream + AlmaLinux/CloudLinux; **RxRPC (CVE-2026-43500) UNPATCHED**; RHEL/Ubuntu kernel packages pending | 🔴 HIGH — Public PoC; active exploitation confirmed (Microsoft); container escape path; Copy Fail mitigation provides NO protection | 2026-05-11 |
 
 ---
 
 ## 📋 N-Day CVEs (Patched, Actively Exploited or High Risk)
+
+### Recently Added (2026-05-14)
+
+| ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
+|---|---|---|---|---|---|---|---|
+| ZD-024 | CVE-2026-4361 | Zero-Click RCE / Use-After-Free | Microsoft Outlook (all Windows versions) | CVE-2026-4361 | ✅ PATCHED — May 2026 Patch Tuesday (May 13) | 🔴 HIGH — Zero-click via email preview/read; firewall bypass; "Exploitation More Likely"; chains with LPE for full system compromise; Hefi compares to BadWindmill (2015) | 2026-05-14 |
+| ZD-025 | CVE-2026-45185 | Unauthenticated RCE / Use-After-Free in GNU TLS Shutdown | Exim MTA 4.97–4.99.2 (GNU TLS builds; Ubuntu/Debian primarily) | CVE-2026-45185 | ✅ PATCHED — Exim 4.99.3 | 🔴 HIGH — CVSS 9.8; unauthenticated; OpenSSL builds NOT affected; Exim has documented mass-exploitation history (Sandworm exploited CVE-2019-10149 within days) | 2026-05-14 |
 
 ### Recently Added (2026-05-13)
 
@@ -74,4 +83,4 @@
 
 ---
 
-*Last updated: 2026-05-13 | Added ZD-021 (CVE-2026-41096 Windows DNS Client CVSS 9.8 RCE) + ZD-022 (CVE-2026-41089 Windows Netlogon CVSS 9.8 pre-auth RCE on DCs) + ZD-023 (CVE-2026-44277 FortiAuthenticator unauthenticated RCE); May 2026 Patch Tuesday = 138 CVEs, 30 critical, no zero-days; CVE-2026-0300 patches now available; COPYFAIL KEV deadline May 15 (2 days) | Entry count: 23*
+*Last updated: 2026-05-14 | Added ZD-024 (CVE-2026-4361 Outlook zero-click RCE, "Exploitation More Likely") + ZD-025 (CVE-2026-45185 Exim MTA CVSS 9.8 RCE, GNU TLS builds) + ZD-026 (Green Plasma Windows LPE zero-day, unpatched, public PoC by Chaotic Eclipse) + ZD-027 (Fragnesia Linux kernel LPE, Dirty Frag logic-bug variant, upstream patched May 13, distros pending); COPYFAIL KEV deadline May 15 TOMORROW; Green Plasma + Fragnesia are unpatched | Entry count: 27*

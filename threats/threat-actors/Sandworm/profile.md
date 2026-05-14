@@ -178,3 +178,57 @@ CHISEL (tunneler), REGEORG.NEO / Neo-REGEORG (webshell), WEEVELY (webshell), DCR
 - ESET APT Activity Report Q2-Q3 2025: https://www.eset.com/us/about/newsroom/research/eset-research-apt-report-russian-cyberattacks-in-ukraine-intensify-sandworm-unleashes-new-destructive-wiper/
 - WithSecure Kapeka Analysis (April 2024): https://labs.withsecure.com/publications/kapeka
 - MITRE ATT&CK G0034: https://attack.mitre.org/groups/G0034/
+- Nozomi Networks OT/ICS Threat Report (May 14, 2026): https://industrialcyber.co/control-device-security/sandworm-uses-pre-compromised-ot-environments-instead-of-zero-days-to-escalate-ot-ics-attacks-after-detection/
+
+---
+
+*Last Updated: 2026-05-14 | Profile by C3PO*
+
+---
+
+## 📡 Intelligence Update — 2026-05-14
+
+### Nozomi Networks Report: Sandworm Escalates OT/ICS Attacks After Detection; Pre-Compromised Environments as Access Vectors
+
+Nozomi Networks published a comprehensive threat report on **May 14, 2026** detailing Sandworm's OT/ICS targeting behavior based on analysis of **5.5 million alerts** from 10 industrial organizations across seven countries, covering the period **July 2025 – January 2026**. The report identified **29 confirmed Sandworm-related events** in this corpus.
+
+**Affected sectors:** Manufacturing and transportation. Assets targeted include **engineering workstations, HMIs, PLCs, RTUs, and other ICS Level 1/Level 2 devices**.
+
+#### Key Tactical Findings
+
+**1. Pre-compromised environments as preferred access vector**
+Rather than deploying novel zero-days, Sandworm actively exploited **already-compromised environments** — hosts with preexisting infections or active C2 channels. The group capitalized on weak network defenses and lateral infection chains rather than expending zero-day capabilities.
+
+**2. Older tooling still highly effective**
+Sandworm continued to leverage:
+- **EternalBlue** + **DoublePulsar** (patched 2017 — still effective in unpatched OT environments)
+- **WannaCry** (2017 ransomware worm)
+- **Log4Shell** (CVE-2021-44228)
+- **Cobalt Strike** and **Metasploit**
+- Remote access trojans (multiple unspecified families)
+
+**3. Aggressive lateral movement**
+One confirmed infected host targeted **405 internal systems**. Infected hosts collectively attempted lateral movement against **923 unique internal targets** — indicating Sandworm treats initial access as a springboard for maximum network enumeration.
+
+**4. Escalation after detection** *(critical TTP)*
+Counterintuitively, Sandworm **intensifies operations after detection** rather than disengaging. Observed escalation patterns:
+- Increased alert volumes
+- Broader attack surfaces engaged
+- Deployment of additional malware tooling
+- Expanded lateral movement to Level 1/Level 2 OT assets
+- Specific pivot toward **engineering workstations, HMIs, PLCs, RTUs, and field controllers**
+
+This "dig in" behavior upon detection is designed to maximize disruption and leverage before remediation can occur — consistent with Sandworm's mission to achieve physical-world effects.
+
+**5. Long dwell time before OT engagement**
+Every infected system in the corpus generated detectable warning signs **between 20 and 155 days before confirmed Sandworm activity**, with an **average warning window of 43 days**. Defenders who act on early IT-layer alerts can interrupt Sandworm before OT escalation.
+
+#### Threat Assessment Update
+
+The Nozomi report confirms that Sandworm's OT/ICS campaign from mid-2025 through early 2026 is:
+- **Active and sustained**: 29 confirmed events across 10 organizations in 7 countries
+- **Escalatory by design**: detection triggers intensification, not withdrawal
+- **Tooling-agnostic**: effectiveness comes from access and persistence, not novel exploits
+- **Warning-signal rich**: 20–155 day dwell before OT contact means early detection is possible with proper monitoring
+
+**Defenders facing potential Sandworm access should NOT simply remediate IT-layer infections without simultaneously hunting for OT pre-positioning.** The group's escalation-on-detection behavior means that a visible IT compromise may already have produced invisible OT access that will activate aggressively once IT remediation begins.

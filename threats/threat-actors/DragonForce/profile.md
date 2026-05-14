@@ -221,4 +221,32 @@ APT73 emerged from the LockBit/RansomHub diaspora at the same time DragonForce w
 
 ---
 
-*Profile created: 2026-05-02 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+*Profile created: 2026-05-02 | Last Updated: 2026-05-14 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+
+---
+
+## 📡 Intelligence Update — 2026-05-14
+
+### Q1 2026 Activity Surge: 101 Victims (+29% QoQ) — Accelerating Momentum
+
+Check Point Research's **State of Ransomware Q1 2026** report confirmed DragonForce posted **101 victims** in Q1 2026, a **29% increase** from Q4 2025, with a steep quarter-over-quarter trajectory (10 victims in January → 35 in February → 56 in March). This pattern indicates **genuine operational momentum** rather than a one-time access stockpile drawdown.
+
+Arete IR April 2026 report confirmed DragonForce was responsible for **over 7% of observed ransomware engagements** in April 2026 with noted increased activity compared to full-year 2025 baseline.
+
+### New Tool: VIPERTUNNEL Python-Based Backdoor
+
+Open-source reporting cited in Arete's April 2026 report documents DragonForce's deployment of **VIPERTUNNEL** — a **Python-based backdoor** used for maintaining reliable operator access and evading detection:
+
+- Provides persistent reverse tunnel C2 channel
+- Python-based construction aids AV/EDR evasion in environments with limited Python baseline monitoring
+- Deployed alongside BYOVD techniques and RMM tooling for layered access redundancy
+
+### BYOVD: PoisonX.sys Vulnerable Driver
+
+DragonForce has been confirmed using the **PoisonX.sys** vulnerable driver in recent engagements as part of a Bring Your Own Vulnerable Driver (BYOVD) attack chain for kernel-level security process termination. The group also deployed the **Remotely Agent** remote desktop application for persistent access.
+
+DragonForce shares overlapping vulnerable drivers with **Akira** (rwdrv.sys, hlpdrv.sys), suggesting possible tooling exchange or shared affiliate tradecraft within the RaaS ecosystem.
+
+### Geographic Targeting
+
+DragonForce remains active across multiple geographies with **Turkey** as a notable concentration (DragonForce + LockBit + The Gentlemen = 70% of Turkish victim postings in Q1). The group's trajectory from the UK retail attacks (April 2026) through Q1 indicates expanding global reach beyond its initial UK/Australia focus.
