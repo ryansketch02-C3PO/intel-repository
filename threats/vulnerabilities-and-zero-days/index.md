@@ -9,10 +9,11 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-026 | Green Plasma | LPE / Kernel Memory Section Object Squatting | Windows 10/11/Server (all versions) | None — UNPATCHED | 🔴 UNPATCHED — Public PoC (partial) by Chaotic Eclipse; Microsoft response pending | 🔴 HIGH — Public PoC, "Exploitation More Likely"; researcher threatens future disclosures; chains with CVE-2026-4361 for email→SYSTEM | 2026-05-14 |
-| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 25; PT TOMORROW May 12)** | 🔴 HIGH | 2026-04-18 |
-| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 25; PT TOMORROW May 12)** | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
-| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | 🔴 UNPATCHED — **Patches ETA May 13 (tomorrow)** ✅ CISA KEV; FCEB deadline May 9 PASSED | 🔴 HIGH — CL-STA-1132 (China-nexus); exploitation since April 9; 5,400+ exposed; patch tomorrow | 2026-05-06 |
+| ZD-026 | YellowKey | BitLocker Bypass / WinRE FStX Feature Update Simulation | Windows 11 · Server 2022/2025 (Win10 unaffected) | None — UNPATCHED | 🔴 UNPATCHED **(Day 1; full PoC public; TPM-only confirmed; TPM+PIN unconfirmed)** | 🔴 HIGH — Public PoC; encryption assurance bypass; same researcher as RedSun/UnDefend | 2026-05-13 |
+| ZD-027 | GreenPlasma | EoP / CTFMON Arbitrary Section Creation | Windows 11 · Server 2022/2025 | None — UNPATCHED | 🔴 UNPATCHED **(Day 1; partial PoC — SYSTEM shell component withheld)** | 🟡 MEDIUM (🔴 HIGH if completed; cldapi.dll abuse; Nightmare-Eclipse fifth tool) | 2026-05-13 |
+| ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 27 — PT SHIPPED, NO FIX; CISA KEV watch May 15)** | 🔴 HIGH | 2026-04-18 |
+| ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 27 — PT SHIPPED, NO FIX; CISA KEV watch May 15)** | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
+| ZD-016 | CVE-2026-0300 | Unauthenticated RCE / Buffer Overflow | PAN-OS PA-Series & VM-Series firewalls (User-ID Auth Portal) | CVE-2026-0300 | ✅ PATCHED — May 13, 2026 ✅ CISA KEV; FCEB deadline May 9 PASSED | 🔴 HIGH — CL-STA-1132 (China-nexus); exploitation since April 9; 5,400+ exposed | 2026-05-06 |
 
 ---
 
@@ -20,7 +21,7 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-027 | Fragnesia | LPE / Page Cache Write via XFRM/ESP + TCP Logic Bug | Linux kernel (all before May 13, 2026 upstream) | CVE TBD — Dirty Frag class (new variant) | ⚠️ PARTIAL — Upstream kernel patched May 13, 2026; **all major distribution packages still pending** | 🔴 HIGH — Public PoC (full root shell); more reliable than Dirty Frag (no race condition); container escape path; distros still unpatched | 2026-05-14 |
+| ZD-029 | Fragnesia | LPE / Page Cache Write via XFRM/ESP + TCP Logic Bug | Linux kernel (all before May 13, 2026 upstream) | CVE TBD — Dirty Frag class (logic-bug variant) | ⚠️ PARTIAL — Upstream kernel patched May 13, 2026; **all major distribution packages still pending** | 🔴 HIGH — Public PoC (full root shell); **no race condition** = more reliable than Dirty Frag; container escape path; distros unpatched | 2026-05-14 |
 | ZD-017 | Dirty Frag | LPE / Page Cache Write via IPSec ESP + RxRPC in-place decryption | Linux kernel 4.10–7.0 (all major distros) | CVE-2026-43284 (ESP) + CVE-2026-43500 (RxRPC) | ⚠️ PARTIAL — ESP (CVE-2026-43284) patched upstream + AlmaLinux/CloudLinux; **RxRPC (CVE-2026-43500) UNPATCHED**; RHEL/Ubuntu kernel packages pending | 🔴 HIGH — Public PoC; active exploitation confirmed (Microsoft); container escape path; Copy Fail mitigation provides NO protection | 2026-05-11 |
 
 ---
@@ -31,13 +32,14 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-024 | CVE-2026-4361 | Zero-Click RCE / Use-After-Free | Microsoft Outlook (all Windows versions) | CVE-2026-4361 | ✅ PATCHED — May 2026 Patch Tuesday (May 13) | 🔴 HIGH — Zero-click via email preview/read; firewall bypass; "Exploitation More Likely"; chains with LPE for full system compromise; Hefi compares to BadWindmill (2015) | 2026-05-14 |
-| ZD-025 | CVE-2026-45185 | Unauthenticated RCE / Use-After-Free in GNU TLS Shutdown | Exim MTA 4.97–4.99.2 (GNU TLS builds; Ubuntu/Debian primarily) | CVE-2026-45185 | ✅ PATCHED — Exim 4.99.3 | 🔴 HIGH — CVSS 9.8; unauthenticated; OpenSSL builds NOT affected; Exim has documented mass-exploitation history (Sandworm exploited CVE-2019-10149 within days) | 2026-05-14 |
+| ZD-028 | CVE-2026-45185 | Unauthenticated RCE / Use-After-Free in GNU TLS Shutdown | Exim MTA 4.97–4.99.2 **(GNU TLS builds only** — Debian/Ubuntu) | CVE-2026-45185 | ✅ PATCHED — Exim 4.99.3 | 🔴 HIGH — CVSS 9.8; unauthenticated RCE on mail servers; OpenSSL builds NOT affected; Sandworm weaponized Exim RCE within days in 2019 (CVE-2019-10149) — high mass-exploitation risk | 2026-05-14 |
 
 ### Recently Added (2026-05-13)
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
+| ZD-024 | CVE-2026-26083 | Missing Authorization RCE (Unauthenticated) | Fortinet FortiSandbox (on-prem, Cloud, PaaS) | CVE-2026-26083 | ✅ PATCHED — Fortinet FG-IR-26-136 (May 12, 2026) | 🔴 CRITICAL — CVSS 9.8; no auth required; security appliance + SOC visibility at risk; apply immediately | 2026-05-13 |
+| ZD-025 | CVE-2026-40361 | Use-After-Free RCE (Local) | Microsoft Office Word · Microsoft 365 | CVE-2026-40361 | ✅ PATCHED — May 2026 Patch Tuesday | 🟠 HIGH — CVSS 8.4; local, no user interaction; post-exploitation chaining primitive | 2026-05-13 |
 | ZD-021 | CVE-2026-41096 | Unauthenticated RCE / Heap Buffer Overflow | Windows DNS Client (all Windows 10/11/Server) | CVE-2026-41096 | ✅ PATCHED — May 2026 Patch Tuesday | 🔴 HIGH — CVSS 9.8; affects every Windows machine; MitM/rogue DNS → mass RCE; "Exploitation More Likely" | 2026-05-13 |
 | ZD-022 | CVE-2026-41089 | Pre-Auth RCE / Stack Buffer Overflow | Windows Netlogon (Windows Server 2012–2025) | CVE-2026-41089 | ✅ PATCHED — May 2026 Patch Tuesday | 🔴 HIGH — CVSS 9.8; pre-auth RCE on domain controllers; patch ALL DCs in same window; forest-wide credential access if exploited | 2026-05-13 |
 | ZD-023 | CVE-2026-44277 | Unauthenticated RCE / Improper Access Control | Fortinet FortiAuthenticator (IAM) < 6.5.7 / 6.6.9 / 8.0.3 | CVE-2026-44277 | ✅ PATCHED — FortiAuthenticator 6.5.7 / 6.6.9 / 8.0.3 | 🔴 HIGH — Critical; unauthenticated RCE on authentication infrastructure; RADIUS secrets at risk; widely deployed in A&D environments | 2026-05-13 |
@@ -83,4 +85,4 @@
 
 ---
 
-*Last updated: 2026-05-14 | Added ZD-024 (CVE-2026-4361 Outlook zero-click RCE, "Exploitation More Likely") + ZD-025 (CVE-2026-45185 Exim MTA CVSS 9.8 RCE, GNU TLS builds) + ZD-026 (Green Plasma Windows LPE zero-day, unpatched, public PoC by Chaotic Eclipse) + ZD-027 (Fragnesia Linux kernel LPE, Dirty Frag logic-bug variant, upstream patched May 13, distros pending); COPYFAIL KEV deadline May 15 TOMORROW; Green Plasma + Fragnesia are unpatched | Entry count: 27*
+*Last updated: 2026-05-14 | Added ZD-028 (CVE-2026-45185 Exim MTA CVSS 9.8 unauthenticated RCE, GNU TLS builds) + ZD-029 (Fragnesia Linux kernel LPE, Dirty Frag logic-bug variant, upstream patched May 13, distros pending); YellowKey (ZD-026) Day 2 unpatched; GreenPlasma (ZD-027) Day 2 unpatched; COPYFAIL KEV deadline **TODAY May 15** | Entry count: 29*
