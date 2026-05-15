@@ -42,6 +42,20 @@ Domain scores (e.g. *AI-Powered Attacks: 88/100*) are analyst assessments based 
 
 ---
 
+## 🚨 Current Cyber Threat Level
+
+```
+┌────────────────────┬────────────────────┬════════════════════┬────────────────────┬────────────────────┐
+│    Low Risk      │   Guarded Risk    ║  ELEVATED RISK  ║    High Risk      │   Severe Risk    │
+│                  │                  ║   ▲ CURRENT ▲   ║                  │                  │
+└────────────────────┴────────────────────╧════════════════════┴────────────────────┴────────────────────┘
+    🟢 Green            🟡 Teal              🟡 Yellow ← HERE      🟠 Orange            🔴 Red
+```
+
+**Elevated Risk** — Significant risk. Active TTPs observed. Enhanced security posture required.
+
+---
+
 ## ⚠️ Overall Risk: ELEVATED
 
 AI-powered offensive tooling has crossed a capability threshold this week. Agentic attack frameworks operating without human-in-the-loop are confirmed in at least two nation-state campaigns. Concurrently, the AI infrastructure layer itself is under attack — an actively exploited **Microsoft SSO Plugin zero-day** (CVE-2026-41103, CVSS 9.1) is compromising Jira and Confluence environments at scale, and a **Palo Alto PAN-OS zero-day** (CVE-2026-0300) linked to a China-nexus actor has been weaponised since April.
