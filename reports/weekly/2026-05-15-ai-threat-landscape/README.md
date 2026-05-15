@@ -13,23 +13,27 @@ AI-powered offensive tooling has crossed a capability threshold this week. Agent
 
 ## 📊 This Week at a Glance
 
-| Metric | Value | Δ Week |
-|---|---|---|
-| New Critical / High CVEs | **6** | ↑ 3 |
-| Unpatched Zero-Days | **4** | — ongoing |
-| Active CISA KEV Deadlines | **2** | 1 PASSED today |
-| Prod AI Apps w/ Prompt Injection Risk | **73%** | ↑ from 61% Q1 |
+| Metric | Value | Δ Week | Source |
+|---|---|---|---|
+| New Critical / High CVEs | **6** | ↑ 3 | [CISA KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) / [MSRC](https://msrc.microsoft.com/update-guide) |
+| Unpatched Zero-Days | **4** | — ongoing | Intel repository |
+| Active CISA KEV Deadlines | **2** | 1 PASSED today | [CISA KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) |
+| Prod AI Apps w/ Prompt Injection Risk | **73%** | ⚠ Analyst est. | [Zylos AI LLM Security 2026](https://zylos.ai/research/2026-01-13-llm-security-safety) |
+
+> ⚠ **Analyst note:** The 73% figure is sourced from Zylos AI. The week-on-week delta is an interpolated trend estimate, not a directly cited data point.
 
 ---
 
 ## 🎯 Risk Posture by Domain
 
-| Domain | Score | Level |
-|---|---|---|
-| AI-Powered Attacks | 88/100 | 🔴 CRITICAL |
-| AI Infrastructure Security | 79/100 | 🔴 HIGH |
-| Deepfake / Social Engineering | 82/100 | 🔴 CRITICAL |
-| Supply Chain / LLM Poisoning | 70/100 | 🟠 HIGH |
+| Domain | Score | Level | Basis |
+|---|---|---|---|
+| AI-Powered Attacks | 88/100 | 🔴 CRITICAL | ⚠ Analyst Assessment |
+| AI Infrastructure Security | 79/100 | 🔴 HIGH | ⚠ Analyst Assessment |
+| Deepfake / Social Engineering | 82/100 | 🔴 CRITICAL | ⚠ Analyst Assessment |
+| Supply Chain / LLM Poisoning | 70/100 | 🟠 HIGH | ⚠ Analyst Assessment |
+
+> ⚠ Risk scores are analyst assessments based on aggregated open source intelligence, not derived from a single scored framework.
 
 ---
 
@@ -41,7 +45,7 @@ Nation-state and criminal actors are deploying **autonomous AI agents** that exe
 Tags: `Nation-State` `Active Exploitation` `Autonomous`
 
 ### 2. Deepfake & Voice Cloning BEC
-Deepfake audio/video involved in **>30% of high-impact corporate impersonation attacks** in 2025. Modern deepfake video bypasses detection tools with **>90% accuracy**. SheByte PhaaS platform delivers AI-generated templates at ~$200/month. Scattered Spider + Russian ransomware partnerships now combine Western social engineering with Eastern technical capability.
+Deepfake audio/video involved in [**>30% of high-impact corporate impersonation attacks**](https://cyble.com/knowledge-hub/deepfake-as-a-service-exploded-in-2025/) in 2025 (Cyble Executive Threat Monitoring). Modern deepfake video [bypasses detection tools with **>90% accuracy**](https://cyble.com/knowledge-hub/deepfake-as-a-service-exploded-in-2025/). [SheByte PhaaS](https://www.securityweek.com/cyber-insights-2026-social-engineering/) delivers AI-generated templates at ~$200/month. Scattered Spider + Russian ransomware partnerships now combine Western social engineering with Eastern technical capability.
 
 Tags: `BEC/Fraud` `$25M+ incidents` `PhaaS`
 
@@ -60,13 +64,13 @@ Tags: `Ransomware` `Public PoC` `Autonomous`
 ## 🎯 Attacks ON AI Systems
 
 ### 1. Prompt Injection (OWASP LLM01:2025)
-**73% of production AI deployments remain exposed.** Indirect injection via poisoned RAG pipelines achieves 20–30% higher success than direct attacks. The EchoLeak attack against M365 Copilot demonstrated zero-click corporate data exfiltration via crafted email.
+[**73% of production AI deployments remain exposed**](https://zylos.ai/research/2026-01-13-llm-security-safety) (Zylos AI). Indirect injection via poisoned RAG pipelines achieves 20–30% higher success than direct attacks. The EchoLeak attack against M365 Copilot demonstrated zero-click corporate data exfiltration via crafted email.
 
 ### 2. AI Supply Chain & Model Poisoning
-Research confirms **as few as 250 malicious documents** can backdoor LLMs from 600M–13B parameters. OpenAI was hit by TanStack supply chain attack this week. ShadowLogic backdoors survive format conversion and fine-tuning.
+[Research](https://www.anthropic.com/research/small-samples-poison) (Anthropic / UK AI Security Institute / Alan Turing Institute, Oct 2025) confirms **as few as 250 malicious documents** can backdoor LLMs from 600M–13B parameters. OpenAI was hit by TanStack supply chain attack this week. ShadowLogic backdoors survive format conversion and fine-tuning.
 
 ### 3. Jailbreaking & Guardrail Bypass
-Policy Puppetry bypassed all major frontier models in 2026. Attack success rates: roleplay-based **89.6%**, logic traps **81.4%**, encoding tricks **76.2%**. Guardrails alone are insufficient.
+Policy Puppetry bypassed all major frontier models in 2026. Attack success rates per [Zylos AI 2025 systematic research](https://zylos.ai/research/2026-01-13-llm-security-safety): roleplay-based **89.6%**, logic traps **81.4%**, encoding tricks **76.2%**. Guardrails alone are insufficient.
 
 ### 4. CVE-2026-7482 — Bleeding Llama (CVSS 9.1) ✅ Patched
 Heap OOB read in Ollama AI inference server enables unauthenticated exfiltration of API keys, env vars, and chat data. Patched in v0.17.1. Prioritise patching any internal Ollama instance.
@@ -100,7 +104,7 @@ Heap OOB read in Ollama AI inference server enables unauthenticated exfiltration
 | Ransomware 5.0 — autonomous negotiation | Provenance-tagged RAG pipelines |
 | Model backdooring via <250 poisoned docs | Model signing + supply chain verification |
 
-> ⚠️ Assessment: Offensive AI is currently outpacing defensive AI in adaptability and scale. The gap is expected to widen through Q3 2026.
+> ⚠️ **Analyst Assessment:** Offensive AI is currently outpacing defensive AI in adaptability and scale. The Q3 2026 projection is analyst judgement based on current capability trends, not a sourced forecast.
 
 ---
 
@@ -139,5 +143,26 @@ Criminal group TeamPCP publicly released source code for an AI-guided network wo
 
 ---
 
-*Sources: CISA KEV · BleepingComputer · SecurityWeek · HiddenLayer 2026 AI Threat Report · Zylos LLM Security · Cyble · MSRC*
+---
+
+## 📚 Sources & Citations
+
+| # | Stat / Claim | Source | Link |
+|---|---|---|---|
+| 1 | 73% of prod AI deployments exposed to prompt injection | Zylos AI — LLM Security & Safety 2026 | [zylos.ai](https://zylos.ai/research/2026-01-13-llm-security-safety) |
+| 2 | 89.6% / 81.4% / 76.2% jailbreak attack success rates | Zylos AI — 2025 systematic research | [zylos.ai](https://zylos.ai/research/2026-01-13-llm-security-safety) |
+| 3 | 250 malicious documents backdoor any LLM (600M–13B) | Anthropic / UK AISI / Alan Turing Institute (Oct 2025) | [anthropic.com](https://www.anthropic.com/research/small-samples-poison) |
+| 4 | >30% of corporate impersonation attacks used deepfakes | Cyble Executive Threat Monitoring Report | [cyble.com](https://cyble.com/knowledge-hub/deepfake-as-a-service-exploded-in-2025/) |
+| 5 | >90% deepfake bypass rate against detection tools | Cyble Deepfake-as-a-Service 2025 Report | [cyble.com](https://cyble.com/knowledge-hub/deepfake-as-a-service-exploded-in-2025/) |
+| 6 | $25M Hong Kong deepfake fraud | Cyble 2026 Outlook / widely reported | [cyble.com](https://cyble.com/knowledge-hub/cybercriminals-evolved-in-2025-cyble-2026/) |
+| 7 | SheByte PhaaS ~$200/month | SecurityWeek — Cyber Insights 2026: Social Engineering | [securityweek.com](https://www.securityweek.com/cyber-insights-2026-social-engineering/) |
+| 8 | CVE data, patch status, CISA KEV entries | CISA KEV / Microsoft MSRC / BleepingComputer | [cisa.gov](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) · [bleepingcomputer.com](https://www.bleepingcomputer.com/news/microsoft/microsoft-may-2026-patch-tuesday-fixes-120-flaws-no-zero-days/) |
+
+### ⚠️ Analyst Assessments — Not Externally Sourced
+- **Risk domain scores** (88, 79, 82, 70 /100) — analyst synthesis of aggregated OSINT; not derived from a single scored framework
+- **Q3 2026 capability gap projection** — analyst trend judgement; not a sourced forecast
+- **Week-on-week prompt injection delta** — 73% is sourced; the comparative baseline is an interpolated estimate
+
+---
+
 *AI Intelligence Analyst · Week 20, 2026 · Based on OSINT · TLP:GREEN*

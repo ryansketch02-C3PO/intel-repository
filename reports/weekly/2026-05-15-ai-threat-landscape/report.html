@@ -416,9 +416,9 @@
       <div class="stat-delta up">1 PASSED today</div>
     </div>
     <div class="stat-card">
-      <div class="stat-num" style="color: var(--purple);">73%</div>
+      <div class="stat-num" style="color: var(--purple);"><a href="https://zylos.ai/research/2026-01-13-llm-security-safety" target="_blank" style="color:inherit;text-decoration:none;">73%</a></div>
       <div class="stat-label">Prod AI Apps w/ Prompt Injection Risk</div>
-      <div class="stat-delta up">↑ from 61% in Q1</div>
+      <div class="stat-delta flat" title="73% sourced from Zylos AI. Delta is analyst estimate.">&#9888; Analyst est. &mdash; <a href="https://zylos.ai/research/2026-01-13-llm-security-safety" target="_blank" style="color:var(--muted);">Zylos AI</a></div>
     </div>
   </div>
 </div>
@@ -482,7 +482,7 @@
         </div>
       </div>
       <div class="tc-body">
-        Deepfake audio/video involved in <strong>&gt;30% of high-impact corporate impersonation attacks</strong> in 2025 (Cyble). Modern deepfake video bypasses detection tools with <strong>&gt;90% accuracy</strong>. SheByte PhaaS platform delivers AI-generated templates at scale. Scattered Spider + Russian ransomware partnerships now combine Western social engineering with Eastern technical capability. <strong>A $25M Hong Kong fraud remains the benchmark.</strong>
+        Deepfake audio/video involved in <a href="https://cyble.com/knowledge-hub/deepfake-as-a-service-exploded-in-2025/" target="_blank"><strong>&gt;30% of high-impact corporate impersonation attacks</strong></a> in 2025 (Cyble). Modern deepfake video <a href="https://cyble.com/knowledge-hub/deepfake-as-a-service-exploded-in-2025/" target="_blank">bypasses detection tools with <strong>&gt;90% accuracy</strong></a>. <a href="https://www.securityweek.com/cyber-insights-2026-social-engineering/" target="_blank">SheByte PhaaS</a> platform delivers AI-generated templates at scale. Scattered Spider + Russian ransomware partnerships now combine Western social engineering with Eastern technical capability. <strong>A $25M Hong Kong fraud remains the benchmark.</strong>
       </div>
       <div class="tag-row">
         <span class="tag tag-purple">BEC / Fraud</span>
@@ -544,7 +544,7 @@
         </div>
       </div>
       <div class="tc-body">
-        Prompt injection is the #1 LLM vulnerability. <strong>Indirect injection</strong> — via poisoned documents, web content, and RAG pipelines — now accounts for <strong>&gt;55% of observed incidents</strong>, with 20–30% higher success rates than direct attacks. Five malicious documents hidden among a million clean ones achieves a <strong>90% attack success rate</strong> against production RAG systems. The EchoLeak attack against M365 Copilot demonstrated zero-click corporate data exfiltration.
+        Prompt injection is the #1 LLM vulnerability per <a href="https://zylos.ai/research/2026-01-13-llm-security-safety" target="_blank">Zylos AI</a>. <strong>Indirect injection</strong> — via poisoned documents, web content, and RAG pipelines — now accounts for <strong>&gt;55% of observed incidents</strong>, with 20–30% higher success rates than direct attacks. <a href="https://zylos.ai/research/2026-01-13-llm-security-safety" target="_blank"><strong>73% of production AI deployments remain exposed</strong></a>. The EchoLeak attack against M365 Copilot demonstrated zero-click corporate data exfiltration.
       </div>
       <div class="tag-row">
         <span class="tag tag-red">OWASP LLM01</span>
@@ -562,7 +562,7 @@
         </div>
       </div>
       <div class="tc-body">
-        Research (Anthropic / UKASI / Alan Turing Institute) confirms <strong>as few as 250 malicious documents</strong> can backdoor models from 600M–13B parameters. OpenAI hit by TanStack supply chain attack this week. ShadowLogic backdoors survive format conversion and fine-tuning. Hugging Face model downloads remain unverified in most enterprise deployments. <strong>MCP server misconfigurations</strong> enable tool poisoning, credential exfiltration, and code execution at the agent layer.
+        <a href="https://www.anthropic.com/research/small-samples-poison" target="_blank">Research</a> (Anthropic / UK AI Security Institute / Alan Turing Institute, Oct&nbsp;2025) confirms <strong>as few as 250 malicious documents</strong> can backdoor models from 600M–13B parameters. OpenAI hit by TanStack supply chain attack this week. ShadowLogic backdoors survive format conversion and fine-tuning. Hugging Face model downloads remain unverified in most enterprise deployments. <strong>MCP server misconfigurations</strong> enable tool poisoning, credential exfiltration, and code execution at the agent layer.
       </div>
       <div class="tag-row">
         <span class="tag tag-purple">Supply Chain</span>
@@ -580,7 +580,7 @@
         </div>
       </div>
       <div class="tc-body">
-        <strong>Policy Puppetry</strong> — a universal jailbreak technique — successfully bypassed safety guardrails across all major frontier models in 2026. Roleplay-based attacks achieve <strong>89.6% success rate</strong>; logic trap attacks 81.4%. iMIST (multi-step tool-disguised jailbreak) uses RL to iteratively erode safety barriers across multi-turn conversations. Guardrails are necessary but <strong>cannot be the only control</strong> — they are routinely bypassed.
+        <strong>Policy Puppetry</strong> — a universal jailbreak technique — successfully bypassed safety guardrails across all major frontier models in 2026. Per <a href="https://zylos.ai/research/2026-01-13-llm-security-safety" target="_blank">Zylos AI 2025 systematic research</a>: roleplay-based attacks achieve <strong>89.6% success rate</strong>; logic trap attacks 81.4%. iMIST (multi-step tool-disguised jailbreak) uses RL to iteratively erode safety barriers across multi-turn conversations. Guardrails are necessary but <strong>cannot be the only control</strong> — they are routinely bypassed.
       </div>
       <div class="tag-row">
         <span class="tag tag-red">Guardrail Bypass</span>
@@ -718,7 +718,7 @@
     </div>
   </div>
   <div style="font-size:11px; color:var(--muted); text-align:center; padding-top:6px;">
-    ⚠ Assessment: Offensive AI is currently outpacing defensive AI in adaptability and scale. The gap is expected to widen through Q3 2026.
+    ⚠️ <em>Analyst Assessment:</em> Offensive AI is currently outpacing defensive AI in adaptability and scale. The Q3&nbsp;2026 projection is analyst judgement based on current capability trends &mdash; not a sourced forecast.
   </div>
 </div>
 
@@ -788,6 +788,30 @@
       <div class="rec-body">Move beyond guardrails-only. Implement runtime inference monitoring to detect prompt injection in production AI systems. Guardrails are bypassed in 73% of tested deployments — runtime visibility is the required next layer.</div>
       <span class="rec-priority rec-prio-medium">Q2 Priority</span>
     </div>
+  </div>
+</div>
+
+<!-- ── SOURCES ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">📚</span> Sources &amp; Citation Notes</div>
+  <table class="vuln-table">
+    <thead><tr><th>#</th><th>Stat / Claim</th><th>Source</th><th>Link</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>73% of prod AI deployments exposed to prompt injection</td><td>Zylos AI — LLM Security &amp; Safety 2026</td><td><a href="https://zylos.ai/research/2026-01-13-llm-security-safety" target="_blank" style="color:var(--blue);">zylos.ai</a></td></tr>
+      <tr><td>2</td><td>89.6% / 81.4% / 76.2% jailbreak attack success rates</td><td>Zylos AI — 2025 systematic research</td><td><a href="https://zylos.ai/research/2026-01-13-llm-security-safety" target="_blank" style="color:var(--blue);">zylos.ai</a></td></tr>
+      <tr><td>3</td><td>250 malicious documents can backdoor any LLM (600M–13B)</td><td>Anthropic / UK AI Security Institute / Alan Turing Institute (Oct 2025)</td><td><a href="https://www.anthropic.com/research/small-samples-poison" target="_blank" style="color:var(--blue);">anthropic.com</a></td></tr>
+      <tr><td>4</td><td>&gt;30% of corporate impersonation attacks used deepfakes</td><td>Cyble Executive Threat Monitoring Report</td><td><a href="https://cyble.com/knowledge-hub/deepfake-as-a-service-exploded-in-2025/" target="_blank" style="color:var(--blue);">cyble.com</a></td></tr>
+      <tr><td>5</td><td>&gt;90% deepfake bypass rate against detection tools</td><td>Cyble Deepfake-as-a-Service 2025 Report</td><td><a href="https://cyble.com/knowledge-hub/deepfake-as-a-service-exploded-in-2025/" target="_blank" style="color:var(--blue);">cyble.com</a></td></tr>
+      <tr><td>6</td><td>$25M Hong Kong deepfake fraud</td><td>Cyble 2026 Outlook / widely reported</td><td><a href="https://cyble.com/knowledge-hub/cybercriminals-evolved-in-2025-cyble-2026/" target="_blank" style="color:var(--blue);">cyble.com</a></td></tr>
+      <tr><td>7</td><td>SheByte PhaaS ~$200/month</td><td>SecurityWeek — Cyber Insights 2026: Social Engineering</td><td><a href="https://www.securityweek.com/cyber-insights-2026-social-engineering/" target="_blank" style="color:var(--blue);">securityweek.com</a></td></tr>
+      <tr><td>8</td><td>CVE data, patch status, CISA KEV entries</td><td>CISA KEV / Microsoft MSRC / BleepingComputer May 2026 PT</td><td><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" style="color:var(--blue);">cisa.gov</a> &middot; <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-may-2026-patch-tuesday-fixes-120-flaws-no-zero-days/" target="_blank" style="color:var(--blue);">bleepingcomputer.com</a></td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:10px; background:var(--surface); border:1px solid #d2992240; border-left:3px solid var(--orange); border-radius:6px; padding:10px 14px; font-size:11px; color:#c9d1d9; line-height:1.6;">
+    <strong style="color:var(--orange);">&#9888; Analyst Assessments — Not Externally Sourced</strong><br>
+    &bull; <strong>Risk domain scores</strong> (88, 79, 82, 70&nbsp;/100) — analyst synthesis of aggregated OSINT; not derived from a single scored framework.<br>
+    &bull; <strong>Q3 2026 capability gap projection</strong> — analyst trend judgement; not a sourced forecast.<br>
+    &bull; <strong>Week-on-week prompt injection delta</strong> — the 73% figure is sourced; the comparative baseline is an interpolated estimate.
   </div>
 </div>
 
