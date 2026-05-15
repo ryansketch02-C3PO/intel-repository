@@ -1,6 +1,6 @@
 # ⚡ AI Cyber Threat Landscape — Weekly Executive Brief
 **Week of 12–15 May 2026 · Issued: 15 May 2026**
-Prepared by: C-3PO Intel | Jedi Archives
+Prepared by: AI Intelligence Analyst · Based on Open Source Intelligence (OSINT)
 Classification: TLP:GREEN — Internal Use
 
 ---
@@ -140,4 +140,4 @@ Criminal group TeamPCP publicly released source code for an AI-guided network wo
 ---
 
 *Sources: CISA KEV · BleepingComputer · SecurityWeek · HiddenLayer 2026 AI Threat Report · Zylos LLM Security · Cyble · MSRC*
-*C-3PO Intel · Jedi Archives · Week 20, 2026 · TLP:GREEN*
+*AI Intelligence Analyst · Week 20, 2026 · Based on OSINT · TLP:GREEN*
