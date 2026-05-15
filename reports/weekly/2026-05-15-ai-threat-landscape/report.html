@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Cyber Threat Landscape — Weekly Executive Brief</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2128;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --red: #f85149;
+    --orange: #d29922;
+    --yellow: #e3b341;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --teal: #39d353;
+    --accent: #1f6feb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+  .report-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .report-header .subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .report-meta {
+    text-align: right;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .report-meta .classification {
+    display: inline-block;
+    background: #1c2a1c;
+    border: 1px solid #3fb950;
+    color: #3fb950;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  /* ── Risk Banner ── */
+  .risk-banner {
+    background: linear-gradient(135deg, #1a0e0e, #1c1010);
+    border: 1px solid #f8514940;
+    border-left: 3px solid var(--red);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .risk-banner .risk-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .risk-banner .risk-text {
+    font-size: 12px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+  .risk-banner .risk-text strong { color: var(--red); }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 22px;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title span.icon { font-size: 13px; }
+
+  /* ── Stat Row ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-card .stat-num {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-card .stat-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .stat-card .stat-delta {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .stat-card .stat-delta.up { color: var(--red); }
+  .stat-card .stat-delta.down { color: var(--green); }
+  .stat-card .stat-delta.flat { color: var(--muted); }
+
+  /* ── Threat Grid ── */
+  .threat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .threat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .threat-card .tc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .threat-card .tc-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .threat-card .tc-title { font-size: 13px; font-weight: 600; }
+  .threat-card .tc-sub { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .threat-card .tc-body { font-size: 11.5px; color: #c9d1d9; line-height: 1.55; }
+  .threat-card .tc-body strong { color: var(--text); }
+  .threat-card .tag-row { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
+  .tag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+  .tag-red    { background: #f8514920; color: var(--red); border: 1px solid #f8514940; }
+  .tag-orange { background: #d2992220; color: var(--orange); border: 1px solid #d2992240; }
+  .tag-blue   { background: #58a6ff20; color: var(--blue); border: 1px solid #58a6ff40; }
+  .tag-purple { background: #bc8cff20; color: var(--purple); border: 1px solid #bc8cff40; }
+  .tag-green  { background: #3fb95020; color: var(--green); border: 1px solid #3fb95040; }
+
+  /* ── Vuln Table ── */
+  .vuln-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+  }
+  .vuln-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 10px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .vuln-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: #c9d1d9;
+  }
+  .vuln-table tr:last-child td { border-bottom: none; }
+  .vuln-table tr:hover td { background: #ffffff06; }
+  .vuln-table .cve { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: var(--blue); }
+  .vuln-table .cvss-crit { color: var(--red); font-weight: 700; }
+  .vuln-table .cvss-high { color: var(--orange); font-weight: 700; }
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pill-red    { background: #f8514925; color: var(--red); }
+  .pill-orange { background: #d2992225; color: var(--orange); }
+  .pill-yellow { background: #e3b34125; color: var(--yellow); }
+  .pill-green  { background: #3fb95025; color: var(--green); }
+
+  /* ── Two-col layout ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+  /* ── Trend list ── */
+  .trend-list { list-style: none; }
+  .trend-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 11.5px;
+    color: #c9d1d9;
+  }
+  .trend-list li:last-child { border-bottom: none; }
+  .trend-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .trend-list strong { color: var(--text); }
+
+  /* ── Rec cards ── */
+  .rec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .rec-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+  }
+  .rec-card .rec-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .rec-card .rec-title {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .rec-card .rec-body {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .rec-card .rec-priority {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .rec-prio-critical { background: #f8514920; color: var(--red); border: 1px solid #f8514940; }
+  .rec-prio-high     { background: #d2992220; color: var(--orange); border: 1px solid #d2992240; }
+  .rec-prio-medium   { background: #e3b34120; color: var(--yellow); border: 1px solid #e3b34140; }
+
+  /* ── Risk Meter ── */
+  .risk-meter-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .risk-meter-item {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+  .risk-meter-item .rm-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .risk-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .risk-bar-fill { height: 100%; border-radius: 3px; }
+  .risk-val { font-size: 11px; font-weight: 600; margin-top: 4px; }
+
+  /* ── Footer ── */
+  .report-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* ── Incident block ── */
+  .incident-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }
+  .incident-block .ib-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .incident-block .ib-title { font-size: 12px; font-weight: 600; }
+  .incident-block .ib-date { font-size: 10px; color: var(--muted); }
+  .incident-block .ib-body { font-size: 11px; color: #c9d1d9; line-height: 1.5; }
+
+  /* ── AI vs AI ── */
+  .ai-vs-ai {
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .ai-side {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+  }
+  .ai-side.attack { border-color: #f8514940; }
+  .ai-side.defense { border-color: #3fb95040; }
+  .ai-side h4 { font-size: 11px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ai-side.attack h4 { color: var(--red); }
+  .ai-side.defense h4 { color: var(--green); }
+  .ai-side ul { list-style: none; }
+  .ai-side ul li { font-size: 11px; color: #c9d1d9; padding: 2px 0; padding-left: 14px; position: relative; }
+  .ai-side ul li::before { content: '›'; position: absolute; left: 0; color: var(--muted); }
+  .vs-label { text-align: center; font-weight: 700; font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="report-header">
+  <div>
+    <h1>⚡ AI Cyber Threat Landscape</h1>
+    <div class="subtitle">Weekly Executive Intelligence Brief — Jedi Archives</div>
+  </div>
+  <div class="report-meta">
+    <div class="classification">TLP:GREEN — INTERNAL USE</div><br>
+    <strong>Week of 12–15 May 2026</strong><br>
+    Issued: 15 May 2026, 10:07 EDT<br>
+    Prepared by: C-3PO Intel
+  </div>
+</div>
+
+<!-- ── RISK BANNER ── -->
+<div class="risk-banner">
+  <div class="risk-label">⚠ OVERALL RISK<br>ELEVATED</div>
+  <div class="risk-text">
+    AI-powered offensive tooling has crossed a capability threshold this week. <strong>Agentic attack frameworks operating without human-in-the-loop</strong> are confirmed in at least two nation-state campaigns. Concurrently, the AI infrastructure layer itself is under attack — an actively exploited <strong>Microsoft SSO Plugin zero-day</strong> (CVSS 9.1) is compromising Jira and Confluence environments at scale, and a <strong>Palo Alto PAN-OS zero-day</strong> (CVE-2026-0300) linked to a China-nexus actor has been weaponized since April. The merger of AI-as-weapon and attacks-on-AI defines the current threat moment.
+  </div>
+</div>
+
+<!-- ── KEY METRICS ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">📊</span> This Week at a Glance</div>
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-num" style="color: var(--red);">6</div>
+      <div class="stat-label">New Critical / High CVEs</div>
+      <div class="stat-delta up">↑ 3 vs last week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color: var(--orange);">4</div>
+      <div class="stat-label">Unpatched Zero-Days</div>
+      <div class="stat-delta flat">— ongoing</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color: var(--yellow);">2</div>
+      <div class="stat-label">Active CISA KEV Deadlines</div>
+      <div class="stat-delta up">1 PASSED today</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color: var(--purple);">73%</div>
+      <div class="stat-label">Prod AI Apps w/ Prompt Injection Risk</div>
+      <div class="stat-delta up">↑ from 61% in Q1</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RISK METERS ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">🎯</span> Risk Posture by Domain</div>
+  <div class="risk-meter-row">
+    <div class="risk-meter-item">
+      <div class="rm-label">AI-Powered Attacks</div>
+      <div class="risk-bar"><div class="risk-bar-fill" style="width:88%; background: var(--red);"></div></div>
+      <div class="risk-val" style="color:var(--red);">CRITICAL — 88/100</div>
+    </div>
+    <div class="risk-meter-item">
+      <div class="rm-label">AI Infrastructure Security</div>
+      <div class="risk-bar"><div class="risk-bar-fill" style="width:79%; background: var(--red);"></div></div>
+      <div class="risk-val" style="color:var(--red);">HIGH — 79/100</div>
+    </div>
+    <div class="risk-meter-item">
+      <div class="rm-label">Deepfake / Social Engineering</div>
+      <div class="risk-bar"><div class="risk-bar-fill" style="width:82%; background: var(--red);"></div></div>
+      <div class="risk-val" style="color:var(--red);">CRITICAL — 82/100</div>
+    </div>
+    <div class="risk-meter-item">
+      <div class="rm-label">Supply Chain / LLM Poisoning</div>
+      <div class="risk-bar"><div class="risk-bar-fill" style="width:70%; background: var(--orange);"></div></div>
+      <div class="risk-val" style="color:var(--orange);">HIGH — 70/100</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── THREAT VECTORS ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">🤖</span> AI as a Weapon — Active Threat Vectors</div>
+  <div class="threat-grid">
+
+    <div class="threat-card">
+      <div class="tc-header">
+        <div class="tc-icon" style="background:#f8514915;">🎭</div>
+        <div>
+          <div class="tc-title">Agentic AI Attack Chains</div>
+          <div class="tc-sub">Autonomy Level: High — confirmed in-the-wild</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        Nation-state and criminal actors are deploying <strong>autonomous AI agents</strong> that execute full intrusion lifecycles — recon, exploitation, lateral movement, and exfiltration — without human operators in the loop. MuddyWater (Iran-MOIS) used an AI-assisted campaign in April 2026 masquerading as Chaos ransomware. Chinese-nexus TGR-STA-1030 is actively probing 155 countries using agentic tooling. <strong>Time-to-exploit has compressed to hours.</strong>
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-red">Nation-State</span>
+        <span class="tag tag-red">Active Exploitation</span>
+        <span class="tag tag-orange">Autonomous</span>
+      </div>
+    </div>
+
+    <div class="threat-card">
+      <div class="tc-header">
+        <div class="tc-icon" style="background:#bc8cff15;">🎤</div>
+        <div>
+          <div class="tc-title">Deepfake & Voice Cloning BEC</div>
+          <div class="tc-sub">Deepfake-as-a-Service now ~$200/month</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        Deepfake audio/video involved in <strong>&gt;30% of high-impact corporate impersonation attacks</strong> in 2025 (Cyble). Modern deepfake video bypasses detection tools with <strong>&gt;90% accuracy</strong>. SheByte PhaaS platform delivers AI-generated templates at scale. Scattered Spider + Russian ransomware partnerships now combine Western social engineering with Eastern technical capability. <strong>A $25M Hong Kong fraud remains the benchmark.</strong>
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-purple">BEC / Fraud</span>
+        <span class="tag tag-red">$25M+ incidents</span>
+        <span class="tag tag-orange">PhaaS</span>
+      </div>
+    </div>
+
+    <div class="threat-card">
+      <div class="tc-header">
+        <div class="tc-icon" style="background:#58a6ff15;">⚡</div>
+        <div>
+          <div class="tc-title">AI-Generated Phishing at Scale</div>
+          <div class="tc-sub">Spear-phishing at spray-and-pray volume</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        LLMs now produce <strong>hyper-personalized, multilingual phishing lures at mass scale</strong>. ClickFix browser-based attacks (AI-generated fake CAPTCHAs tricking users to execute code) are escalating rapidly. AI-adaptive lures adjust tone and content mid-interaction. <strong>Traditional awareness training is no longer sufficient</strong> — the content is indistinguishable from legitimate communications without process controls.
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-orange">Phishing</span>
+        <span class="tag tag-orange">ClickFix</span>
+        <span class="tag tag-blue">Browser-Based</span>
+      </div>
+    </div>
+
+    <div class="threat-card">
+      <div class="tc-header">
+        <div class="tc-icon" style="background:#d2992215;">🦠</div>
+        <div>
+          <div class="tc-title">Ransomware 5.0 — Autonomous Operations</div>
+          <div class="tc-sub">Fully autonomous ransomware PoCs confirmed</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        The next evolution: AI embedded in <strong>every stage of the ransomware chain</strong>. AI generates access, maps networks in minutes, chains exploits on the fly, refactors malware in real-time to evade signatures, and runs extortion negotiations autonomously. PoC frameworks are public. <strong>TeamPCP released Shai-Hulud worm source code this week</strong>, demonstrating AI-guided self-propagation. A semi-autonomous campaign is no longer a prediction — it is a timeline question.
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-red">Ransomware</span>
+        <span class="tag tag-red">Public PoC</span>
+        <span class="tag tag-red">Autonomous</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── ATTACKS ON AI ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">🎯</span> Attacks ON AI Systems — Infrastructure Under Siege</div>
+  <div class="threat-grid">
+
+    <div class="threat-card">
+      <div class="tc-header">
+        <div class="tc-icon" style="background:#f8514915;">💉</div>
+        <div>
+          <div class="tc-title">Prompt Injection (OWASP LLM01)</div>
+          <div class="tc-sub">73% of production deployments remain exposed</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        Prompt injection is the #1 LLM vulnerability. <strong>Indirect injection</strong> — via poisoned documents, web content, and RAG pipelines — now accounts for <strong>&gt;55% of observed incidents</strong>, with 20–30% higher success rates than direct attacks. Five malicious documents hidden among a million clean ones achieves a <strong>90% attack success rate</strong> against production RAG systems. The EchoLeak attack against M365 Copilot demonstrated zero-click corporate data exfiltration.
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-red">OWASP LLM01</span>
+        <span class="tag tag-red">RAG Poisoning</span>
+        <span class="tag tag-orange">Zero-Click</span>
+      </div>
+    </div>
+
+    <div class="threat-card">
+      <div class="tc-header">
+        <div class="tc-icon" style="background:#bc8cff15;">🔗</div>
+        <div>
+          <div class="tc-title">AI Supply Chain & Model Poisoning</div>
+          <div class="tc-sub">250 malicious docs = backdoor in any LLM</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        Research (Anthropic / UKASI / Alan Turing Institute) confirms <strong>as few as 250 malicious documents</strong> can backdoor models from 600M–13B parameters. OpenAI hit by TanStack supply chain attack this week. ShadowLogic backdoors survive format conversion and fine-tuning. Hugging Face model downloads remain unverified in most enterprise deployments. <strong>MCP server misconfigurations</strong> enable tool poisoning, credential exfiltration, and code execution at the agent layer.
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-purple">Supply Chain</span>
+        <span class="tag tag-red">Backdoor</span>
+        <span class="tag tag-orange">MCP Risk</span>
+      </div>
+    </div>
+
+    <div class="threat-card">
+      <div class="tc-header">
+        <div class="tc-icon" style="background:#58a6ff15;">🔓</div>
+        <div>
+          <div class="tc-title">Jailbreaking & Guardrail Bypass</div>
+          <div class="tc-sub">Policy Puppetry bypassed all major frontier models</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        <strong>Policy Puppetry</strong> — a universal jailbreak technique — successfully bypassed safety guardrails across all major frontier models in 2026. Roleplay-based attacks achieve <strong>89.6% success rate</strong>; logic trap attacks 81.4%. iMIST (multi-step tool-disguised jailbreak) uses RL to iteratively erode safety barriers across multi-turn conversations. Guardrails are necessary but <strong>cannot be the only control</strong> — they are routinely bypassed.
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-red">Guardrail Bypass</span>
+        <span class="tag tag-orange">89.6% ASR</span>
+        <span class="tag tag-blue">Multi-Turn</span>
+      </div>
+    </div>
+
+    <div class="threat-card">
+      <div class="tc-header">
+        <div class="tc-icon" style="background:#3fb95015;">🩸</div>
+        <div>
+          <div class="tc-title">CVE-2026-7482 — Bleeding Llama</div>
+          <div class="tc-sub">Ollama heap OOB read — CVSS 9.1 — PATCHED</div>
+        </div>
+      </div>
+      <div class="tc-body">
+        <strong>Bleeding Llama</strong> (CVE-2026-7482) — a heap out-of-bounds read in Ollama AI inference server — allows unauthenticated attackers to exfiltrate <strong>API keys, environment variables, and chat session data</strong> from AI inference endpoints. Affects all Ollama versions &lt;0.17.1. Most enterprise AI lab deployments ship Ollama on default (unauthenticated) configuration. Patched in v0.17.1. <strong>Prioritise patching any internal Ollama instance immediately.</strong>
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-green">Patched</span>
+        <span class="tag tag-red">CVSS 9.1</span>
+        <span class="tag tag-orange">API Key Theft</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── CRITICAL VULNS THIS WEEK ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">🔴</span> Critical Vulnerabilities — Week of 12–15 May 2026</div>
+  <table class="vuln-table">
+    <thead>
+      <tr>
+        <th>CVE / ID</th>
+        <th>Product</th>
+        <th>Type</th>
+        <th>CVSS</th>
+        <th>Status</th>
+        <th>AI Relevance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="cve">CVE-2026-42897</span></td>
+        <td>Microsoft Exchange OWA</td>
+        <td>XSS → RCE (Zero-Day)</td>
+        <td><span class="cvss-crit">—</span></td>
+        <td><span class="pill pill-red">🔴 UNPATCHED</span></td>
+        <td>AI BEC pivot via compromised email infrastructure</td>
+      </tr>
+      <tr>
+        <td><span class="cve">CVE-2026-41103</span></td>
+        <td>MS SSO Plugin — Jira / Confluence</td>
+        <td>Auth Bypass / Identity Forgery</td>
+        <td><span class="cvss-crit">9.1 CRIT</span></td>
+        <td><span class="pill pill-orange">⚡ ACTIVELY EXPLOITED</span></td>
+        <td>AI knowledge base + issue tracker takeover</td>
+      </tr>
+      <tr>
+        <td><span class="cve">CVE-2026-20182</span></td>
+        <td>Cisco Catalyst SD-WAN</td>
+        <td>Auth Bypass — Full Admin</td>
+        <td><span class="cvss-crit">10.0 CRIT</span></td>
+        <td><span class="pill pill-orange">⚡ CISA KEV — May 17 FCEB</span></td>
+        <td>Network segmentation bypass for AI workload isolation</td>
+      </tr>
+      <tr>
+        <td><span class="cve">CVE-2026-41651</span></td>
+        <td>PackageKit (Linux)</td>
+        <td>LPE / TOCTOU — Pack2TheRoot</td>
+        <td><span class="cvss-high">8.8 HIGH</span></td>
+        <td><span class="pill pill-orange">⚡ ACTIVELY EXPLOITED</span></td>
+        <td>LPE on AI inference / training servers</td>
+      </tr>
+      <tr>
+        <td><span class="cve">CVE-2026-40402</span></td>
+        <td>Windows Hyper-V</td>
+        <td>EoP / Guest-to-Host Escape</td>
+        <td><span class="cvss-crit">9.3 CRIT</span></td>
+        <td><span class="pill pill-green">✅ Patched May PT</span></td>
+        <td>Cloud AI workload isolation breach</td>
+      </tr>
+      <tr>
+        <td><span class="cve">CVE-2026-0300</span></td>
+        <td>Palo Alto PAN-OS</td>
+        <td>Unauthenticated RCE (Buffer Overflow)</td>
+        <td><span class="cvss-crit">CRITICAL</span></td>
+        <td><span class="pill pill-green">✅ Patched May 13</span></td>
+        <td>Perimeter breach for AI DMZ networks; China-nexus actor</td>
+      </tr>
+      <tr>
+        <td><span class="cve">CVE-2026-7482</span></td>
+        <td>Ollama AI Inference Server</td>
+        <td>Heap OOB / Data Exfiltration</td>
+        <td><span class="cvss-crit">9.1 HIGH</span></td>
+        <td><span class="pill pill-green">✅ Patched v0.17.1</span></td>
+        <td><strong>Direct AI infrastructure attack</strong> — API key theft</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── AI VS AI ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">⚔️</span> The AI Arms Race</div>
+  <div class="ai-vs-ai">
+    <div class="ai-side attack">
+      <h4>🔴 Offensive AI Capabilities</h4>
+      <ul>
+        <li>Autonomous recon & exploitation chains</li>
+        <li>Hyper-personalized phishing at spray-and-pray scale</li>
+        <li>Real-time deepfake voice/video (undetectable by 2026)</li>
+        <li>Adaptive malware that refactors against AV signatures</li>
+        <li>AI-optimized psychological operations</li>
+        <li>Jailbreak automation (89.6% success rates)</li>
+        <li>Ransomware 5.0 — fully autonomous negotiation bots</li>
+        <li>Model backdooring via &lt;250 poisoned documents</li>
+      </ul>
+    </div>
+    <div class="vs-label">VS</div>
+    <div class="ai-side defense">
+      <h4>🟢 Defensive AI Capabilities</h4>
+      <ul>
+        <li>Behavioral UEBA detecting anomalous AI agent actions</li>
+        <li>AI-powered SOC alert triage and prioritization</li>
+        <li>NVIDIA NeMo Guardrails (1.4× detection improvement)</li>
+        <li>Automated AI red teaming (24/7 continuous)</li>
+        <li>Runtime inference monitoring for prompt injection</li>
+        <li>AI-driven deepfake detection (accuracy degrading)</li>
+        <li>Provenance-tagged RAG document pipelines</li>
+        <li>Model signing + supply chain verification</li>
+      </ul>
+    </div>
+  </div>
+  <div style="font-size:11px; color:var(--muted); text-align:center; padding-top:6px;">
+    ⚠ Assessment: Offensive AI is currently outpacing defensive AI in adaptability and scale. The gap is expected to widen through Q3 2026.
+  </div>
+</div>
+
+<!-- ── KEY INCIDENTS ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">📰</span> Key Incidents & Intelligence — This Week</div>
+  <div class="incident-block">
+    <div class="ib-header">
+      <div class="ib-title">🇮🇷 MuddyWater — AI-Assisted Intrusion Masquerading as Ransomware</div>
+      <div class="ib-date"><span class="pill pill-red">Nation-State</span> &nbsp; May 2026</div>
+    </div>
+    <div class="ib-body">Iran-linked MuddyWater (MOIS) conducted an AI-assisted intrusion using Chaos ransomware as a false flag. Operations included AI-assisted recon, credential harvesting, and data theft with no actual ransomware deployed. <strong>Assessment: ransomware artifacts were planted specifically to complicate attribution and mislead IR teams.</strong> The use of fake Chaos samples suggests AI-aided obfuscation tooling.</div>
+  </div>
+  <div class="incident-block">
+    <div class="ib-header">
+      <div class="ib-title">⛓️ OpenAI Hit by TanStack Supply Chain Attack</div>
+      <div class="ib-date"><span class="pill pill-orange">Supply Chain</span> &nbsp; May 14, 2026</div>
+    </div>
+    <div class="ib-body">OpenAI's infrastructure was impacted by a supply chain compromise via the TanStack JavaScript library. This is emblematic of the broader trend: <strong>AI vendors themselves are becoming high-value supply chain targets.</strong> Any organization consuming OpenAI APIs or embedding OpenAI models should review their dependency trees and API key rotation posture.</div>
+  </div>
+  <div class="incident-block">
+    <div class="ib-header">
+      <div class="ib-title">🌐 TeamPCP Releases Shai-Hulud Worm Source Code</div>
+      <div class="ib-date"><span class="pill pill-red">Worm / AI-Guided</span> &nbsp; This Week</div>
+    </div>
+    <div class="ib-body">Criminal group TeamPCP publicly released source code for the Shai-Hulud AI-guided network worm. <strong>Public availability will accelerate adoption by lower-skill actors.</strong> The worm uses LLM-guided decision trees for propagation path selection. Expect derivative variants in the wild within 30 days.</div>
+  </div>
+</div>
+
+<!-- ── RECOMMENDATIONS ── -->
+<div class="section">
+  <div class="section-title"><span class="icon">✅</span> Executive Recommended Actions</div>
+  <div class="rec-grid">
+    <div class="rec-card">
+      <div class="rec-num">Action 01</div>
+      <div class="rec-title">Patch Cisco SD-WAN & Exchange Zero-Day</div>
+      <div class="rec-body">CVE-2026-20182 (CVSS 10.0) FCEB deadline is May 17 — two days. Apply Cisco patches immediately. CVE-2026-42897 (Exchange OWA) has no patch yet; apply OWA mitigations and restrict external OWA access now.</div>
+      <span class="rec-priority rec-prio-critical">48-Hour Deadline</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 02</div>
+      <div class="rec-title">Audit All Jira / Confluence SSO Deployments</div>
+      <div class="rec-body">CVE-2026-41103 (CVSS 9.1) is actively exploited and allows complete identity forgery in Jira/Confluence. Patch to v1.3.3 and rotate all service account credentials immediately. Review audit logs for unauthorized access.</div>
+      <span class="rec-priority rec-prio-critical">Immediate</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 03</div>
+      <div class="rec-title">Inventory & Patch All Ollama / AI Inference Servers</div>
+      <div class="rec-body">Bleeding Llama (CVE-2026-7482) targets internal AI deployments directly. Audit all Ollama instances, enforce authentication, upgrade to v0.17.1+, and rotate any API keys that may have been exposed.</div>
+      <span class="rec-priority rec-prio-critical">Immediate</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 04</div>
+      <div class="rec-title">Implement Wire-Transfer Verification Process</div>
+      <div class="rec-body">Deepfake BEC is undetectable by technology alone. Mandate out-of-band voice verification (pre-shared codeword or callback to known number) for any wire transfer, vendor change, or executive-requested action exceeding a defined threshold.</div>
+      <span class="rec-priority rec-prio-high">This Week</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 05</div>
+      <div class="rec-title">Assess AI Supply Chain Exposure</div>
+      <div class="rec-body">Review all third-party AI model sources (Hugging Face, etc.), MCP server configurations, and AI plugin permissions. Implement model signing verification and least-privilege agent credentials. TanStack supply chain event affects OpenAI consumers.</div>
+      <span class="rec-priority rec-prio-high">This Month</span>
+    </div>
+    <div class="rec-card">
+      <div class="rec-num">Action 06</div>
+      <div class="rec-title">Deploy Runtime AI Security Monitoring</div>
+      <div class="rec-body">Move beyond guardrails-only. Implement runtime inference monitoring to detect prompt injection in production AI systems. Guardrails are bypassed in 73% of tested deployments — runtime visibility is the required next layer.</div>
+      <span class="rec-priority rec-prio-medium">Q2 Priority</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="report-footer">
+  <div>C-3PO Intel · Jedi Archives · Weekly AI Threat Brief · Week 20, 2026</div>
+  <div>Sources: CISA KEV · BleepingComputer · SecurityWeek · HiddenLayer 2026 AI Threat Report · Zylos LLM Security · Cyble · MSRC</div>
+  <div>TLP:GREEN — Share within organisation</div>
+</div>
+
+</body>
+</html>
