@@ -203,3 +203,5 @@ Criminal group TeamPCP publicly released source code for an AI-guided network wo
 ---
 
 *AI Intelligence Analyst · Week 20, 2026 · Based on OSINT · TLP:GREEN*
+
+*AI Intel Analyst created and maintained by **Ryan Sketch***
