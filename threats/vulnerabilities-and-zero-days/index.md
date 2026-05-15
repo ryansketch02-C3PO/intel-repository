@@ -35,6 +35,12 @@
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
 | ZD-030 | CVE-2026-20182 | Auth Bypass / Remote Admin Privilege Escalation | Cisco Catalyst SD-WAN Controller + Manager | CVE-2026-20182 | ✅ PATCHED — May 15, 2026 ✅ CISA KEV; FCEB deadline May 17, 2026 | 🔴 CRITICAL — CVSS 10.0; CISA KEV same day as patch; exploited by UAT-8616; 6th SD-WAN zero-day in 2026; full admin access to SD-WAN management plane | 2026-05-15 |
+| ZD-033 | Pack2TheRoot | LPE / TOCTOU Race Condition on Transaction Flags | Linux — PackageKit 1.0.2–1.3.4 (Ubuntu/Debian/RHEL/Fedora/SUSE/Rocky/Amazon Linux) | CVE-2026-41651 | ✅ PATCHED — PackageKit 1.3.5; distro packages available (RHEL 8/9, Debian, Ubuntu, SUSE) | 🔴 HIGH — CVSS 8.8; actively exploited; public PoC within 24h of disclosure; any low-priv local user → root via crafted package + RPM/DEB scriptlets; 12+ year window; PoC trivially weaponisable | 2026-05-15 |
+| ZD-034 | CVE-2026-41103 | Auth Bypass / Incorrect Authentication Algorithm | Microsoft SSO Plugin for Jira & Confluence (< v1.3.3) | CVE-2026-41103 | ✅ PATCHED — v1.3.3 | 🔴 CRITICAL — CVSS 9.1; unauthenticated network attacker can forge Entra ID identity; **actively exploited**; full read/write access to Jira & Confluence without authentication; "Exploitation More Likely" | 2026-05-15 |
+| ZD-035 | CVE-2026-35421 | RCE / Heap Buffer Overflow | Windows GDI (Windows 10/11/Server — all supported) | CVE-2026-35421 | ✅ PATCHED — May 2026 Patch Tuesday | 🟠 HIGH — CVSS 7.8; local trigger via crafted Enhanced Metafile (EMF) in Microsoft Paint; social engineering / malicious file delivery vector | 2026-05-15 |
+| ZD-036 | CVE-2026-40365 | RCE / Insufficient Access Control | Microsoft SharePoint Server | CVE-2026-40365 | ✅ PATCHED — May 2026 Patch Tuesday | 🟠 HIGH — CVSS 8.8; authenticated attacker (Site Owner+); network-based; arbitrary code injection + remote execution on SharePoint Server | 2026-05-15 |
+| ZD-037 | CVE-2026-32161 | RCE / Use-After-Free + Race Condition | Windows Native WiFi Miniport Driver (all supported Windows) | CVE-2026-32161 | ✅ PATCHED — May 2026 Patch Tuesday | 🟠 HIGH — CVSS 7.5; unauthenticated adjacent network RCE; no user interaction required; wireless attack surface | 2026-05-15 |
+| ZD-038 | CVE-2026-40402 | EoP / Hyper-V Guest-to-Host | Windows Hyper-V (all supported Windows Server / Windows 11) | CVE-2026-40402 | ✅ PATCHED — May 2026 Patch Tuesday | 🟠 HIGH — CVSS 9.3; guest-to-host escape risk in multi-tenant and private cloud environments; outsized blast radius in shared infrastructure | 2026-05-15 |
 
 ### Recently Added (2026-05-14)
 
@@ -83,7 +89,7 @@
 | ZD-011 | FIRESTARTER | Patch-Resistant Backdoor / Cisco ASA FTD | Cisco ASA, Firepower 1000/2100/4100/9300, Secure FW 200/1200/3100/4200/6100 | CVE-2025-20333 + CVE-2025-20362 | ⚠️ ACTIVE — Reimage required | 🔴 CRITICAL | 2026-04-27 |
 | ZD-012 | GhostBearer | Pre-Auth SQLi / Credential Theft | LiteLLM (all versions < 1.83.7) | CVE-2026-42208 | ✅ PATCHED — LiteLLM v1.83.7 (recommend v1.83.10-stable) | 🔴 CRITICAL (actively exploited) | 2026-04-29 |
 | ZD-013 | cPanel Auth Bypass | Pre-Auth CRLF Injection → WHM Root | cPanel & WHM (all versions after 11.40) · WP Squared | CVE-2026-41940 | ✅ PATCHED — April 28, 2026 | 🔴 CRITICAL — CISA KEV; 40K+ hosts compromised; ransomware + APT | 2026-04-30 |
-| ZD-014 | Copy Fail | LPE / Page Cache Poisoning via Kernel Crypto API | Linux Kernel 4.14 through 7.0-rc (all distros since July 2017) | CVE-2026-31431 | ✅ PATCHED — All major distros patched; **CISA KEV FCEB deadline May 15** | 🔴 HIGH (✅ CISA KEV; active exploitation; **deadline 4 days away**) | 2026-05-01 |
+| ZD-014 | Copy Fail | LPE / Page Cache Poisoning via Kernel Crypto API | Linux Kernel 4.14 through 7.0-rc (all distros since July 2017) | CVE-2026-31431 | ✅ PATCHED — All major distros patched; ✅ CISA KEV FCEB deadline May 15 — **PASSED** | 🔴 HIGH (✅ CISA KEV; active exploitation; **FCEB deadline PASSED May 15**) | 2026-05-01 |
 
 ---
 
@@ -93,4 +99,4 @@
 
 ---
 
-*Last updated: 2026-05-15 | Added ZD-030 (CVE-2026-20182, Cisco SD-WAN CVSS 10.0 auth bypass, CISA KEV + FCEB deadline May 17) + ZD-031 (CVE-2026-42897, MS Exchange XSS/RCE zero-day, actively exploited, no patch) + ZD-032 (ssh-keysign-pwn, Linux LPE, PoC public, distros pending); Updated Fragnesia (ZD-029) CVE assigned: CVE-2026-46300 (CVSS 7.8); YellowKey (ZD-026) Day 3 unpatched; GreenPlasma (ZD-027) Day 3 unpatched; COPYFAIL KEV deadline PASSED today | Entry count: 32*
+*Last updated: 2026-05-15 | Added ZD-033 (CVE-2026-41651/Pack2TheRoot, PackageKit TOCTOU LPE CVSS 8.8, actively exploited, public PoC) + ZD-034 (CVE-2026-41103, MS SSO Jira/Confluence auth bypass CVSS 9.1, actively exploited) + ZD-035 (CVE-2026-35421, Windows GDI Heap BOF RCE CVSS 7.8, May PT) + ZD-036 (CVE-2026-40365, SharePoint RCE CVSS 8.8, May PT) + ZD-037 (CVE-2026-32161, WiFi Miniport UAF RCE CVSS 7.5, May PT) + ZD-038 (CVE-2026-40402, Hyper-V EoP CVSS 9.3, May PT); Updated COPYFAIL (ZD-014) FCEB deadline PASSED | Entry count: 38*
