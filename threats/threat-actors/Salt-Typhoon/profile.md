@@ -232,7 +232,7 @@ US response has been complicated by: telecom companies invoking legal privilege 
 
 ---
 
-*Last Updated: 2026-05-12 | Maintained by C3PO*
+*Last Updated: 2026-05-15 | Maintained by C3PO*
 
 ---
 
@@ -270,3 +270,34 @@ Salt Typhoon has expanded operations to **South American telecommunications netw
 **Add to Notable Campaigns table:**
 
 | Apr 2026 | IBM Italy (Sistemi Informativi) Breach | Italian IT managed services | European MSP compromise; inherited client network access; TernDoor/PeerTime implants |
+
+---
+
+## 📡 Intelligence Update — 2026-05-15
+
+### Azerbaijan Oil & Gas Intrusion (Dec 2025–Feb 2026) — Sector Expansion Confirmed
+
+Bitdefender researchers disclosed on **May 14, 2026** that Salt Typhoon conducted a **sustained intrusion campaign against an Azerbaijani oil and gas company** between December 2025 and February 2026. This is a **significant target-sector expansion** — Salt Typhoon's documented targeting has historically focused on telecommunications, government, and technology entities, not energy infrastructure.
+
+**Why Azerbaijan?** Bitdefender assesses the pivot was *"likely triggered by Azerbaijan's recently increased role in European energy security"* following Russia's Ukraine gas transit agreement expiration and recent Strait of Hormuz disruptions. Azerbaijan has become a critical alternative energy corridor for European customers previously dependent on Russian gas — making it a strategically high-value SIGINT target.
+
+**Attack chain reconstructed:**
+1. Initial compromise via **Microsoft Exchange vulnerability exploitation**
+2. Web shell deployment on compromised Exchange server
+3. Command execution and DLL sideloading
+4. Backdoor deployment: **Deed RAT** (updated variant) + **TernDoor**
+5. Multi-wave persistence: operators re-accessed the initially compromised server at ~monthly intervals (late December, late January, late February) to redeploy tooling and extend access
+
+Bitdefender characterizes the pattern as *"an actor that repeatedly sought to regain and extend access"* — consistent with Salt Typhoon's documented dwell-and-persist operational model. Simple eviction often fails to fully close out these intrusions.
+
+**Tooling update — Deed RAT:**
+The campaign deployed an **updated version of Deed RAT**, a custom backdoor Cisco Talos researchers have linked to Salt Typhoon. TernDoor, first documented in the May 12 update (IBM Italy campaign), is now confirmed in use across multiple 2026 campaigns.
+
+**Add to Notable Campaigns table:**
+
+| Dec 2025–Feb 2026 | Azerbaijani Oil & Gas Intrusion | Unnamed Azerbaijani energy company | Sector expansion into energy; Exchange exploitation; Deed RAT (updated) + TernDoor; multi-wave access; triggered by Azerbaijan's expanded European energy role |
+
+**Add to Key Exploited CVEs table:**
+- Microsoft Exchange Server vulnerabilities (specific CVE not confirmed; assessed ProxyLogon/ProxyShell class based on Exchange web shell deployment pattern)
+
+*Profile updated: 2026-05-15 | Author: C3PO*

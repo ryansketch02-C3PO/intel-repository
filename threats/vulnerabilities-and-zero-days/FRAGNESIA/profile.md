@@ -5,14 +5,14 @@
 | Field | Details |
 |---|---|
 | **Alias** | Fragnesia |
-| **CVE** | **Not yet assigned** — additional CVEs pending; belongs to Dirty Frag vulnerability class |
+| **CVE** | **CVE-2026-46300** (CVSS 7.8) — assigned May 2026; XFRM logic bug class |
 | **Related CVEs** | CVE-2026-43284 (ESP / Dirty Frag parent), CVE-2026-43500 (RxRPC / Dirty Frag parent) — see ZD-017 |
 | **Vendor Advisory** | Linux kernel upstream patch merged May 13, 2026 |
 | **Type** | Local Privilege Escalation (LPE) |
 | **Class** | Logic Bug — XFRM/ESP and TCP subsystem; improper page cache write primitive |
 | **Affected Systems** | All Linux kernel versions **before May 13, 2026 upstream patch** (all major distributions) |
 | **Patch Status** | ⚠️ **PARTIAL** — Upstream Linux kernel patched May 13, 2026; **distribution packages (Debian, Ubuntu, RHEL, etc.) still pending** |
-| **CVSS** | Not yet scored; assessed **HIGH** (same class as Dirty Frag; more reliable exploitation) |
+| **CVSS** | **7.8 HIGH** (CVE-2026-46300, CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H) |
 | **Exploit Maturity** | 🔴 **Public PoC** — Full exploit with page cache corruption published May 13, 2026 by William Bowling (Zelic) |
 | **Disclosed** | 2026-05-13 |
 | **Discovered By** | William Bowling (Zelic Security Research) |

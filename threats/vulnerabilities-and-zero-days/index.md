@@ -9,7 +9,8 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-026 | YellowKey | BitLocker Bypass / WinRE FStX Feature Update Simulation | Windows 11 · Server 2022/2025 (Win10 unaffected) | None — UNPATCHED | 🔴 UNPATCHED **(Day 1; full PoC public; TPM-only confirmed; TPM+PIN unconfirmed)** | 🔴 HIGH — Public PoC; encryption assurance bypass; same researcher as RedSun/UnDefend | 2026-05-13 |
+| ZD-031 | CVE-2026-42897 | XSS / Arbitrary Code Execution via Crafted Email | Microsoft Exchange Server (on-prem, all versions w/ OWA) | CVE-2026-42897 | 🔴 UNPATCHED — Out-of-band mitigations only | 🔴 HIGH — Actively exploited zero-day; email-borne; OWA session hijack + code execution; Exchange Online NOT affected | 2026-05-15 |
+| ZD-026 | YellowKey | BitLocker Bypass / WinRE FStX Feature Update Simulation | Windows 11 · Server 2022/2025 (Win10 unaffected) | None — UNPATCHED | 🔴 UNPATCHED **(Day 3; full PoC public; TPM-only confirmed; TPM+PIN unconfirmed)** | 🔴 HIGH — Public PoC; encryption assurance bypass; same researcher as RedSun/UnDefend | 2026-05-13 |
 | ZD-027 | GreenPlasma | EoP / CTFMON Arbitrary Section Creation | Windows 11 · Server 2022/2025 | None — UNPATCHED | 🔴 UNPATCHED **(Day 1; partial PoC — SYSTEM shell component withheld)** | 🟡 MEDIUM (🔴 HIGH if completed; cldapi.dll abuse; Nightmare-Eclipse fifth tool) | 2026-05-13 |
 | ZD-002 | RedSun | LPE / Cloud Files API + NTFS Junction | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 27 — PT SHIPPED, NO FIX; CISA KEV watch May 15)** | 🔴 HIGH | 2026-04-18 |
 | ZD-003 | UnDefend | DoS / Defender Blind + Telemetry Falsification | Windows 10/11/Server 2019+ | None — UNPATCHED | 🔴 UNPATCHED **(Day 27 — PT SHIPPED, NO FIX; CISA KEV watch May 15)** | 🟡 MEDIUM (🔴 HIGH chained; telemetry manipulation confirmed) | 2026-04-18 |
@@ -21,12 +22,19 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
-| ZD-029 | Fragnesia | LPE / Page Cache Write via XFRM/ESP + TCP Logic Bug | Linux kernel (all before May 13, 2026 upstream) | CVE TBD — Dirty Frag class (logic-bug variant) | ⚠️ PARTIAL — Upstream kernel patched May 13, 2026; **all major distribution packages still pending** | 🔴 HIGH — Public PoC (full root shell); **no race condition** = more reliable than Dirty Frag; container escape path; distros unpatched | 2026-05-14 |
+| ZD-032 | ssh-keysign-pwn | LPE / SSH Private Key Read via SUID Binary Abuse | Linux kernel (all distros before May 14, 2026 upstream patch) | CVE TBD | ⚠️ PARTIAL — Upstream patched May 14, 2026; **all distro packages pending** | 🟠 HIGH — Public PoC; SSH host key theft enables server impersonation; Yann Horn fix proposed 6 years ago, finally merged | 2026-05-15 |
+| ZD-029 | Fragnesia | LPE / Page Cache Write via XFRM/ESP + TCP Logic Bug | Linux kernel (all before May 13, 2026 upstream) | **CVE-2026-46300** (CVSS 7.8) | ⚠️ PARTIAL — Upstream kernel patched May 13, 2026; **all major distribution packages still pending** | 🔴 HIGH — Public PoC (full root shell); **no race condition** = more reliable than Dirty Frag; container escape path; distros unpatched | 2026-05-14 |
 | ZD-017 | Dirty Frag | LPE / Page Cache Write via IPSec ESP + RxRPC in-place decryption | Linux kernel 4.10–7.0 (all major distros) | CVE-2026-43284 (ESP) + CVE-2026-43500 (RxRPC) | ⚠️ PARTIAL — ESP (CVE-2026-43284) patched upstream + AlmaLinux/CloudLinux; **RxRPC (CVE-2026-43500) UNPATCHED**; RHEL/Ubuntu kernel packages pending | 🔴 HIGH — Public PoC; active exploitation confirmed (Microsoft); container escape path; Copy Fail mitigation provides NO protection | 2026-05-11 |
 
 ---
 
 ## 📋 N-Day CVEs (Patched, Actively Exploited or High Risk)
+
+### Recently Added (2026-05-15)
+
+| ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
+|---|---|---|---|---|---|---|---|
+| ZD-030 | CVE-2026-20182 | Auth Bypass / Remote Admin Privilege Escalation | Cisco Catalyst SD-WAN Controller + Manager | CVE-2026-20182 | ✅ PATCHED — May 15, 2026 ✅ CISA KEV; FCEB deadline May 17, 2026 | 🔴 CRITICAL — CVSS 10.0; CISA KEV same day as patch; exploited by UAT-8616; 6th SD-WAN zero-day in 2026; full admin access to SD-WAN management plane | 2026-05-15 |
 
 ### Recently Added (2026-05-14)
 
@@ -85,4 +93,4 @@
 
 ---
 
-*Last updated: 2026-05-14 | Added ZD-028 (CVE-2026-45185 Exim MTA CVSS 9.8 unauthenticated RCE, GNU TLS builds) + ZD-029 (Fragnesia Linux kernel LPE, Dirty Frag logic-bug variant, upstream patched May 13, distros pending); YellowKey (ZD-026) Day 2 unpatched; GreenPlasma (ZD-027) Day 2 unpatched; COPYFAIL KEV deadline **TODAY May 15** | Entry count: 29*
+*Last updated: 2026-05-15 | Added ZD-030 (CVE-2026-20182, Cisco SD-WAN CVSS 10.0 auth bypass, CISA KEV + FCEB deadline May 17) + ZD-031 (CVE-2026-42897, MS Exchange XSS/RCE zero-day, actively exploited, no patch) + ZD-032 (ssh-keysign-pwn, Linux LPE, PoC public, distros pending); Updated Fragnesia (ZD-029) CVE assigned: CVE-2026-46300 (CVSS 7.8); YellowKey (ZD-026) Day 3 unpatched; GreenPlasma (ZD-027) Day 3 unpatched; COPYFAIL KEV deadline PASSED today | Entry count: 32*
