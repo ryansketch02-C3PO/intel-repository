@@ -317,6 +317,18 @@
   .risk-bar-fill { height: 100%; border-radius: 3px; }
   .risk-val { font-size: 11px; font-weight: 600; margin-top: 4px; }
 
+  /* ── Print / PDF ── */
+  @media print {
+    details { display: block !important; }
+    details > div { display: block !important; }
+    details > summary .expand-hint { display: none; }
+    details > summary {
+      border-radius: 6px 6px 0 0;
+      border-bottom: none;
+      pointer-events: none;
+    }
+  }
+
   /* ── Footer ── */
   .report-footer {
     border-top: 1px solid var(--border);
@@ -392,7 +404,7 @@
 <details style="margin-bottom:16px;">
   <summary style="cursor:pointer; font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.8px; padding:8px 12px; background:var(--surface); border:1px solid var(--border); border-radius:6px; list-style:none; display:flex; align-items:center; gap:8px;">
     <span>📖 Risk Level Reference Guide</span>
-    <span style="font-weight:400; font-size:10px; margin-left:auto;">click to expand</span>
+    <span class="expand-hint" style="font-weight:400; font-size:10px; margin-left:auto;">click to expand</span>
   </summary>
   <div style="background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 6px 6px; padding:16px;">
 
