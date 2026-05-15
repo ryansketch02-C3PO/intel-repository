@@ -5,6 +5,43 @@ Classification: TLP:GREEN — Internal Use
 
 ---
 
+## 📖 Risk Level Reference Guide
+
+### Risk Levels
+
+| Level | Score | Meaning | Required Response |
+|---|---|---|---|
+| 🔴 **CRITICAL** | 75–100 | Active exploitation confirmed or highly imminent. Significant organisational impact likely. | **Immediate — hours** |
+| 🟠 **HIGH** | 50–74 | Exploitation likely or public PoC available. Significant risk with limited mitigating controls. | **Urgent — 24–72 hours** |
+| 🟡 **MEDIUM** | 25–49 | Limited exploitation observed. Moderate risk with meaningful mitigating factors in place. | **Scheduled — 1–2 weeks** |
+| 🟢 **LOW** | 0–24 | No active exploitation. Minimal immediate risk. Standard patch cycle applies. | **Standard cycle — 30 days** |
+
+### Domain Risk Score Methodology
+
+Domain scores (e.g. *AI-Powered Attacks: 88/100*) are analyst assessments based on a weighted combination of the following factors. They are **not** derived from a single external framework.
+
+| Factor | Weight | Description |
+|---|---|---|
+| Exploitation Maturity | 30% | Active exploitation, PoC availability, weaponisation speed |
+| Threat Actor Capability | 25% | Nation-state / criminal sophistication and intent |
+| Attack Surface Breadth | 20% | How widely exposed the affected systems or people are |
+| Potential Business Impact | 15% | Financial, reputational, and operational consequences if exploited |
+| Mitigation Availability | 10% | Patch, workaround, or compensating control availability |
+
+### CVE Severity Reference (CVSS v3.1)
+
+| Severity | CVSS Range | Notes |
+|---|---|---|
+| **CRITICAL** | 9.0–10.0 | |
+| **HIGH** | 7.0–8.9 | |
+| **MEDIUM** | 4.0–6.9 | |
+| **LOW** | 0.1–3.9 | |
+| **NONE** | 0.0 | |
+
+> CVSS scores reflect technical severity only. This report additionally weights active exploitation status, threat actor intent, and organisational context when assigning overall risk levels.
+
+---
+
 ## ⚠️ Overall Risk: ELEVATED
 
 AI-powered offensive tooling has crossed a capability threshold this week. Agentic attack frameworks operating without human-in-the-loop are confirmed in at least two nation-state campaigns. Concurrently, the AI infrastructure layer itself is under attack — an actively exploited **Microsoft SSO Plugin zero-day** (CVE-2026-41103, CVSS 9.1) is compromising Jira and Confluence environments at scale, and a **Palo Alto PAN-OS zero-day** (CVE-2026-0300) linked to a China-nexus actor has been weaponised since April.

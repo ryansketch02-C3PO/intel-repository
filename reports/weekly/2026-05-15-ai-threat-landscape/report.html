@@ -388,6 +388,113 @@
   </div>
 </div>
 
+<!-- ── RISK GUIDE ── -->
+<details style="margin-bottom:16px;">
+  <summary style="cursor:pointer; font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.8px; padding:8px 12px; background:var(--surface); border:1px solid var(--border); border-radius:6px; list-style:none; display:flex; align-items:center; gap:8px;">
+    <span>📖 Risk Level Reference Guide</span>
+    <span style="font-weight:400; font-size:10px; margin-left:auto;">click to expand</span>
+  </summary>
+  <div style="background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 6px 6px; padding:16px;">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px;">
+
+      <!-- Left: Level Definitions -->
+      <div>
+        <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Risk Levels</div>
+        <table style="width:100%; border-collapse:collapse; font-size:11px;">
+          <thead>
+            <tr>
+              <th style="text-align:left; padding:5px 8px; background:var(--surface2); color:var(--muted); font-size:10px; text-transform:uppercase; border-bottom:1px solid var(--border);">Level</th>
+              <th style="text-align:left; padding:5px 8px; background:var(--surface2); color:var(--muted); font-size:10px; text-transform:uppercase; border-bottom:1px solid var(--border);">Score</th>
+              <th style="text-align:left; padding:5px 8px; background:var(--surface2); color:var(--muted); font-size:10px; text-transform:uppercase; border-bottom:1px solid var(--border);">Meaning</th>
+              <th style="text-align:left; padding:5px 8px; background:var(--surface2); color:var(--muted); font-size:10px; text-transform:uppercase; border-bottom:1px solid var(--border);">Response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border);"><span style="color:var(--red); font-weight:700;">🔴 CRITICAL</span></td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--red);">75–100</td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border); color:#c9d1d9;">Active exploitation confirmed or highly imminent. Significant organisational impact likely.</td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border);"><span style="color:var(--red); font-weight:600;">Immediate action — hours</span></td>
+            </tr>
+            <tr>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border);"><span style="color:var(--orange); font-weight:700;">🟠 HIGH</span></td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--orange);">50–74</td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border); color:#c9d1d9;">Exploitation likely or public PoC available. Significant risk with limited mitigating controls.</td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border);"><span style="color:var(--orange); font-weight:600;">Urgent — 24–72 hours</span></td>
+            </tr>
+            <tr>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border);"><span style="color:var(--yellow); font-weight:700;">🟡 MEDIUM</span></td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--yellow);">25–49</td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border); color:#c9d1d9;">Limited exploitation observed. Moderate risk with meaningful mitigating factors in place.</td>
+              <td style="padding:6px 8px; border-bottom:1px solid var(--border);"><span style="color:var(--yellow); font-weight:600;">Scheduled — 1–2 weeks</span></td>
+            </tr>
+            <tr>
+              <td style="padding:6px 8px;"><span style="color:var(--green); font-weight:700;">🟢 LOW</span></td>
+              <td style="padding:6px 8px; color:var(--green);">0–24</td>
+              <td style="padding:6px 8px; color:#c9d1d9;">No active exploitation. Minimal immediate risk. Standard patch cycle applies.</td>
+              <td style="padding:6px 8px;"><span style="color:var(--green); font-weight:600;">Standard cycle — 30 days</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Right: Scoring Factors -->
+      <div>
+        <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">How Domain Risk Scores Are Calculated</div>
+        <div style="font-size:11px; color:#c9d1d9; line-height:1.6; margin-bottom:10px;">
+          Domain scores (e.g., <em>AI-Powered Attacks: 88/100</em>) are analyst assessments based on a weighted combination of the following factors. They are not derived from a single external framework.
+        </div>
+        <table style="width:100%; border-collapse:collapse; font-size:11px;">
+          <thead>
+            <tr>
+              <th style="text-align:left; padding:5px 8px; background:var(--surface2); color:var(--muted); font-size:10px; text-transform:uppercase; border-bottom:1px solid var(--border);">Factor</th>
+              <th style="text-align:left; padding:5px 8px; background:var(--surface2); color:var(--muted); font-size:10px; text-transform:uppercase; border-bottom:1px solid var(--border);">Weight</th>
+              <th style="text-align:left; padding:5px 8px; background:var(--surface2); color:var(--muted); font-size:10px; text-transform:uppercase; border-bottom:1px solid var(--border);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 8px;">Exploitation Maturity</td><td style="padding:5px 8px; color:var(--blue);">30%</td><td style="padding:5px 8px; color:var(--muted);">Active exploitation, PoC availability, weaponisation speed</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 8px;">Threat Actor Capability</td><td style="padding:5px 8px; color:var(--blue);">25%</td><td style="padding:5px 8px; color:var(--muted);">Nation-state / criminal sophistication and intent</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 8px;">Attack Surface Breadth</td><td style="padding:5px 8px; color:var(--blue);">20%</td><td style="padding:5px 8px; color:var(--muted);">How widely exposed the affected systems/people are</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 8px;">Potential Business Impact</td><td style="padding:5px 8px; color:var(--blue);">15%</td><td style="padding:5px 8px; color:var(--muted);">Financial, reputational, operational consequence if exploited</td></tr>
+            <tr><td style="padding:5px 8px;">Mitigation Availability</td><td style="padding:5px 8px; color:var(--blue);">10%</td><td style="padding:5px 8px; color:var(--muted);">Patch, workaround, or compensating control availability</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CVE Severity Reference -->
+    <div style="font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">CVE Severity Reference (CVSS v3.1)</div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div style="background:#f8514915; border:1px solid #f8514940; border-radius:5px; padding:6px 12px; text-align:center;">
+        <div style="font-size:12px; font-weight:700; color:var(--red);">CRITICAL</div>
+        <div style="font-size:10px; color:var(--muted);">CVSS 9.0–10.0</div>
+      </div>
+      <div style="background:#d2992215; border:1px solid #d2992240; border-radius:5px; padding:6px 12px; text-align:center;">
+        <div style="font-size:12px; font-weight:700; color:var(--orange);">HIGH</div>
+        <div style="font-size:10px; color:var(--muted);">CVSS 7.0–8.9</div>
+      </div>
+      <div style="background:#e3b34115; border:1px solid #e3b34140; border-radius:5px; padding:6px 12px; text-align:center;">
+        <div style="font-size:12px; font-weight:700; color:var(--yellow);">MEDIUM</div>
+        <div style="font-size:10px; color:var(--muted);">CVSS 4.0–6.9</div>
+      </div>
+      <div style="background:#3fb95015; border:1px solid #3fb95040; border-radius:5px; padding:6px 12px; text-align:center;">
+        <div style="font-size:12px; font-weight:700; color:var(--green);">LOW</div>
+        <div style="font-size:10px; color:var(--muted);">CVSS 0.1–3.9</div>
+      </div>
+      <div style="background:#58a6ff15; border:1px solid #58a6ff40; border-radius:5px; padding:6px 12px; text-align:center;">
+        <div style="font-size:12px; font-weight:700; color:var(--blue);">NONE</div>
+        <div style="font-size:10px; color:var(--muted);">CVSS 0.0</div>
+      </div>
+      <div style="flex:1; background:var(--surface2); border:1px solid var(--border); border-radius:5px; padding:6px 12px; font-size:11px; color:var(--muted); display:flex; align-items:center;">
+        CVSS scores reflect technical severity only. This report additionally weights active exploitation status, threat actor intent, and organisational context when assigning overall risk levels.
+      </div>
+    </div>
+
+  </div>
+</details>
+
 <!-- ── RISK BANNER ── -->
 <div class="risk-banner">
   <div class="risk-label">⚠ OVERALL RISK<br>ELEVATED</div>
