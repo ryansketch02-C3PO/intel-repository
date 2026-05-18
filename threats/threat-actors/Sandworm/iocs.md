@@ -1,5 +1,7 @@
 # Sandworm (APT44) — Indicators of Compromise
 
+> ⚠️ IOC Freshness Warning: Last updated [unknown — no date recorded]. Static indicators may be stale. Prioritize behavioral detection.
+
 > **Admiralty Grade: A1 | TLP:WHITE**
 > Note: Sandworm operates with high OPSEC and rotates infrastructure frequently. IOCs have short shelf life. Prioritize behavioral/TTP-based detection over static indicators.
 

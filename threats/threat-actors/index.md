@@ -48,6 +48,9 @@
 
 | 041 | The Gentlemen | Cybercriminal (RaaS) | Unknown (Qilin lineage; experienced ransomware operators) | 🔴 ACTIVE — #2 globally Q1 2026; 320+ victims; fastest-growing group in recent history | 🔴 HIGH | Finance, Manufacturing, Real Estate, Healthcare, Technology |
 | 042 | Chaotic Eclipse (Nightmare-Eclipse) | Independent Researcher — Protest Disclosure | Unknown (identity unmasked) | 🔴 ACTIVE — 5 tools public; explicit threat of June PT disclosure | 🟠 HIGH (indirect) — tooling weaponized by third-party actors within 24–48h of release | Windows ecosystem (all sectors) |
+| 043 | GopherWhisper | State-Sponsored APT — Cyber Espionage | China (PRC) — China-aligned; specific agency unknown | 🔴 ACTIVE — Disclosed April 23, 2026 (ESET); active since Nov 2023; 12+ confirmed Mongolian gov systems infected | 🟠 HIGH — Novel toolset; no code overlap with known actors; Slack/Discord/Outlook C2 | Government (Mongolia confirmed; dozens of other victims suspected) |
+| 044 | SHADOW-EARTH-053 | State-Sponsored APT — Cyber Espionage | China (PRC) — China-aligned; specific agency unknown | 🔴 ACTIVE — Disclosed April 30, 2026 (Trend Micro); 12+ critical networks; active since Dec 2024 | 🔴 HIGH — ShadowPad + NoodleRat; 8-month pre-deployment dwell; confirmed NATO-state (Poland) targeting | Defense Industrial Base, Government (8+ countries: Pakistan, Thailand, Malaysia, India, Myanmar, Sri Lanka, Taiwan, Poland) |
+| 045 | UAT-8302 | State-Sponsored APT — Cyber Espionage | China (PRC) — China-nexus; high confidence (Cisco Talos) | 🔴 ACTIVE — Disclosed May 5, 2026 (Cisco Talos); active since late 2024 | 🔴 HIGH — Shared China-nexus tooling ecosystem; NetDraft, CloudSorcerer v3, SNOWRUST, DeedRAT | Government (South America, Southeastern Europe) |
 
 ---
 
@@ -59,4 +62,4 @@
 
 ---
 
-*Last updated: 2026-05-13 | Added #042 Chaotic Eclipse (Nightmare-Eclipse) — protest researcher; 5 tools public (BlueHammer/RedSun/UnDefend/YellowKey/GreenPlasma) | Entry count: 42 threat actors*
+*Last updated: 2026-05-18 | Added #043 GopherWhisper (China-aligned APT, ESET April 23 2026, Mongolia government targeting, Go-based toolkit with Slack/Discord/Outlook C2) + #044 SHADOW-EARTH-053 (China-aligned APT, Trend Micro April 30 2026, 8+ country defense/gov targeting, ShadowPad + NoodleRat, 8-month dwell) + #045 UAT-8302 (China-nexus APT, Cisco Talos May 5 2026, South America + SE Europe government targeting, shared China-nexus tooling ecosystem) | Entry count: 45 threat actors*

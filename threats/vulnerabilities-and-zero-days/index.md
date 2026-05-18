@@ -35,6 +35,8 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
+| ZD-042 | OpenDSM RCE Chain | Missing Auth + OS Command Injection → RCE (chainable) | OpenDSM (all versions with Docker remote-user config; `report_network_map.php`) | CVE-2026-28515 (CVSS 9.3) + CVE-2026-28516 (CVSS 9.3) | ⚠️ PATCH STATUS UNKNOWN — exploitation attempts confirmed as of May 18, 2026; vendor advisory pending | 🟠 HIGH — Two chained CVEs (CVSS 9.3 each); auth bypass + OS command injection → RCE in 5 HTTP requests; SQL injection also available; exploitation attempts confirmed | 2026-05-18 |
+| ZD-041 | CVE-2026-1281 | Code Injection / Unauthenticated RCE | Ivanti Endpoint Manager Mobile (EPMM) | CVE-2026-1281 | ✅ PATCHED — Ivanti EPMM patch available; ✅ CISA KEV added May 13, 2026; FCEB deadline set | 🔴 HIGH — CISA KEV; unauthenticated remote code execution on MDM infrastructure; 83% of observed exploitation from single Russian-geolocated IP (Duggan USA research); nation-state interest in MDM compromise for device fleet access | 2026-05-18 |
 | ZD-039 | NGINX Rift | Heap Buffer Overflow / DoS (reliable) + RCE (ASLR-off or advanced) | NGINX Open Source 0.6.27–1.30.0 · NGINX Plus R32–R36 + F5 dependent products | CVE-2026-42945 (CVSS 9.2) | ✅ PATCHED — NGINX 1.30.1/1.31.0; NGINX Plus R32 P6/R36 P4; AlmaLinux patched; RHEL/Ubuntu pending | 🔴 HIGH — CVSS 9.2; public PoC; **active exploitation confirmed** (VulnCheck; Chinese IP + Vulnhuntr + PHP web shell); 18-year-old bug; ubiquitous attack surface | 2026-05-18 |
 
 ### Recently Added (2026-05-15)
@@ -106,4 +108,4 @@
 
 ---
 
-*Last updated: 2026-05-18 | Added ZD-039 (CVE-2026-42945 NGINX Rift, CVSS 9.2, heap buffer overflow, active exploitation confirmed by VulnCheck, patched) + ZD-040 (MiniPlasma, Windows LPE via cldflt.sys race condition, PoC public, unpatched, SYSTEM shell on fully patched May 2026 Win11, 6th Chaotic Eclipse tool); YellowKey (ZD-026) Day 6 unpatched; GreenPlasma (ZD-027) Day 6 unpatched; RedSun (ZD-002) Day 32 unpatched; UnDefend (ZD-003) Day 32 unpatched | Entry count: 40*
+*Last updated: 2026-05-18 | Added ZD-041 (CVE-2026-1281, Ivanti EPMM unauthenticated RCE, CISA KEV May 13) + ZD-042 (OpenDSM CVE-2026-28515 + CVE-2026-28516, missing auth + OS command injection, CVSS 9.3 each, chainable to RCE, exploitation attempts confirmed May 18); also added ZD-039 (CVE-2026-42945 NGINX Rift) + ZD-040 (MiniPlasma) earlier today; ZD-031 CVE-2026-42897 Exchange XSS CISA KEV deadline May 29; MiniPlasma (ZD-040) Day 1 unpatched; YellowKey (ZD-026) Day 6; RedSun (ZD-002)/UnDefend (ZD-003) Day 32 | Entry count: 42*
