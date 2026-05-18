@@ -85,10 +85,11 @@ GreenPlasma reuses `cldapi.dll` (the Cloud Files API library) as a primitive —
 | Tool | Disclosed | Type | PoC | Status |
 |---|---|---|---|---|
 | BlueHammer | April 3, 2026 | LPE → SYSTEM (file read) | Full | ✅ Patched — CVE-2026-33825 |
-| RedSun | April 16, 2026 | LPE → SYSTEM (file write) | Full | 🔴 Unpatched — Day 27 |
-| UnDefend | April 16, 2026 | Defender DoS/Blind | Full | 🔴 Unpatched — Day 27 |
-| YellowKey | May 12, 2026 | BitLocker Bypass | Full | 🔴 Unpatched — Day 1 |
-| GreenPlasma | May 12, 2026 | EoP (CTFMON Section) | **Partial** | 🔴 Unpatched — Day 1 |
+| RedSun | April 16, 2026 | LPE → SYSTEM (file write) | Full | 🔴 Unpatched — Day 32 |
+| UnDefend | April 16, 2026 | Defender DoS/Blind | Full | 🔴 Unpatched — Day 32 |
+| YellowKey | May 12, 2026 | BitLocker Bypass | Full | 🔴 Unpatched — Day 6 |
+| GreenPlasma | May 12, 2026 | EoP (CTFMON Section) | **Partial** | 🔴 Unpatched — Day 6 |
+| **MiniPlasma** | **May 14, 2026** | **LPE → SYSTEM (`cldflt.sys`, CVE-2020-17103 patch ineffective)** | **Full** | **🔴 Unpatched — Day 4** |
 
 The researcher's blog post explicitly threatened: *"Next patch tuesday will have a big surprise for you Microsoft."* — suggesting more disclosures are incoming.
 
@@ -149,3 +150,4 @@ Hunt queries and behavioral indicators:
 | Date | Update |
 |---|---|
 | 2026-05-13 | Profile created. Day 1. Partial PoC public. No CVE, no patch, no Microsoft acknowledgment. Full SYSTEM shell component withheld by researcher. |
+| 2026-05-18 | Day 6. No patch. Researcher released MiniPlasma (CVE-2020-17103, full PoC, SYSTEM shell — sixth tool in the series). Series table updated. |

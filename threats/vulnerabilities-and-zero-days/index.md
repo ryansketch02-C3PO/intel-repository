@@ -56,6 +56,7 @@
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
 | ZD-028 | CVE-2026-45185 | Unauthenticated RCE / Use-After-Free in GNU TLS Shutdown | Exim MTA 4.97–4.99.2 **(GNU TLS builds only** — Debian/Ubuntu) | CVE-2026-45185 | ✅ PATCHED — Exim 4.99.3 | 🔴 HIGH — CVSS 9.8; unauthenticated RCE on mail servers; OpenSSL builds NOT affected; Sandworm weaponized Exim RCE within days in 2019 (CVE-2019-10149) — high mass-exploitation risk | 2026-05-14 |
+| — | CVE-2026-31635 | Remote DoS / Kernel Panic (Inverted rxrpc Authenticator Length Check) | Linux kernel (rxgk/rxrpc-enabled; AFS environments — mainstream distros not affected) | CVE-2026-31635 | ✅ PATCHED — Upstream fixed Apr 24, 2026; RHEL 10 fix deferred; RHEL 6–9/Debian stable/SUSE not affected | 🟡 MEDIUM — CVSS 7.5; remote unauthenticated DoS; narrow scope (AFS/rxgk only); no active exploitation | 2026-05-18 |
 
 ### Recently Added (2026-05-13)
 
@@ -108,4 +109,4 @@
 
 ---
 
-*Last updated: 2026-05-18 | Added ZD-041 (CVE-2026-1281, Ivanti EPMM unauthenticated RCE, CISA KEV May 13) + ZD-042 (OpenDSM CVE-2026-28515 + CVE-2026-28516, missing auth + OS command injection, CVSS 9.3 each, chainable to RCE, exploitation attempts confirmed May 18); also added ZD-039 (CVE-2026-42945 NGINX Rift) + ZD-040 (MiniPlasma) earlier today; ZD-031 CVE-2026-42897 Exchange XSS CISA KEV deadline May 29; MiniPlasma (ZD-040) Day 1 unpatched; YellowKey (ZD-026) Day 6; RedSun (ZD-002)/UnDefend (ZD-003) Day 32 | Entry count: 42*
+*Last updated: 2026-05-18 | Added ZD-041 (CVE-2026-1281, Ivanti EPMM unauthenticated RCE, CISA KEV May 13) + ZD-042 (OpenDSM CVE-2026-28515 + CVE-2026-28516, missing auth + OS command injection, CVSS 9.3 each, chainable to RCE, exploitation attempts confirmed May 18); also added ZD-039 (CVE-2026-42945 NGINX Rift) + ZD-040 (MiniPlasma) earlier today; ZD-031 CVE-2026-42897 Exchange XSS CISA KEV deadline May 29; MiniPlasma (ZD-040) Day 1 unpatched; YellowKey (ZD-026) Day 6; RedSun (ZD-002)/UnDefend (ZD-003) Day 32 | Entry count: 42; + CVE-2026-31635 (Linux rxrpc remote DoS, patched upstream, narrow scope)*

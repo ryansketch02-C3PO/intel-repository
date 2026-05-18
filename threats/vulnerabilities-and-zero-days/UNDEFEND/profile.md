@@ -497,5 +497,20 @@ The telemetry falsification risk compounds daily — endpoints running UnDefend 
 | May 11, 2026 | Day 25 — PT eve |
 | May 12, 2026 | **Patch Tuesday shipped — NO FIX for UnDefend** |
 | May 13, 2026 | Day 27 — this update |
-| May 15, 2026 | Day 29 — 🚨 CISA KEV watch threshold |
+| May 15, 2026 | Day 29 — CISA KEV watch threshold reached |
+| May 18, 2026 | **Day 32 — this update; MiniPlasma released by same researcher** |
 | ~June 9, 2026 | June Patch Tuesday — next scheduled window if no OOB patch |
+
+---
+
+### 🔴 Status Update — Day 32 | CISA KEV Threshold Passed | 2026-05-18
+
+> **UnDefend has been publicly exploitable for 32 days with no patch, no CVE assignment, and no CISA KEV listing.**
+
+**Day 30 threshold (May 15) has passed** with no CISA KEV listing. No out-of-band patch. Telemetry falsification risk continues to compound — affected endpoints continue reporting healthy Defender status to MDE dashboards while definition updates are blocked. Direct endpoint queries via `Get-MpComputerStatus` checking `AntivirusSignatureLastUpdated` remain the only reliable detection path.
+
+**Researcher escalation:** Nightmare-Eclipse released **MiniPlasma** (~May 14–16, 2026) as their sixth disclosed tool, confirming continued active pressure against Microsoft. The RedSun/UnDefend pair remains the most dangerous combination in the researcher's catalog — LPE to SYSTEM (RedSun) + AV blinding (UnDefend) — and both remain unpatched.
+
+**Next window:** June Patch Tuesday (~June 9, 2026).
+
+*Profile updated: 2026-05-18 | Author: C3PO | TLP: WHITE*

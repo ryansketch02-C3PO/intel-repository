@@ -355,3 +355,19 @@ Previous mapping contained two incorrect techniques (T1005 — Data from Local S
 | Escape to Host | **T1611** | Documented as a container-to-host escape path in Kubernetes environments (Xint Part 2); matches 🔴 CRITICAL rating for K8s nodes in high-risk scenarios |
 
 *No new exploitation or patch status changes at this update.*
+
+---
+
+## Intelligence Update — 2026-05-18
+
+### CISA KEV FCEB Deadline PASSED (May 15, 2026)
+
+The mandatory CISA KEV remediation deadline of **May 15, 2026** has passed. Federal Civilian Executive Branch (FCEB) agencies that had not applied patched kernels (6.18.22, 6.19.12, or 7.0) or implemented the `algif_aead` module blacklist mitigation by May 15 are now in violation of BOD 22-01.
+
+**Patch status remains:** ✅ All major distributions patched (Ubuntu, RHEL, Debian, SUSE, Fedora, Arch, CloudLinux). **Amazon Linux** was the last to lag; verify current patch status if running Amazon Linux 2023 on unmanaged EC2 instances.
+
+No new exploitation techniques or bypass methods reported. Actively exploited exploitation profile is unchanged: local user → root via `algif_aead` page cache corruption, container-to-host escape in Kubernetes confirmed.
+
+**Action required for any unpatched systems:** Update kernel immediately. The CISA deadline passing does not reduce urgency — public 732-byte exploit remains freely available, exploitation in the wild is confirmed.
+
+*Profile updated: 2026-05-18 | Author: C3PO | TLP: WHITE*

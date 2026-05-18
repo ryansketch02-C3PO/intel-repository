@@ -90,10 +90,11 @@ YellowKey is the fourth public disclosure from Nightmare-Eclipse in approximatel
 | Tool | Disclosed | Type | Status |
 |---|---|---|---|
 | BlueHammer | April 3, 2026 | LPE (SYSTEM) | ✅ Patched — CVE-2026-33825 |
-| RedSun | April 16, 2026 | LPE (SYSTEM) | 🔴 Unpatched — Day 27 |
-| UnDefend | April 16, 2026 | Defender DoS/Blind | 🔴 Unpatched — Day 27 |
-| YellowKey | May 12, 2026 | BitLocker Bypass | 🔴 Unpatched — Day 1 |
-| GreenPlasma | May 12, 2026 | EoP (partial PoC) | 🔴 Unpatched — Day 1 |
+| RedSun | April 16, 2026 | LPE (SYSTEM) | 🔴 Unpatched — Day 32 |
+| UnDefend | April 16, 2026 | Defender DoS/Blind | 🔴 Unpatched — Day 32 |
+| YellowKey | May 12, 2026 | BitLocker Bypass | 🔴 Unpatched — Day 6 |
+| GreenPlasma | May 12, 2026 | EoP (partial PoC) | 🔴 Unpatched — Day 6 |
+| MiniPlasma | May 14, 2026 | LPE / `cldflt.sys` (CVE-2020-17103 patch ineffective) | 🔴 Unpatched — Day 4 |
 
 The researcher has shifted from Defender-targeted LPE (BlueHammer/RedSun/UnDefend) to **encryption bypass** and **memory object manipulation** (YellowKey/GreenPlasma), broadening the attack surface. The explicit threat of a "big surprise" at the next Patch Tuesday suggests at least one additional disclosure is planned.
 
@@ -155,3 +156,4 @@ The researcher has shifted from Defender-targeted LPE (BlueHammer/RedSun/UnDefen
 | Date | Update |
 |---|---|
 | 2026-05-13 | Profile created. Day 1. Public PoC live. No CVE, no patch, no Microsoft acknowledgment. TPM+PIN bypass unconfirmed. |
+| 2026-05-18 | Day 6. No patch. MiniPlasma (CVE-2020-17103) added to researcher series table. Still unpatched. |

@@ -454,5 +454,20 @@ May 12 Patch Tuesday released 138 CVE-numbered vulnerabilities. Multiple analysi
 | May 11, 2026 | Day 25 — PT eve |
 | May 12, 2026 | **Patch Tuesday shipped — NO FIX for RedSun** |
 | May 13, 2026 | Day 27 — this update |
-| May 15, 2026 | Day 29 — 🚨 CISA KEV watch threshold |
+| May 15, 2026 | Day 29 — CISA KEV watch threshold reached |
+| May 18, 2026 | **Day 32 — this update; MiniPlasma (CVE-2020-17103) released by same researcher** |
 | ~June 9, 2026 | June Patch Tuesday — next scheduled window if no OOB patch |
+
+---
+
+### 🔴 Status Update — Day 32 | CISA KEV Threshold Passed | MiniPlasma Released | 2026-05-18
+
+> **RedSun has been publicly exploitable for 32 days with no patch, no CVE assignment, and no CISA KEV listing.**
+
+**Day 30 threshold (May 15) has passed.** Despite prior assessment that a CISA KEV listing was "highly probable" at this milestone, no KEV addition has occurred as of May 18. No out-of-band patch. No Microsoft public statement. Exploitation in the wild continues — Russian-geolocated threat actor infrastructure was confirmed exploiting all three Defender zero-days (RedSun, UnDefend, BlueHammer) as of April 2026.
+
+**Researcher escalation:** Nightmare-Eclipse released **MiniPlasma** (~May 14–16, 2026) — a sixth tool weaponizing CVE-2020-17103 (`cldflt.sys` LPE) whose 2020 patch was confirmed ineffective. RedSun itself also abuses the Cloud Files API/`cldflt.sys` ecosystem, making this a sustained and broadening attack surface from the same researcher. The cumulative pressure on Microsoft to respond is significant.
+
+**Next window:** June Patch Tuesday (~June 9, 2026) is the next scheduled opportunity. An out-of-band fix remains possible at any time.
+
+*Profile updated: 2026-05-18 | Author: C3PO | TLP: WHITE*
