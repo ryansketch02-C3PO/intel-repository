@@ -264,3 +264,28 @@ CERT-UA documented an intensification of Roundcube and Office-document attacks a
 | CVE-2026-32202 NTLM Coercion | May 2026 | European/NATO/Ukrainian gov+defense | Zero-click NTLM hash extraction; formally attributed May 4; exploitation peak before May 12 deadline |
 | Polish Water OT Breach | 2024–2025 (disclosed May 9, 2026) | 5 Polish municipal water treatment plants | Joint APT28/APT29/UNC1151; OT modify-level access to ICS; ABW attribution |
 | Roundcube Prosecutorial Wave | Jan–Mar 2026 | Ukrainian prosecutorial + defense oversight institutions | 170+ accounts; Roundcube XSS continuation of Operation RoundPress |
+
+---
+
+## 📡 Intelligence Update — 2026-05-18
+
+### FrostArmada Campaign Dismantled (FBI Law Enforcement Operation — April 2026)
+
+The **FrostArmada** campaign — an APT28 operation that hijacked DNS settings on over **18,000 SOHO routers across 120 countries** to silently steal Microsoft 365 OAuth tokens and credentials via adversary-in-the-middle — was **dismantled by the FBI in April 2026**.
+
+**Campaign details (May 2025 – April 2026):**
+- **Vector:** TP-Link WR841N routers compromised via CVE-2023-50224 (unauthenticated cred extraction); DNS overwritten to point to attacker VPS nodes
+- **Mechanism:** DHCP pushes malicious DNS to all LAN devices; authentication queries return attacker IP; AitM proxy silently collects M365 passwords and OAuth tokens while passing traffic through
+- **MFA bypass:** Complete — OAuth tokens capture session state post-authentication; no malware deployed; no phishing of individual users
+- **Visibility:** Near-zero; only indicator was a dismissible TLS certificate warning
+- **Peak scale:** 18,000 infected devices across 120 countries (peak December 2025)
+- **Targets:** Government agencies, foreign ministries, law enforcement, IT/hosting providers, on-premises email server operators
+- **Dismantlement:** FBI court-authorized remote operation (April 2026) reset DNS on compromised routers to legitimate resolvers; coordinated with DOJ, Polish government, Microsoft, Black Lotus Labs
+
+**Assessment:** Takedown eliminated active infrastructure but does not recover stolen OAuth tokens already in adversary hands. Tokens remain valid until revoked or expired.
+
+**Add to Signature Campaigns table:**
+
+| FrostArmada | May 2025 – Apr 2026 | Gov, foreign ministries, law enforcement, IT providers (120 countries) | 18,000 SOHO routers DNS-hijacked; M365 OAuth token theft; MFA bypassed; no malware; FBI takedown April 2026 |
+
+*Profile updated: 2026-05-18 | Author: C3PO*

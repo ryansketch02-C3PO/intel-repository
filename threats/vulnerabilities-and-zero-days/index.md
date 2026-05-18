@@ -9,6 +9,7 @@
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
 |---|---|---|---|---|---|---|---|
+| ZD-040 | MiniPlasma | LPE / Race Condition → SYSTEM via cldflt.sys | Windows 10 · Windows 11 · Server (all; NOT Insider Canary) | CVE-2020-17103 regression — UNASSIGNED (new) | 🔴 UNPATCHED — Works on fully patched May 2026 Win11 (KB5089549); Canary build may be fixed | 🟠 HIGH — Public PoC (GitHub); SYSTEM shell confirmed; local-only; 6th Chaotic Eclipse tool; predecessor tools already weaponized by Russia-geolocated actors within 24h | 2026-05-18 |
 | ZD-031 | CVE-2026-42897 | XSS / Arbitrary Code Execution via Crafted Email | Microsoft Exchange Server (on-prem, all versions w/ OWA) | CVE-2026-42897 | 🔴 UNPATCHED — Out-of-band mitigations only | 🔴 HIGH — Actively exploited zero-day; email-borne; OWA session hijack + code execution; Exchange Online NOT affected | 2026-05-15 |
 | ZD-026 | YellowKey | BitLocker Bypass / WinRE FStX Feature Update Simulation | Windows 11 · Server 2022/2025 (Win10 unaffected) | None — UNPATCHED | 🔴 UNPATCHED **(Day 3; full PoC public; TPM-only confirmed; TPM+PIN unconfirmed)** | 🔴 HIGH — Public PoC; encryption assurance bypass; same researcher as RedSun/UnDefend | 2026-05-13 |
 | ZD-027 | GreenPlasma | EoP / CTFMON Arbitrary Section Creation | Windows 11 · Server 2022/2025 | None — UNPATCHED | 🔴 UNPATCHED **(Day 1; partial PoC — SYSTEM shell component withheld)** | 🟡 MEDIUM (🔴 HIGH if completed; cldapi.dll abuse; Nightmare-Eclipse fifth tool) | 2026-05-13 |
@@ -29,6 +30,12 @@
 ---
 
 ## 📋 N-Day CVEs (Patched, Actively Exploited or High Risk)
+
+### Recently Added (2026-05-18)
+
+| ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
+|---|---|---|---|---|---|---|---|
+| ZD-039 | NGINX Rift | Heap Buffer Overflow / DoS (reliable) + RCE (ASLR-off or advanced) | NGINX Open Source 0.6.27–1.30.0 · NGINX Plus R32–R36 + F5 dependent products | CVE-2026-42945 (CVSS 9.2) | ✅ PATCHED — NGINX 1.30.1/1.31.0; NGINX Plus R32 P6/R36 P4; AlmaLinux patched; RHEL/Ubuntu pending | 🔴 HIGH — CVSS 9.2; public PoC; **active exploitation confirmed** (VulnCheck; Chinese IP + Vulnhuntr + PHP web shell); 18-year-old bug; ubiquitous attack surface | 2026-05-18 |
 
 ### Recently Added (2026-05-15)
 
@@ -99,4 +106,4 @@
 
 ---
 
-*Last updated: 2026-05-15 | Added ZD-033 (CVE-2026-41651/Pack2TheRoot, PackageKit TOCTOU LPE CVSS 8.8, actively exploited, public PoC) + ZD-034 (CVE-2026-41103, MS SSO Jira/Confluence auth bypass CVSS 9.1, actively exploited) + ZD-035 (CVE-2026-35421, Windows GDI Heap BOF RCE CVSS 7.8, May PT) + ZD-036 (CVE-2026-40365, SharePoint RCE CVSS 8.8, May PT) + ZD-037 (CVE-2026-32161, WiFi Miniport UAF RCE CVSS 7.5, May PT) + ZD-038 (CVE-2026-40402, Hyper-V EoP CVSS 9.3, May PT); Updated COPYFAIL (ZD-014) FCEB deadline PASSED | Entry count: 38*
+*Last updated: 2026-05-18 | Added ZD-039 (CVE-2026-42945 NGINX Rift, CVSS 9.2, heap buffer overflow, active exploitation confirmed by VulnCheck, patched) + ZD-040 (MiniPlasma, Windows LPE via cldflt.sys race condition, PoC public, unpatched, SYSTEM shell on fully patched May 2026 Win11, 6th Chaotic Eclipse tool); YellowKey (ZD-026) Day 6 unpatched; GreenPlasma (ZD-027) Day 6 unpatched; RedSun (ZD-002) Day 32 unpatched; UnDefend (ZD-003) Day 32 unpatched | Entry count: 40*

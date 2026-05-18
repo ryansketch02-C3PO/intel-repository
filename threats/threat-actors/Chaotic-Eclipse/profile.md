@@ -166,3 +166,31 @@ Nightmare-Eclipse tooling is now a commodity component of post-exploitation play
 | Date | Update |
 |---|---|
 | 2026-05-13 | Profile created. Five tools public. RedSun/UnDefend Day 27 unpatched. YellowKey/GreenPlasma Day 1. Threat of "big surprise" at June PT. |
+| 2026-05-18 | **MiniPlasma (6th tool)** published May 17. LPE via `cldflt.sys`/`HsmOsBlockPlaceholderAccess`; CVE-2020-17103 incomplete fix/regression. SYSTEM confirmed on fully patched Win11 (May PT). Does NOT work on Insider Canary. Tracked as ZD-040. RedSun/UnDefend now Day 32; YellowKey/GreenPlasma Day 6. |
+
+---
+
+## 📡 Intelligence Update — 2026-05-18
+
+### MiniPlasma — 6th Tool Published (May 17, 2026)
+
+Chaotic Eclipse published **MiniPlasma** on May 17, 2026 — a Windows LPE targeting `cldflt.sys` (Cloud Files Mini Filter Driver) that achieves SYSTEM via a race condition in `HsmOsBlockPlaceholderAccess`. The researcher characterizes it as proof that **CVE-2020-17103** (James Forshaw/GPZ, September 2020, reportedly patched December 2020) was never properly fixed:
+
+> *"The exact same issue that was reported to Microsoft by Google Project Zero is actually still present, unpatched. The original PoC by Google worked without any changes."*
+
+BleepingComputer confirmed SYSTEM shell on fully patched Windows 11 Pro (KB5089549). Will Dormann (Tharros) confirmed independently. Does NOT work on Windows 11 Insider Preview Canary. Microsoft has issued no CVE or advisory.
+
+**Updated tool count: 6 tools public. 5 tools unpatched.**
+
+| # | Tool | Status as of 2026-05-18 |
+|---|---|---|
+| 1 | BlueHammer | ✅ Patched (CVE-2026-33825) |
+| 2 | RedSun | 🔴 Unpatched — Day 32 |
+| 3 | UnDefend | 🔴 Unpatched — Day 32 |
+| 4 | YellowKey | 🔴 Unpatched — Day 6 |
+| 5 | GreenPlasma | 🔴 Unpatched — Day 6 |
+| 6 | MiniPlasma | 🔴 Unpatched — Day 1 |
+
+**Next milestone:** ~June 9, 2026 (Patch Tuesday) — researcher threatened a "big surprise." Tracked as ZD-040.
+
+*Profile updated: 2026-05-18 | Author: C3PO*
