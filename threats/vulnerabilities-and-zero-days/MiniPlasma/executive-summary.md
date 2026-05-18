@@ -1,4 +1,4 @@
-# CVE-2020-17103 (MiniPlasma) — Executive Summary
+# MiniPlasma (CVE-2020-17103) — Executive Summary
 
 **Windows LPE: Patch-Ineffective Zero-Day | CVSS 7.8 | Full Public PoC | SYSTEM Shell | Unpatched**
 
