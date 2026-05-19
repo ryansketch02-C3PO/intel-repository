@@ -31,6 +31,15 @@
 
 ## 📋 N-Day CVEs (Patched, Actively Exploited or High Risk)
 
+### Recently Added (2026-05-19)
+
+| ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
+|---|---|---|---|---|---|---|---|
+| ZD-043 | CVE-2026-39987 | Unauthenticated RCE / Missing Authentication for Critical Function | Marimo reactive Python notebook (all versions pre-patch) | CVE-2026-39987 | ✅ PATCHED — apply latest Marimo version immediately | 🔴 HIGH — CVSS 9.8; ✅ CISA KEV; EPSS 0.818 (81.8th percentile); A&D relevance via AI/data science pipeline targeting; active exploitation | 2026-05-19 |
+| ZD-044 | CVE-2026-3854 | RCE / Code Injection in CI/CD Workflow | GitHub Actions (GitHub.com + GitHub Enterprise Server) | CVE-2026-3854 (CVSS 8.7) | ✅ PATCHED — GitHub-side mitigations + GHES update; review workflow configs | 🔴 HIGH — CVSS 8.7; ITW exploitation confirmed; public PoC; CI/CD pipeline compromise = secret theft + artifact poisoning; supply chain impact | 2026-05-19 |
+| ZD-045 | Apache OFBiz May 2026 Batch | Unauth RCE via JWT Forgery + Auth Bypass → RCE (multiple paths) | Apache OFBiz (all versions before 24.09.06) | CVE-2026-31986 (Unauth RCE / Default JWT) · CVE-2026-45434 (Auth Bypass → RCE) · CVE-2026-46586 (Code Injection) + 5 additional CVEs | ✅ PATCHED — Apache OFBiz 24.09.06 | 🔴 HIGH — Multiple critical paths: unauth RCE via default JWT signing key; auth bypass → RCE; OFBiz has strong history of weaponization within days; KEV listing expected | 2026-05-19 |
+| ZD-046 | CVE-2026-42822 | EoP / Azure Local Disconnected Operations (ALDO) | Microsoft Azure Local (all versions before May 2026 patch) | CVE-2026-42822 (CVSS 10.0) | ✅ PATCHED — Microsoft security update available | 🔴 HIGH — CVSS 10.0 (maximum); Azure Local ALDO used in air-gapped/disconnected DOD and A&D environments; full cluster privilege escalation; KEV listing expected | 2026-05-19 |
+
 ### Recently Added (2026-05-18)
 
 | ID | Name | Type | Platform | CVE | Patch Status | Threat Level | Date Added |
@@ -109,4 +118,4 @@
 
 ---
 
-*Last updated: 2026-05-18 | Added ZD-041 (CVE-2026-1281, Ivanti EPMM unauthenticated RCE, CISA KEV May 13) + ZD-042 (OpenDSM CVE-2026-28515 + CVE-2026-28516, missing auth + OS command injection, CVSS 9.3 each, chainable to RCE, exploitation attempts confirmed May 18); also added ZD-039 (CVE-2026-42945 NGINX Rift) + ZD-040 (MiniPlasma) earlier today; ZD-031 CVE-2026-42897 Exchange XSS CISA KEV deadline May 29; MiniPlasma (ZD-040) Day 1 unpatched; YellowKey (ZD-026) Day 6; RedSun (ZD-002)/UnDefend (ZD-003) Day 32 | Entry count: 42; + CVE-2026-31635 (Linux rxrpc remote DoS, patched upstream, narrow scope)*
+*Last updated: 2026-05-19 | Added ZD-043 (CVE-2026-39987, Marimo unauth RCE, CVSS 9.8, CISA KEV, EPSS 0.818) + ZD-044 (CVE-2026-3854, GitHub Actions RCE, CVSS 8.7, ITW + PoC) + ZD-045 (Apache OFBiz May 2026 batch: CVE-2026-31986 unauth RCE via default JWT + CVE-2026-45434 auth bypass → RCE + CVE-2026-46586 code injection + 5 more, all patched in 24.09.06) + ZD-046 (CVE-2026-42822, Azure Local ALDO EoP, CVSS 10.0); prior: CVE-2026-31635 (Linux rxrpc remote DoS, narrow scope); MiniPlasma (ZD-040) Day 2 unpatched; YellowKey (ZD-026) Day 7; RedSun (ZD-002)/UnDefend (ZD-003) Day 33; CVE-2026-42897 Exchange XSS (ZD-031) CISA KEV deadline May 29 | Entry count: 46*

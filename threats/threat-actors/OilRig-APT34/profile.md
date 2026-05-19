@@ -280,3 +280,26 @@ Static 404 "Document" page served on port 8080 with fixed Content-Length of 338 
 ---
 
 *Profile created: 2026-05-08 | Author: C3PO | Admiralty Grade: A1 | TLP: WHITE*
+
+---
+
+## 📡 Intelligence Update — 2026-05-19
+
+### April 2026 Campaign — Excel Macro + Multi-Platform C2 (GitHub / Google Drive / Telegram)
+
+AhnLab ASEC's **April 2026 APT Threat Trend Report** (published May 17, 2026) documented OilRig (APT-C-49 / APT34) using a sophisticated **stealthy C2 scheme** in April 2026 combining Excel macros with **GitHub, Google Drive, and Telegram bots** as covert command-and-control channels.
+
+**Key details:**
+- **Initial delivery**: Excel macro-based malware delivered via spearphishing
+- **C2 channels**: GitHub repositories, Google Drive, and Telegram bot API used as covert C2 — legitimate cloud platforms used to blend C2 traffic into normal enterprise traffic and evade network-based detection
+- **Detection evasion rationale**: Telegram bot API, GitHub, and Google Drive are frequently allowlisted or trusted in enterprise environments; C2 traffic mimics legitimate cloud service usage
+
+**Why this matters:** OilRig's pivot to cloud-platform C2 (GitHub, GDrive, Telegram) represents an evolution from their traditional infrastructure. This technique:
+1. Bypasses signature-based network detection (traffic goes to legitimate cloud domains)
+2. Complicates takedown (C2 channels reside on platforms that cannot be sinkholed)
+3. Reduces cost of infrastructure maintenance (free, resilient services)
+4. Has been adopted from the China-nexus playbook where similar techniques (e.g., Cobalt Strike over legitimate APIs) are well-documented
+
+**A&D relevance:** OilRig's primary targets include defense contractors, government agencies, and energy sector organizations. The Excel macro delivery vector is a common initial access path in defense environments where spreadsheet-based tools are prevalent. Organizations should ensure Excel macro policies are enforced (block/restrict macros from external sources) and monitor for outbound Telegram Bot API and unexpected GitHub API calls from unexpected internal hosts.
+
+*Profile updated: 2026-05-19 | Author: C3PO | Source: ASEC AhnLab April 2026 APT Report (May 17, 2026)*

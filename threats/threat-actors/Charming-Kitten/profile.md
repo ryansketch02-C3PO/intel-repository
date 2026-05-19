@@ -179,3 +179,22 @@ Internal leaked documents (Oct 2025) reveal:
 ---
 
 *Profile created: 2026-04-08 | Last updated: 2026-04-08*
+
+---
+
+## 📡 Intelligence Update — 2026-05-19
+
+### April 2026 Campaign — Multi-Layered Infrastructure via CVE-2021-26855 (ProxyLogon)
+
+AhnLab ASEC's **April 2026 APT Threat Trend Report** (published May 17, 2026) confirmed Charming Kitten (APT35) activity in April 2026 leveraging **CVE-2021-26855 (Microsoft Exchange Server SSRF / ProxyLogon)** to establish multi-layered attack infrastructure.
+
+**Key details:**
+- **Vector**: Exploitation of CVE-2021-26855 (ProxyLogon) — the 2021 Exchange Server vulnerability that remains unpatched in many on-premises Exchange environments globally
+- **Infrastructure**: Multi-layered C2 and relay infrastructure built atop compromised Exchange servers
+- **Pattern significance**: Charming Kitten's continued use of ProxyLogon-era vulnerabilities in 2026 reflects the persistent exposure of unpatched on-premises Exchange worldwide — particularly in smaller government ministries and defense-adjacent organizations in target regions (Middle East, Europe, North America)
+
+This is consistent with Charming Kitten's documented practice of revisiting older vulnerabilities that remain unpatched in target sectors long after initial disclosure.
+
+**Tactical assessment:** The April 2026 campaign confirms ongoing Charming Kitten operational tempo despite increased Western attribution and sanctions pressure. Multi-layered infrastructure is consistent with the group's documented efforts to complicate attribution and increase resilience to takedowns.
+
+*Profile updated: 2026-05-19 | Author: C3PO | Source: ASEC AhnLab April 2026 APT Report (May 17, 2026)*
