@@ -42,10 +42,10 @@ By May 13, 2026, the researcher has published **five distinct Windows exploit to
 | # | Tool | Disclosed | Type | Status |
 |---|---|---|---|---|
 | 1 | BlueHammer | Apr 3, 2026 | LPE → SYSTEM (Defender TOCTOU + SAM read) | ✅ Patched — CVE-2026-33825 |
-| 2 | RedSun | Apr 16, 2026 | LPE → SYSTEM (Defender cloud-file write) | 🔴 Unpatched — Day 27 |
-| 3 | UnDefend | Apr 16, 2026 | Defender DoS / definition block + telemetry falsification | 🔴 Unpatched — Day 27 |
-| 4 | YellowKey | May 12, 2026 | BitLocker bypass via WinRE FStX simulation | 🔴 Unpatched — Day 1 |
-| 5 | GreenPlasma | May 12, 2026 | EoP / CTFMON arbitrary section creation (partial PoC) | 🔴 Unpatched — Day 1 |
+| 2 | RedSun | Apr 16, 2026 | LPE → SYSTEM (Defender cloud-file write) | 🟡 POTENTIALLY SILENTLY PATCHED (researcher claim; unconfirmed; Day 33) |
+| 3 | UnDefend | Apr 16, 2026 | Defender DoS / definition block + telemetry falsification | 🔴 Unpatched — Day 33 |
+| 4 | YellowKey | May 12, 2026 | BitLocker bypass via WinRE FStX simulation | 🔴 Unpatched — Day 7 |
+| 5 | GreenPlasma | May 12, 2026 | EoP / CTFMON arbitrary section creation (partial PoC) | 🔴 Unpatched — Day 7 |
 
 ---
 
@@ -167,6 +167,7 @@ Nightmare-Eclipse tooling is now a commodity component of post-exploitation play
 |---|---|
 | 2026-05-13 | Profile created. Five tools public. RedSun/UnDefend Day 27 unpatched. YellowKey/GreenPlasma Day 1. Threat of "big surprise" at June PT. |
 | 2026-05-18 | **MiniPlasma (6th tool)** published May 17. LPE via `cldflt.sys`/`HsmOsBlockPlaceholderAccess`; CVE-2020-17103 incomplete fix/regression. SYSTEM confirmed on fully patched Win11 (May PT). Does NOT work on Insider Canary. Tracked as ZD-040. RedSun/UnDefend now Day 32; YellowKey/GreenPlasma Day 6. |
+| 2026-05-19 | **No new tool today** (GitHub confirmed at 6 repos). **CRITICAL:** Researcher claims Microsoft quietly patched RedSun without CVE assignment — unconfirmed; do not stand down detections. Day counters: RedSun/UnDefend Day 33; YellowKey/GreenPlasma Day 7; MiniPlasma Day 2. |
 
 ---
 
@@ -180,17 +181,41 @@ Chaotic Eclipse published **MiniPlasma** on May 17, 2026 — a Windows LPE targe
 
 BleepingComputer confirmed SYSTEM shell on fully patched Windows 11 Pro (KB5089549). Will Dormann (Tharros) confirmed independently. Does NOT work on Windows 11 Insider Preview Canary. Microsoft has issued no CVE or advisory.
 
-**Updated tool count: 6 tools public. 5 tools unpatched.**
+**Updated tool count: 6 tools public. 5 confirmed unpatched; 1 potentially silently patched (unconfirmed).**
 
-| # | Tool | Status as of 2026-05-18 |
+| # | Tool | Status as of 2026-05-19 |
 |---|---|---|
 | 1 | BlueHammer | ✅ Patched (CVE-2026-33825) |
-| 2 | RedSun | 🔴 Unpatched — Day 32 |
-| 3 | UnDefend | 🔴 Unpatched — Day 32 |
-| 4 | YellowKey | 🔴 Unpatched — Day 6 |
-| 5 | GreenPlasma | 🔴 Unpatched — Day 6 |
-| 6 | MiniPlasma | 🔴 Unpatched — Day 1 |
+| 2 | RedSun | 🟡 POTENTIALLY SILENTLY PATCHED (researcher claim; unconfirmed; Day 33) |
+| 3 | UnDefend | 🔴 Unpatched — Day 33 |
+| 4 | YellowKey | 🔴 Unpatched — Day 7 |
+| 5 | GreenPlasma | 🔴 Unpatched — Day 7 |
+| 6 | MiniPlasma | 🔴 Unpatched — Day 2 |
 
 **Next milestone:** ~June 9, 2026 (Patch Tuesday) — researcher threatened a "big surprise." Tracked as ZD-040.
 
-*Profile updated: 2026-05-18 | Author: C3PO*
+*Profile updated: 2026-05-19 | Author: C3PO*
+
+---
+
+## 📡 Intelligence Update — 2026-05-19
+
+### No New Tool Released | RedSun Potentially Quietly Patched (Unconfirmed)
+
+GitHub account `Nightmare-Eclipse` confirmed at **6 repositories** as of 13:00 EDT, May 19, 2026. No new tool has been published today.
+
+**RedSun Quiet Patch Claim:** Multiple sources reporting May 17–19 indicate the researcher themselves has stated Microsoft **silently patched RedSun** without assigning a CVE or publishing a public advisory. Sources: SecurityLab.ru (Russian-language, May 18), TechRadar MiniPlasma coverage. Creedtek.org analysis (May 14) adds appropriate caution: *"that claim should be treated with caution until confirmed by Microsoft’s advisory language or release notes."*
+
+**Assessment:**
+- Silent patch with no CVE = no CISA KEV eligibility, no federal mandate, no ecosystem notification. Defenders not actively tracking this researcher would have zero signal.
+- MiniPlasma (same `cldflt.sys`/`cldapi.dll` surface, Day 2) confirmed working on fully patched May 2026 — no evidence of broad Cloud Files hardening occurred alongside any RedSun fix.
+- **Do not stand down RedSun detections** pending independent PoC verification or Microsoft public statement.
+
+**Day counters as of 2026-05-19:**
+| Tool | Days Since Public Disclosure | Status |
+|---|---|---|
+| RedSun | Day 33 | 🟡 Potentially silently patched (unconfirmed) |
+| UnDefend | Day 33 | 🔴 Unpatched |
+| YellowKey | Day 7 | 🔴 Unpatched |
+| GreenPlasma | Day 7 | 🔴 Unpatched |
+| MiniPlasma | Day 2 | 🔴 Unpatched |

@@ -1,6 +1,6 @@
 # 🔍 Chaotic Eclipse — Indicators of Compromise
 
-> **Last Updated:** 2026-05-13
+> **Last Updated:** 2026-05-19
 > **Admiralty Grade:** A3 — Tools verified; researcher identity unconfirmed
 > **TLP:** TLP:WHITE
 >
@@ -19,6 +19,7 @@
 | UnDefend | `github.com/Nightmare-Eclipse/UnDefend` | Defender DoS / telemetry falsification | Full — unpatched |
 | YellowKey | `github.com/Nightmare-Eclipse/YellowKey` | BitLocker bypass via WinRE | Full — unpatched |
 | GreenPlasma | `github.com/Nightmare-Eclipse/GreenPlasma` | EoP / CTFMON section creation | Partial — SYSTEM shell withheld |
+| MiniPlasma | `github.com/Nightmare-Eclipse/MiniPlasma` | LPE → SYSTEM via `cldflt.sys` / `HsmOsBlockPlaceholderAccess` (CVE-2020-17103 patch ineffective) | Full — confirmed SYSTEM on fully patched May 2026 Win11 |
 
 ---
 
@@ -42,6 +43,7 @@
 | `Exploit:Win32/DfndrPEBluHmr.BB` | BlueHammer | Original binary only |
 | `HackTool:Win32/RedSunExploit` | RedSun | Original binary only |
 | `HackTool:Win32/UnDefend` | UnDefend | Original binary only |
+| `HackTool:Win32/MiniPlasmaExploit` | MiniPlasma | Pending — no signature confirmed yet as of 2026-05-19 |
 
 ---
 
@@ -57,6 +59,7 @@ Threat actors using Nightmare-Eclipse tooling have been observed staging binarie
 | `z.exe` | RedSun | Short-name variant — observed in two-letter subfolders |
 | `YellowKey.exe` | YellowKey | Original PoC name |
 | `GreenPlasma.exe` | GreenPlasma | Original PoC name |
+| `MiniPlasma.exe` | MiniPlasma | Original PoC name |
 
 ---
 
@@ -105,6 +108,15 @@ These are technique-level indicators applicable regardless of binary name/hash:
 | `TreeSetNamedSecurityInfo` granting `Everyone:GENERIC_ALL` on policy-adjacent keys | API monitoring |
 | `CfAbortOperation` (cldapi.dll) called repeatedly from non-sync-client process | API monitoring |
 | Unexpected CTFMON section object creation timing | ETW named object monitoring |
+
+### MiniPlasma
+| Behavior | Detection Point |
+|---|---|
+| `HsmOsBlockPlaceholderAccess` called via `cldflt.sys` from non-sync-client process | ETW / kernel driver monitoring |
+| `.DEFAULT` user hive registry key creation by non-SYSTEM process | Registry monitoring (Event ID 4657) |
+| Low-priv process opening `.DEFAULT` hive with write access via anonymous token manipulation | API monitoring / ETW |
+| `cldflt.sys` race condition trigger: rapid repeated `NtCreateSection` or placeholder ops from user process | ETW / EDR behavioral |
+| C# or managed code process spawning `cmd.exe` as SYSTEM without corresponding admin session | EDR process tree |
 
 ---
 

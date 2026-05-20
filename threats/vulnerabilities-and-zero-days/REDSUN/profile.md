@@ -471,3 +471,30 @@ May 12 Patch Tuesday released 138 CVE-numbered vulnerabilities. Multiple analysi
 **Next window:** June Patch Tuesday (~June 9, 2026) is the next scheduled opportunity. An out-of-band fix remains possible at any time.
 
 *Profile updated: 2026-05-18 | Author: C3PO | TLP: WHITE*
+
+---
+
+### 🟡 Status Update — Day 33 | Researcher Claims Quiet Microsoft Patch — UNCONFIRMED | 2026-05-19
+
+> **RedSun: Day 33 publicly exploitable. CRITICAL DEVELOPMENT: Researcher claims Microsoft silently patched RedSun without CVE assignment. Unconfirmed by Microsoft.**
+
+**Researcher patch claim (May 17–18 reporting):** Chaotic Eclipse / Nightmare-Eclipse has stated, across their blog and GitHub, that Microsoft **quietly patched RedSun** without assigning a CVE or publishing a public advisory. Russian-language security outlet SecurityLab.ru (May 18) and TechRadar's MiniPlasma coverage both report this claim from the researcher directly. Creedtek.org analysis (May 14) added: *"The researcher has claimed that Microsoft silently patched RedSun, but that claim should be treated with caution until confirmed by Microsoft's advisory language or release notes."*
+
+**Current status:**
+- Microsoft has issued **no public CVE, no advisory, no release notes** confirming a RedSun fix
+- No independent researcher has confirmed as of this update that the GitHub PoC is non-functional on a fully patched May 2026 system
+- MiniPlasma (6th tool, same `cldflt.sys`/`cldapi.dll` attack surface) confirmed working on May 2026 fully patched systems — indicating the broader Cloud Files ecosystem is **not silently hardened**
+- The claim requires verification: test the RedSun PoC on a fully patched May 19, 2026 Windows 11 system before treating as confirmed
+
+**Assessment:** Treat RedSun as **potentially silently patched** — a meaningful status change from confirmed-exploitable — but do not stand down detection/hunting until Microsoft publishes formal confirmation or independent researchers verify the PoC is broken. If the researcher's claim is accurate, it would be an unusual and concerning approach to disclosure (no CVE = no KEV eligibility = no federal mandate = no ecosystem notification).
+
+| Date | Milestone |
+|---|---|
+| April 16, 2026 | RedSun public PoC + active exploitation confirmed |
+| May 12, 2026 | Patch Tuesday shipped — NO FIX (confirmed) |
+| May 13, 2026 | Day 27 update |
+| May 18, 2026 | Day 32 — MiniPlasma released; KEV threshold passed |
+| **May 19, 2026** | **Day 33 — Researcher claims quiet patch; unconfirmed by Microsoft** |
+| ~June 9, 2026 | June Patch Tuesday — next scheduled window |
+
+*Profile updated: 2026-05-19 | Author: C3PO | TLP: WHITE*
